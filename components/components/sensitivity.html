@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--    其他设置-->
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>唐商</title>
+    <link href="./../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./../../static/css/common.css" rel="stylesheet">
+    <link href="./../../static/js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../../static/css/datetimepicker.min.css">
+    <script src="./../../static/js/jqery.js"></script>
+    <script src="./../../static/js/moment.js"></script>
+    <script src="./../../static/js/bootstrap.min.js"></script>
+    <script src="./../../static/js/datatimepicker.js"></script>
+    <script src="./../../static/js/layui/layui.all.js"></script>
+    <style>
+        .sensitivity{
+            background: url("./../../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+            height: 98vh;
+            overflow: hidden;
+        }
+        .cnentes{
+            height: 100vh;
+            background: #f2f2f2;
+            border-radius: 5px;
+            width: 1200px;
+            margin: auto;
+        }
+        .tblse{
+            margin: 10px;
+            margin-top: 0;
+            border: 1px solid #d7d7d7;
+            border-radius: 5px;
+            height: 90vh;
+        }
+        .zh{
+            height: 10px;
+        }
+        #qiliangqifeis{
+            width: 100%;
+        }
+        #qiliangqifeis th{
+            text-align: center;
+            height: 60px;
+            line-height: 60px;
+        }
+        #qiliangqifeis td{
+            text-align: center;
+        }
+        .pagination{
+            display: block;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            margin:auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="sensitivity">
+    <div class="cnentes">
+        <div class="zh"></div>
+        <div class="tblse">
+            <table class="table-striped qiliangqifei-tab" id="qiliangqifeis">
+                <thead>
+                <tr>
+                    <th data-valign="middle">类型</th>
+                    <th>操作位置</th>
+                    <th>操作前内容</th>
+                    <th>操作后内容</th>
+                    <th>操作时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>修改</td>
+                    <td>切换代理</td>
+                    <td> <textarea ></textarea></td>
+                    <td> <textarea ></textarea></td>
+                    <td>2020-10-30 14：15：08</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <ul id="pagination" class="pagination"></ul>
+    </div>
+</div>
+<script>
+    $(function (){
+        if ($("#pagination")) {
+            var pagecount = 40;
+            var pagesize = 10;
+            var currentpage = 1;
+            var counts, pagehtml = "";
+            if (pagecount % pagesize == 0) {
+                counts = parseInt(pagecount / pagesize);
+            } else {
+                counts = parseInt(pagecount / pagesize) + 1;
+            }
+            //只有一页内容
+            if (pagecount <= pagesize) {
+                pagehtml = "";
+            }
+            //大于一页内容
+            if (pagecount > pagesize) {
+                if (currentpage > 1) {
+                    pagehtml += '<li><a >上一页</a></li>';
+                }
+                for (var i = 0; i < counts; i++) {
+                    if (i >= (currentpage - 3) && i < (currentpage + 3)) {
+                        if (i == currentpage - 1) {
+                            pagehtml += '<li class="active"><a >' + (i + 1) + '</a></li>';
+                        } else {
+                            pagehtml += '<li><a >' + (i + 1) + '</a></li>';
+                        }
+
+                    }
+                }
+                if (currentpage < counts) {
+                    pagehtml += '<li><a >下一页</a></li>';
+                }
+            }
+            $("#pagination").html(pagehtml);
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    机器人托-->
+    <meta charset="UTF-8">
+
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>唐商</title>
+    <link href="./../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./../static/css/common.css" rel="stylesheet">
+    <link href="./../static/js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../static/css/datetimepicker.min.css">
+    <script src="./../static/js/jqery.js"></script>
+    <script src="./../static/js/moment.js"></script>
+    <script src="./../static/js/bootstrap.min.js"></script>
+    <script src="./../static/js/datatimepicker.js"></script>
+    <script src="./../static/js/layui/layui.all.js"></script>
+    <style>
+        .Robots{
+            width: 100%;
+            height: 100vh;
+            background: url("./../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        .zh{
+            height: 10px;
+        }
+        .centent{
+            border: 1px solid #d7d7d7;
+            background: #f2f2f2;
+        }
+        .list-header {
+            display: flex;
+            align-items: center;
+            height: 80px;
+            border-bottom: 1px solid #e4e4e4;
+            text-align: left;
+            justify-content: space-between;
+        }
+
+        .list-header .list-title {
+            position: relative;
+            /*padding-bottom: 10px;*/
+            display: flex;
+            /*min-height: 28px;*/
+            font-weight: 700;
+            align-items: center;
+            color: #333;
+            width: 100%;
+            justify-content: space-between;
+            box-sizing: content-box;
+        }
+
+        .list-header .list-title:before {
+            content: "";
+            position: absolute;
+            top: 40%;
+            left: 7px;
+            width: 4px;
+            height: 15px;
+            background-color: #399;
+        }
+
+        .list-header .list-title > span {
+            margin-left: 18px;
+            line-height: 34px;
+        }
+        .list-p{
+            width: 60%;
+            line-height: 20px;
+        }
+        .tblse{
+            border: 1px solid #d7d7d7;
+            border-radius: 5px;
+            margin: 10px;
+            width: calc(100% - 20px)!important;
+            background: #f2f2f2;
+        }
+        #toggle-button {
+            display: none;
+        }
+
+        .button-label {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 20px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label .text {
+            line-height: 20px;
+            font-size: 14px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        .on {
+            color: #fff;
+            display: none;
+            text-indent: -40px;
+        }
+
+        .off {
+            color: #fff;
+            display: inline-block;
+            text-indent: 30px;
+        }
+
+        .button-label .circle {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button:checked + label.button-label .circle {
+            left: 50px;
+        }
+
+        #toggle-button:checked + label.button-label .on {
+            display: inline-block;
+        }
+
+        #toggle-button:checked + label.button-label .off {
+            display: none;
+        }
+
+        #toggle-button:checked + label.button-label {
+            background-color: #19e236;
+        }
+        #qiliangqifei img{
+            width: 50px;
+            height: 50px;
+        }
+        .tblse{
+            width: 100%;
+            overflow: auto;
+        }
+        #qiliangqifei{
+            width: 100%;
+        }
+        #qiliangqifei th{
+            text-align: center;
+        }
+        #qiliangqifei td{
+            text-align: center;
+        }
+        .centent1{
+            height: 200px;
+            background: #f2f2f2;
+            border: 1px solid #d7d7d7;
+            border-radius: 5px;
+        }
+        .cent1-item{
+            background: #ccc;
+            border: 1px solid #a1a1a1;
+            border-radius: 5px;
+            width: 80%;
+            margin: 10px auto;
+            text-align: center;
+            color: #333333;
+            cursor: pointer;
+        }
+        #qiliangqifeis{
+            width: 100%;
+        }
+        #qiliangqifeis th{
+            text-align: center;
+        }
+        #qiliangqifeis td{
+            text-align: center;
+        }
+        .flexa{
+            display: flex;
+        }
+        .flexa .centent{
+            width: 65%;
+        }
+        .flexa .lisntx{
+            width: 35%;
+        }
+        .centent{
+            height: calc(100vh - 50px);
+        }
+        .centent .tblse{
+            height: calc(100vh - 300px);
+        }
+        .centent2{
+            height: calc(100vh - 249px);
+            background: #f2f2f2;
+        }
+        .tblse{
+            height: calc(100vh - 350px);
+        }
+        .Topdownplan {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 9;
+            bottom: 0;
+            display: none;
+            background: rgba(0, 0, 0, .4);
+
+        }
+
+        .Topdownplan .branch-recode {
+            /*width: 90%;*/
+            height: 600px;
+            position: absolute;
+            z-index: 99;
+            /*left: 5%;*/
+            top: 30px;
+            background: #f2f2f2;
+            border: 3px solid #cdcdcd;
+        }
+        .user-info-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            background-color: #ddd;
+            font-weight: 700;
+        }
+        .form-group{
+            margin-top: 10px;
+            display: flex;
+            height: 80px;
+            align-items: center;
+            border: 1px solid #d7d7d7;
+            justify-content: space-around;
+        }
+        .form-group input{
+            width: 50%;
+        }
+        .data-con{
+            display: flex;
+        }
+        .modal{
+            display: flex;
+            width: 90%;
+            margin:0 5%;
+            height: 100px;
+            margin-top: 80px;
+        }
+        .modal-item:nth-child(1){
+            margin-right: 15px;
+            padding-right: 16px;
+            border-right: 1px solid #d7d7d7;
+        }
+        .modal-item img{
+            width: 65px;
+            height: 65px;
+            margin-left: 15px;
+            vertical-align: middle;
+        }
+        .change-header{
+            margin: 0 15px;
+            line-height: 14px;
+            background-color: #f93;
+            border-radius: 4px;
+            border: 1px solid #f30;
+            cursor: pointer;
+        }
+        .modify-item{
+            display: flex;
+            align-items: center;
+        }
+        .modify-item[data-v-c2e55c32]:first-child {
+            margin-right: 15px;
+            padding-right: 16px;
+            border-right: 1px solid #d7d7d7;}
+        .modify-column[data-v-c2e55c32] {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 10px;}
+        .modify-item[data-v-c2e55c32]:first-child {
+            margin-right: 15px;
+            padding-right: 16px;
+            border-right: 1px solid #d7d7d7;
+        }
+        .columns-item-input[data-v-c2e55c32] {
+            margin-left: 10px;
+            width: 180px;
+        }
+        .ivu-input {
+            display: inline-block;
+            width: 100%;
+            height: 32px;
+            line-height: 1.5;
+            padding: 4px 7px;
+            font-size: 12px;
+            border: 1px solid #dcdee2;
+            border-radius: 4px;
+            color: #515a6e;
+            background-color: #fff;
+            background-image: none;
+            position: relative;
+            cursor: text;
+            transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+        }
+        .modify-item[data-v-c2e55c32]:nth-child(2) {
+            margin-right: 40px;
+        }
+        .modify-list .modify-column[data-v-c2e55c32]:last-child {
+            margin-bottom: 0;
+        }
+        .column[data-v-c2e55c32] {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+        .modify-column .input[data-v-c2e55c32] {
+            margin-right: 20px;
+            padding: 10px 8px;
+            width: 320px;
+            border-radius: 4px;
+            border: 1px solid #dcdcdc;
+            background-color: #fff;}
+        .modify-column .send-button[data-v-c2e55c32] {
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            background-color: #39c;
+            border-radius: 4px;
+            border: 1px solid #369;
+            text-align: center;
+            cursor: pointer;
+        }
+        .modify-c-b[data-v-c2e55c32] {
+            margin: 7px 15px;
+            border-radius: 2px;
+            background-color: #e4e4e4;
+            border: 1px solid #d7d7d7;
+            font-size: 14px;
+            font-weight: 400;
+            margin-top: 120px;
+        }
+        .modify-c-b .false-user-header[data-v-c2e55c32] {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin: 0 13px 13px;
+            padding: 13px 0;
+            border-bottom: 1px solid #d7d7d7;
+        }
+        .modify-c-b .false-user-header .false-user-title[data-v-c2e55c32] {
+            position: relative;
+            padding-left: 11px;
+            height: 20px;
+            line-height: 20px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .modify-c-b .false-user-header .false-user-title[data-v-c2e55c32]::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 0;
+            width: 5px;
+            height: 15px;
+            background-color: #399;
+        }
+        .modify-c-b .false-user-header .false-user-poptip[data-v-c2e55c32] {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+            text-align: left;
+        }
+        .modify-c-b .false-user-header .false-user-poptip > p[data-v-c2e55c32] {
+            height: 14px;
+            line-height: 14px;
+        }
+        .modify-c-b .game-list[data-v-c2e55c32] {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin: 0 10px;
+        }
+        .modify-c-b .game-list .game-item[data-v-c2e55c32] {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 0 7px;
+            width: 355px;
+            height: 50px;
+            border-radius: 2px;
+            background-color: #f2f2f2;
+            border: 1px solid #c9c9c9;
+        }
+        .small-close {
+            background-color: #ddd;
+        }
+        .small {
+            width: 40px;
+            height: 25px;
+            border-top-left-radius: 12.5px 50%;
+            border-top-right-radius: 12.5px 50%;
+            border-bottom-right-radius: 12.5px 50%;
+            border-bottom-left-radius: 12.5px 50%;
+        }
+        .switch {
+            display: inline-block;
+            position: relative;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        .small-close .switch-item {
+            right: 0;
+            left: -30%;
+        }
+        .small .switch-item {
+            width: 23px;
+            height: 23px;
+            border-radius: 11.5px;
+            background-color: #fff;
+        }
+        .switch .switch-item {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+        .modify-c-b .game-list .game-item > p[data-v-c2e55c32] {
+            margin-left: 7px;
+            width: 90px;
+            height: 40px;
+            line-height: 40px;
+            border-right: 1px solid #d7d7d7;
+        }
+        .modify-c-b .game-list .game-item > span[data-v-c2e55c32] {
+            margin: 0 8px;
+        }
+        .modify-c-b .game-list .game-item > select[data-v-c2e55c32] {
+            width: 130px;
+        }
+        .modify-operate[data-v-c2e55c32] {
+            margin: 15px 0 20px;
+            font-size: 14px;
+            font-weight: 400;
+            text-align: center;
+        }
+         .enter-button[data-v-c2e55c32] {
+            display: inline-block;
+            margin-right: 10px;
+            width: 140px;
+            height: 40px;
+            line-height: 40px;
+            background-color: #39c;
+            border-radius: 4px;
+            border: 1px solid #369;
+            text-align: center;
+            cursor: pointer;
+        }
+        .cancel-button[data-v-c2e55c32] {
+            display: inline-block;
+            width: 140px;
+            height: 40px;
+            line-height: 40px;
+            background-color: #f93;
+            border-radius: 4px;
+            border: 1px solid #f30;
+            text-align: center;
+            cursor: pointer;
+        }
+        .ai-setting-list{
+            display: flex;
+        }
+        .ai-setting-list, .ai-setting-shade .ai-setting .ai-setting-list {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 20px 10px;
+        }
+        .ai-setting-list .active-list, .ai-setting-shade .ai-setting .ai-setting-list .active-list {
+            width: 100%;
+            max-width: 700px;
+        }
+        .active-list .active-1, .ai-setting-shade .ai-active .ai-setting-list .method-list .active-1, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-1, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-1 {
+            border-radius: 2px;
+            background-color: #e4e4e4;
+            border: 1px solid #d7d7d7;
+        }
+         .ai-setting-shade .ai-active .ai-setting-list .method-list .active-header, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-header, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-header {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin: 0 17px;
+            padding: 12px 0 9px;
+            border-bottom: 1px solid #d7d7d7;
+        }
+        .ai-setting-list .active-list .active-header .active-title, .ai-setting-shade .ai-active .ai-setting-list .method-list .active-header .active-title, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-header .active-title, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-header .active-title {
+            position: relative;
+            padding-left: 11px;
+            height: 20px;
+            line-height: 20px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .active-title::before, .ai-setting-shade .ai-active .ai-setting-list .method-list .active-header .active-title::before, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-header .active-title::before, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-header .active-title::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 0;
+            width: 5px;
+            height: 15px;
+            background-color: #399;
+        }
+        .active-item {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 5px 10px;
+        }
+        .active-item > span {
+            margin: 0 5px;
+        }
+        .ivu-input-wrapper {
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            vertical-align: middle;
+            line-height: normal;
+        }
+        .ivu-input {
+            display: inline-block;
+            width: 100%;
+            height: 32px;
+            line-height: 1.5;
+            padding: 4px 7px;
+            font-size: 12px;
+            border: 1px solid #dcdee2;
+            border-radius: 4px;
+            color: #515a6e;
+            background-color: #fff;
+            background-image: none;
+            position: relative;
+            cursor: text;
+            transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+        }
+        .ivu-checkbox-wrapper {
+            cursor: pointer;
+            font-size: 12px;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .ivu-checkbox {
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+            cursor: pointer;
+            line-height: 1;
+            position: relative;
+        }
+        .ivu-checkbox-checked .ivu-checkbox-inner {
+            border-color: #2d8cf0;
+            background-color: #2d8cf0;
+        }
+        .ivu-checkbox-checked .ivu-checkbox-inner::after {
+            content: "";
+            display: table;
+            width: 4px;
+            height: 8px;
+            position: absolute;
+            top: 1px;
+            left: 4px;
+            border: 2px solid #fff;
+            border-top-color: rgb(255, 255, 255);
+            border-top-style: solid;
+            border-top-width: 2px;
+            border-left-color: rgb(255, 255, 255);
+            border-left-style: solid;
+            border-left-width: 2px;
+            border-top: 0;
+            border-left: 0;
+            transform: rotate(45deg) scale(1);
+            transition: all .2s ease-in-out;
+        }
+        .ivu-checkbox-input {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            cursor: pointer;
+            opacity: 0;
+        }
+        [type="checkbox"], [type="radio"] {
+            box-sizing: border-box;
+            padding: 0;
+        }
+        .ai-setting-shade .ai-active .active-item .columns-item-input {
+            width: 60px;
+        }
+        .ivu-input-number {
+            display: inline-block;
+            width: 100%;
+            line-height: 1.5;
+            padding: 4px 7px;
+            font-size: 12px;
+            color: #515a6e;
+            background-color: #fff;
+            background-image: none;
+            position: relative;
+            cursor: text;
+            transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+            margin: 0;
+            padding: 0;
+            width: 80px;
+            height: 32px;
+            line-height: 32px;
+            vertical-align: middle;
+            border: 1px solid #dcdee2;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: default;
+        }
+        .ivu-input-number-handler-wrap {
+            width: 22px;
+            height: 100%;
+            border-left: 1px solid #dcdee2;
+            border-radius: 0 4px 4px 0;
+            background: #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+            transition: opacity .2s ease-in-out;
+        }
+        .ivu-input-number-handler {
+            display: block;
+            width: 100%;
+            height: 16px;
+            line-height: 0;
+            text-align: center;
+            overflow: hidden;
+            color: #999;
+            position: relative;
+        }
+        .ivu-input-number-handler-up {
+            cursor: pointer;
+        }
+        .ivu-input-number-handler-up-inner {
+            width: 12px;
+            height: 12px;
+            line-height: 12px;
+            font-size: 14px;
+            color: #999;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: absolute;
+            right: 5px;
+            transition: all .2s linear;
+        }
+        .ivu-icon-ios-arrow-up::before {
+            content: "\F124";
+        }
+        .ivu-input-number-handler {
+            display: block;
+            width: 100%;
+            height: 16px;
+            line-height: 0;
+            text-align: center;
+            overflow: hidden;
+            color: #999;
+            position: relative;
+        }
+        .ivu-input-number-handler-down {
+            border-top: 1px solid #dcdee2;
+            top: -1px;
+            cursor: pointer;
+        }
+        .ivu-input-number-handler-down-inner, .ivu-input-number-handler-up-inner {
+            width: 12px;
+            height: 12px;
+            line-height: 12px;
+            font-size: 14px;
+            color: #999;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: absolute;
+            right: 5px;
+            transition: all .2s linear;
+        }
+        .ivu-icon {
+            display: inline-block;
+            font-family: Ionicons;
+            speak: none;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            text-rendering: auto;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            vertical-align: middle;
+        }
+
+        .ivu-icon-ios-arrow-down::before {
+
+            content: "\F116";
+
+        }
+        .ivu-input-number-input-wrap {
+            overflow: hidden;
+            height: 32px;
+        }
+        .ivu-input-number-input {
+            width: 100%;
+            height: 32px;
+            line-height: 32px;
+            padding: 0 7px;
+            text-align: left;
+            outline: 0;
+            -moz-appearance: textfield;
+            color: #666;
+            border: 0;
+            border-radius: 4px;
+            transition: all .2s linear;
+        }
+        .ai-active .active-item > span {
+            margin: 0 5px;
+        }
+        .ai-active .active-item .columns-item-input {
+            width: 60px;
+        }
+        .ivu-input-number {
+            display: inline-block;
+            width: 100%;
+            line-height: 1.5;
+            padding: 4px 7px;
+            font-size: 12px;
+            color: #515a6e;
+            background-color: #fff;
+            background-image: none;
+            position: relative;
+            cursor: text;
+            transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+            margin: 0;
+            padding: 0;
+            width: 80px;
+            height: 32px;
+            line-height: 32px;
+            vertical-align: middle;
+            border: 1px solid #dcdee2;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: default;
+        }
+        .ivu-input-number-handler-wrap {
+            width: 22px;
+            height: 100%;
+            border-left: 1px solid #dcdee2;
+            border-radius: 0 4px 4px 0;
+            background: #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+            transition: opacity .2s ease-in-out;
+        }
+        .ivu-input-number-handler {
+            display: block;
+            width: 100%;
+            height: 16px;
+            line-height: 0;
+            text-align: center;
+            overflow: hidden;
+            color: #999;
+            position: relative;
+        }
+        .ivu-input-number-handler-up {
+            cursor: pointer;
+        }
+        .ivu-input-number-handler-up-inner {
+            width: 12px;
+            height: 12px;
+            line-height: 12px;
+            font-size: 14px;
+            color: #999;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: absolute;
+            right: 5px;
+            transition: all .2s linear;
+        }
+        .ivu-input-number-handler-up-inner {
+            top: 1px;
+        }
+        .ivu-icon {
+            display: inline-block;
+            font-family: Ionicons;
+            speak: none;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            text-rendering: auto;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            vertical-align: middle;
+        }
+        .ivu-icon-ios-arrow-up::before {
+            content: "\F124";
+        }
+        .ivu-input-number-input-wrap {
+            overflow: hidden;
+            height: 32px;
+        }
+        .ivu-input-number-input {
+            width: 100%;
+            height: 32px;
+            line-height: 32px;
+            padding: 0 7px;
+            text-align: left;
+            outline: 0;
+            -moz-appearance: textfield;
+            color: #666;
+            border: 0;
+            border-radius: 4px;
+            transition: all .2s linear;
+        }
+        .ai-active .active-item > span {
+            margin: 0 5px;
+        }
+        .active-1, .ai-setting-shade .ai-active .ai-setting-list .method-list .active-1, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-1, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-1 {
+            width: 693px;
+            border-radius: 2px;
+            background-color: #e4e4e4;
+            border: 1px solid #d7d7d7;
+        }
+        .active-2, .ai-setting-shade .ai-active .ai-setting-list .method-list .active-2, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-2, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-2 {
+            margin-top: 10px;
+            width: 693px;
+            border-radius: 2px;
+            border: 1px solid #d7d7d7;
+            overflow: hidden;
+        }
+        .active-2 > p, .ai-setting-shade .ai-active .ai-setting-list .method-list .active-2 > p, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-2 > p, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-2 > p {
+            width: 693px;
+            height: 30px;
+            line-height: 30px;
+            background-color: #e4e4e4;
+            text-align: center;
+        }
+        .active-2 > ul, .ai-setting-shade .ai-active .ai-setting-list .method-list .active-2 > ul, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-2 > ul, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-2 > ul {
+            padding: 10px 0;
+            list-style: none;
+            font-size: 12px;
+        }
+        .active-2 > ul, .ai-setting-shade .ai-active .ai-setting-list .method-list .active-2 > ul, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-2 > ul, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-2 > ul {
+            list-style: none;
+            font-size: 12px;
+        }
+        .method-operate, .ai-setting-shade .ai-setting .method-operate {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .method-operate > span, .ai-setting-shade .ai-setting .method-operate > span {
+            display: inline-block;
+            width: 143px;
+            height: 35px;
+            line-height: 35px;
+            background-color: #39c;
+            border-radius: 4px;
+            border: 1px solid #369;
+            text-align: center;
+            cursor: pointer;
+        }
+        .method-operate > span:last-child, .ai-setting-shade .ai-setting .method-operate > span:last-child {
+            margin-left: 23px;
+            background-color: #f93;
+            border-color: #f30;
+        }
+        .ai-setting-list .method-list, .ai-setting-shade .ai-setting .ai-setting-list .method-list {
+            width: 228px;
+            border-radius: 2px;
+            background-color: #e4e4e4;
+            border: 1px solid #d7d7d7;
+            text-align: center;
+        }
+        .active-header, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-header, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-header {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin: 0 17px;
+            padding: 12px 0 9px;
+            border-bottom: 1px solid #d7d7d7;
+        }
+        .ai-setting-shade .ai-active .ai-setting-list .method-list .active-header .active-title, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-header .active-title, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-header .active-title {
+            position: relative;
+            padding-left: 11px;
+            height: 20px;
+            line-height: 20px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .active-title::before, .ai-setting-shade .ai-setting .ai-setting-list .active-list .active-header .active-title::before, .ai-setting-shade .ai-setting .ai-setting-list .method-list .active-header .active-title::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 0;
+            width: 5px;
+            height: 15px;
+            background-color: #399;
+        }
+        .ai-setting-list .method-list .method-l, .ai-setting-shade .ai-setting .ai-setting-list .method-list .method-l {
+            display: inline-block;
+            margin-top: 13px;
+            width: 228px;
+            border-radius: 2px;
+            background-color: #e4e4e4;
+            border: 1px solid #c9c9c9;
+        }
+        .ai-setting-list .method-list .method-item, .ai-setting-shade .ai-setting .ai-setting-list .method-list .method-item {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 5px;
+        }
+        .method-item > *, .ai-setting-shade .ai-setting .ai-setting-list .method-list .method-item > * {
+            margin-right: 5px;
+        }
+        .ai-active .ai-setting-list .method-list .method-item > *, .ai-setting-shade .ai-setting .ai-setting-list .method-list .method-item > * {
+            margin-right: 5px;
+        }
+        .ivu-select {
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            vertical-align: middle;
+            color: #515a6e;
+            font-size: 14px;
+            line-height: normal;
+        }
+        .ivu-select-single .ivu-select-selection {
+            height: 32px;
+            position: relative;
+        }
+        .ivu-select-single .ivu-select-selection .ivu-select-selected-value {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-left: 8px;
+            padding-right: 24px;
+        }
+        .ivu-select-arrow {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            line-height: 1;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #808695;
+            transition: all .2s ease-in-out;
+        }
+        .ivu-icon {
+            display: inline-block;
+            font-family: Ionicons;
+            speak: none;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            text-rendering: auto;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            vertical-align: middle;
+        }
+        .ivu-select-arrow {
+            line-height: 1;
+            font-size: 14px;
+            color: #808695;
+        }
+        .ivu-icon {
+            font-family: Ionicons;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            text-rendering: auto;
+            line-height: 1;
+        }
+        .ai-active .ai-setting-list .method-list .method-item > *, .ai-setting-shade .ai-setting .ai-setting-list .method-list .method-item > * {
+            margin-right: 5px;
+        }
+        .ivu-select {
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            vertical-align: middle;
+            color: #515a6e;
+            font-size: 14px;
+            line-height: normal;
+        }
+
+
+        .ivu-select-single .ivu-select-selection {
+
+            height: 32px;
+            position: relative;
+
+        }
+        .ivu-select-disabled .ivu-select-selection {
+
+            background-color: #f3f3f3;
+            opacity: 1;
+            cursor: not-allowed;
+            color: #ccc;
+
+        }
+        .ivu-select-single .ivu-select-selection .ivu-select-selected-value {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-left: 8px;
+            padding-right: 24px;
+        }
+        .ivu-select-disabled .ivu-select-selection .ivu-select-arrow {
+            color: #ccc;
+        }
+        .ivu-select-disabled .ivu-select-selection .ivu-select-arrow {
+            color: #ccc;
+        }
+        .ivu-select-arrow {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            line-height: 1;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #808695;
+            transition: all .2s ease-in-out;
+        }
+        .ivu-icon {
+            display: inline-block;
+            font-family: Ionicons;
+            speak: none;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            text-rendering: auto;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            vertical-align: middle;
+        }
+
+        .ivu-icon-ios-arrow-down::before {
+
+            content: "\F116";
+
+        }
+        .ivu-icon-ios-arrow-down::before {
+
+            content: "\F116";
+
+        }
+        *, ::after, ::before {
+
+            box-sizing: border-box;
+
+        }
+        *, ::after, ::before {
+
+            box-sizing: border-box;
+
+        }
+        .ivu-select-disabled .ivu-select-selection .ivu-select-arrow {
+
+            color: #ccc;
+
+        }
+        .ivu-select-disabled .ivu-select-selection .ivu-select-arrow {
+
+            color: #ccc;
+
+        }
+        .ivu-select-arrow {
+
+            line-height: 1;
+            font-size: 14px;
+            color: #808695;
+
+        }
+        .ivu-icon {
+
+            font-family: Ionicons;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            text-rendering: auto;
+            line-height: 1;
+
+        }
+        .ai-setting-list .method-list .method-item, .ai-setting-shade .ai-setting .ai-setting-list .method-list .method-item {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 5px;
+        }
+
+
+        .ivu-input[disabled], fieldset[disabled] .ivu-input {
+
+            background-color: #f3f3f3;
+            opacity: 1;
+            cursor: not-allowed;
+            color: #ccc;
+
+        }
+        .ivu-input[disabled], fieldset[disabled] .ivu-input {
+
+            background-color: #f3f3f3;
+            opacity: 1;
+            cursor: not-allowed;
+            color: #ccc;
+
+        }
+        .ivu-input {
+
+            display: inline-block;
+            width: 100%;
+            height: 32px;
+            line-height: 1.5;
+            padding: 4px 7px;
+            font-size: 12px;
+            border: 1px solid #dcdee2;
+            border-radius: 4px;
+            color: #515a6e;
+            background-color: #fff;
+            background-image: none;
+            position: relative;
+            cursor: text;
+            transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+
+        }
+        .ai-setting-shade .ai-active .ai-setting-list .method-list .method-item > *, .ai-setting-shade .ai-setting .ai-setting-list .method-list .method-item > * {
+            margin-right: 5px;
+        }
+        .ivu-checkbox-wrapper-disabled {
+            cursor: not-allowed;
+        }
+        .ivu-checkbox-wrapper {
+            cursor: pointer;
+            font-size: 12px;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .ivu-checkbox-disabled {
+            cursor: not-allowed;
+        }
+        .ivu-checkbox {
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+            cursor: pointer;
+            line-height: 1;
+            position: relative;
+        }
+        .method-item .textsa{
+            border: 1px solid #cccccc;
+            width: 50%;
+        }
+        .method-item span{
+            white-space: nowrap;
+        }
+         .bet-list {
+            display: inline-block;
+            margin-top: 7px;
+            width: 228px;
+            height: 446px;
+            border-radius: 2px;
+            background-color: #e4e4e4;
+            border: 1px solid #c9c9c9;
+            font-size: 12px;
+            overflow-y: auto;
+             overflow-x: hidden;
+        }
+        .bet-list > p:first-child, .ai-setting-shade .ai-setting .ai-setting-list .method-list .bet-list > p:first-child {
+            height: 30px;
+            white-space: nowrap;
+            line-height: 30px;
+            font-size: 12px;
+            background-color: #f2f2f2;
+        }
+        .bet-list > p, .ai-setting-shade .ai-setting .ai-setting-list .method-list .bet-list > p {
+            height: 23px;
+            line-height: 23px;
+        }
+        .method-list .method-item, .ai-setting-shade .ai-setting .ai-setting-list .method-list .method-item {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 5px;
+        }
+        .operate-list > span, .ai-setting-shade .ai-setting .ai-setting-list .method-list .operate-list > span {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 23%;
+            flex: 1 1 23%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #f2f2f2;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .method-list .method-item > *, .ai-setting-shade .ai-setting .ai-setting-list .method-list .method-item > * {
+            margin-right: 5px;
+        }
+        .tbx4{
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            position: absolute;
+            top: 20%;
+            height: 505px;
+            width: 400px;
+            left: 30%;
+            transform: rotateX(-50%);
+            background: #F2F2F2;
+        }
+        .tbx4 .method-item{
+            height: 30px;
+            line-height: 30px;
+            margin-left: 20px;
+        }
+        .tbx4 .method-item:nth-child(3){
+            display: flex;
+            justify-content: space-between;
+        }
+        .tbx5{
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            position: absolute;
+            top: 20%;
+            height: 505px;
+            width: 400px;
+            left: 30%;
+            transform: rotateX(-50%);
+            background: #F2F2F2;
+        }
+        .tbx5 .method-item{
+            height: 30px;
+            line-height: 30px;
+            margin-left: 20px;
+        }
+        .tbx5 .method-item:nth-child(3){
+            display: flex;
+            justify-content: space-between;
+        }
+        .edit-operate {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            width: 90px;
+        }
+        .edit-operate > span {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 32px;
+            background-color: #f2f2f2;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .plus::before {
+            content: "";
+            position: absolute;
+            top: 45%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 60%;
+            height: 4px;
+            border-radius: 2px;
+            background-color: #fff;
+        }
+
+        .ai-setting-shade .edit-panel .edit-item .edit-operate .plus::after {
+
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+
+        }
+        .plus::after, .plus::before {
+
+            content: "";
+            position: absolute;
+            top: 45%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 60%;
+            height: 4px;
+            border-radius: 2px;
+            background-color: #fff;
+
+        }
+        .minus::before {
+            content: "";
+            position: absolute;
+            top: 45%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 60%;
+            height: 4px;
+            border-radius: 2px;
+            background-color: #fff;
+        }
+        .edit-item {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin: auto;
+            padding: 5px 15px;
+        }
+        .edit-item > ul {
+            padding: 5px;
+            width: 100%;
+            height: 320px;
+            list-style: none;
+            overflow: auto;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+        }
+        .edit-item > ul > li {
+            margin-bottom: 5px;
+        }
+        .edit-item > ul {
+            list-style: none;
+        }
+        .ivu-input-wrapper {
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            vertical-align: middle;
+            line-height: normal;
+        }
+        .ivu-input {
+            display: inline-block;
+            width: 100%;
+            height: 32px;
+            line-height: 1.5;
+            padding: 4px 7px;
+            font-size: 12px;
+            border: 1px solid #dcdee2;
+            border-radius: 4px;
+            color: #515a6e;
+            background-color: #fff;
+            background-image: none;
+            position: relative;
+            cursor: text;
+            transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+        }
+        .save-item > span {
+            display: inline-block;
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #f2f2f2;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .save-item > span:nth-child(2) {
+            margin-left: 10px;
+        }
+        .add-batch {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: 360px;
+            display: none;
+            height: 240px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            z-index: 1501;
+        }
+        .add-batch .batch-header {
+            padding: 12px 17px 9px;
+            border-bottom: 1px solid #d7d7d7;
+            text-align: left;
+            background-color: #ddd;
+        }
+        .add-batch .batch-header .batch-title {
+            position: relative;
+            padding-left: 11px;
+            height: 20px;
+            line-height: 20px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .add-batch .batch-header .batch-title::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 0;
+            width: 5px;
+            height: 15px;
+            background-color: #399;
+        }
+        .add-batch .batch-header .batch-title .modal-close {
+            float: right;
+            font-weight: 400;
+            cursor: pointer;
+        }
+        .add-batch .batch-header .batch-poptip {
+            font-size: 12px;
+        }
+        .add-batch .batch-content {
+            margin-top: 5px;
+        }
+        .add-batch .batch-content > textarea {
+            padding: 2px;
+            width: 320px;
+            height: 90px;
+            border: 1px solid #d7d7d7;
+            border-radius: 5px;
+            resize: none;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .add-batch .enter-add {
+            margin: auto;
+            width: 320px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #f2f2f2;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .add-batch .list-operate {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin: 8px auto;
+            width: 320px;
+        }
+        .add-batch .list-operate .import-item {
+            width: 140px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #f2f2f2;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .tbx6{
+            width: 400px;
+            height: 164px;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            background: #F2F2F2;
+            border-radius: 5px;
+            border: 1px solid #cccccc;
+        }
+        .tbx6 .form-group{
+            margin: 10px 20px;
+        }
+        .bns{
+            margin: 0 40%;
+        }
+    </style>
+</head>
+<body>
+    <div class="Robots">
+        <div class="zh"></div>
+        <div class="flexa">
+            <div class="centent">
+                <div class="list-header">
+                    <div class="list-title">
+                        <span>虚拟用户列表</span>
+                        <div class="list-p">
+                            注：该列表只显示通过右侧增加的虚拟用户，正常改虚拟的不在此显示
+                            新增虚拟用户后，需要设置游戏行为后才能启用
+                        </div>
+                    </div>
+                </div>
+                <div class="tblse">
+                    <table class="table-striped qiliangqifei-tab" id="qiliangqifei">
+                        <thead>
+                        <tr>
+                            <th data-valign="middle">头像</th>
+                            <th>用户名</th>
+                            <th>ID</th>
+                            <th>账户余额</th>
+                            <th>选择游戏</th>
+                            <th>是否启动</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><img src="./../static/img/132.jpg" alt=""></td>
+                            <td>娃娃</td>
+                            <td>86028</td>
+                            <td>1352.95</td>
+                            <td>极速飞车</td>
+                            <td>
+                                <div class="switchbtn">
+                                    <input checked id="toggle-button" name="switch" style="display: none" type="checkbox"
+                                           οnclick="SwitchClick()">
+                                    <label class="button-label" for="toggle-button">
+                                        <span class="circle"></span>
+                                        <span class="text on">ON</span>
+                                        <span class="text off">OFF</span>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btns">
+                                    <button class="btn btn-primary" type="button" onclick="usrshow()">设置</button>
+                                    <button class="btn btn-primary" type="button" onclick="showtale1()">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <ul class="pagination" id="pagination" style="margin-left: 20%"></ul>
+
+            </div>
+            <div class="lisntx">
+                <div class="centent1">
+                    <div class="list-header">
+                        <div class="list-title">
+                            <span>操作设置</span>
+                        </div>
+                    </div>
+                    <div class="cent1-item" onclick="showtbx()">
+                        增加虚拟用户
+                    </div>
+                    <div class="cent1-item">
+                        启用全部用户
+                    </div>
+                    <div class="cent1-item">
+                        停用全部用户
+                    </div>
+                </div>
+                <div class="centent2">
+                    <div class="list-header">
+                        <div class="list-title">
+                            <span>虚拟用户列表</span>
+                            <button class="btn btn-primary" type="button" onclick="hidtableshow()">添加行为</button>
+                        </div>
+                    </div>
+                    <div class="tblse">
+                        <table class="table-striped qiliangqifei-tab" id="qiliangqifeis">
+                            <thead>
+                            <tr>
+                                <th data-valign="middle">名称</th>
+                                <th>方案数量</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>PK10-01每期2单</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="button" onclick="methodtileshow()">修改</button>
+                                        <button class="btn btn-primary" type="button" >删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PK10-01每期2单</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="button" onclick="methodtileshow()">修改</button>
+                                        <button class="btn btn-primary" type="button" >删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PK10-01每期2单</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="button" onclick="methodtileshow()">修改</button>
+                                        <button class="btn btn-primary" type="button" >删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PK10-01每期2单</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="button" onclick="methodtileshow()">修改</button>
+                                        <button class="btn btn-primary" type="button" >删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PK10-01每期2单</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="button" onclick="methodtileshow()" >修改</button>
+                                        <button class="btn btn-primary" type="button" >删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PK10-01每期2单</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="button" onclick="methodtileshow()">修改</button>
+                                        <button class="btn btn-primary" type="button" >删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PK10-01每期2单</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="button" onclick="methodtileshow()">修改</button>
+                                        <button class="btn btn-primary" type="button" >删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PK10-01每期2单</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="button" onclick="methodtileshow()">修改</button>
+                                        <button class="btn btn-primary" type="button" >删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PK10-01每期2单</td>
+                                <td>2</td>
+                                <td>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="button" onclick="methodtileshow()">修改</button>
+                                        <button class="btn btn-primary" type="button" >删除</button>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+<!--        设置-->
+        <div class="Topdownplan tbx3" >
+            <div class="branch-recode">
+                <div class="user-info-header">
+                    <span>虚拟用户设置</span>
+                    <span class="modal-close" onclick="hidtable2()">X</span>
+                </div>
+                <form  >
+                    <div class="modal">
+                        <div class="modal-item">
+                            <img  src="../static/img/132.jpg" alt="用户头像" class="user-header">
+                            <p  class="change-header">更改头像</p>
+                        </div>
+                        <div data-v-c2e55c32="" class="modify-list"><div data-v-c2e55c32="" class="modify-column"><div data-v-c2e55c32="" class="modify-item"><span data-v-c2e55c32="" class="columns-item-label">昵称</span><div data-v-c2e55c32="" class="columns-item-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type" style="width: 100px;"><!----> <div class="ivu-input-inner-container" style=""><!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="" class="ivu-input ivu-input-default"></div> <!----></div></div><div data-v-c2e55c32="" class="modify-item"><span data-v-c2e55c32="" class="columns-item-label">ID</span><div data-v-c2e55c32="" class="columns-item-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type" style="width: 100px;"><!----> <div class="ivu-input-inner-container" style=""><!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="" disabled="disabled" class="ivu-input ivu-input-default ivu-input-disabled"></div> <!----></div></div><div data-v-c2e55c32="" class="modify-item">
+                            启用时间：&nbsp;&nbsp;<div data-v-c2e55c32="" class="ivu-date-picker" style="width: 80px;"><div class="ivu-date-picker-rel"><div class="ivu-input-wrapper ivu-input-wrapper-default ivu-input-type ivu-date-picker-editor"><!----> <div class="ivu-input-inner-container" style=""><span class="ivu-input-suffix"><i class="ivu-icon ivu-icon-ios-time-outline"></i></span> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="开始时间" class="ivu-input ivu-input-default ivu-input-with-suffix"></div> <!----></div></div> <div class="ivu-select-dropdown" style="display: none;"><div><div class="ivu-picker-panel-body-wrapper" selectionmode="time" picker-type="time" focused-date="Wed Nov 18 2020 11:00:09 GMT+0800 (中国标准时间)" time-picker-options="[object Object]"><div class="ivu-picker-panel-body"><!----> <div class="ivu-picker-panel-content"><div class="ivu-time-picker-cells"><div class="ivu-time-picker-cells-list"><ul class="ivu-time-picker-cells-ul"><li class="ivu-time-picker-cells-cell">00</li><li class="ivu-time-picker-cells-cell">01</li><li class="ivu-time-picker-cells-cell">02</li><li class="ivu-time-picker-cells-cell">03</li><li class="ivu-time-picker-cells-cell">04</li><li class="ivu-time-picker-cells-cell">05</li><li class="ivu-time-picker-cells-cell">06</li><li class="ivu-time-picker-cells-cell">07</li><li class="ivu-time-picker-cells-cell">08</li><li class="ivu-time-picker-cells-cell">09</li><li class="ivu-time-picker-cells-cell ivu-time-picker-cells-cell-selected">10</li><li class="ivu-time-picker-cells-cell">11</li><li class="ivu-time-picker-cells-cell">12</li><li class="ivu-time-picker-cells-cell">13</li><li class="ivu-time-picker-cells-cell">14</li><li class="ivu-time-picker-cells-cell">15</li><li class="ivu-time-picker-cells-cell">16</li><li class="ivu-time-picker-cells-cell">17</li><li class="ivu-time-picker-cells-cell">18</li><li class="ivu-time-picker-cells-cell">19</li><li class="ivu-time-picker-cells-cell">20</li><li class="ivu-time-picker-cells-cell">21</li><li class="ivu-time-picker-cells-cell">22</li><li class="ivu-time-picker-cells-cell">23</li></ul></div> <div class="ivu-time-picker-cells-list"><ul class="ivu-time-picker-cells-ul"><li class="ivu-time-picker-cells-cell ivu-time-picker-cells-cell-selected">00</li><li class="ivu-time-picker-cells-cell">01</li><li class="ivu-time-picker-cells-cell">02</li><li class="ivu-time-picker-cells-cell">03</li><li class="ivu-time-picker-cells-cell">04</li><li class="ivu-time-picker-cells-cell">05</li><li class="ivu-time-picker-cells-cell">06</li><li class="ivu-time-picker-cells-cell">07</li><li class="ivu-time-picker-cells-cell">08</li><li class="ivu-time-picker-cells-cell">09</li><li class="ivu-time-picker-cells-cell">10</li><li class="ivu-time-picker-cells-cell">11</li><li class="ivu-time-picker-cells-cell">12</li><li class="ivu-time-picker-cells-cell">13</li><li class="ivu-time-picker-cells-cell">14</li><li class="ivu-time-picker-cells-cell">15</li><li class="ivu-time-picker-cells-cell">16</li><li class="ivu-time-picker-cells-cell">17</li><li class="ivu-time-picker-cells-cell">18</li><li class="ivu-time-picker-cells-cell">19</li><li class="ivu-time-picker-cells-cell">20</li><li class="ivu-time-picker-cells-cell">21</li><li class="ivu-time-picker-cells-cell">22</li><li class="ivu-time-picker-cells-cell">23</li><li class="ivu-time-picker-cells-cell">24</li><li class="ivu-time-picker-cells-cell">25</li><li class="ivu-time-picker-cells-cell">26</li><li class="ivu-time-picker-cells-cell">27</li><li class="ivu-time-picker-cells-cell">28</li><li class="ivu-time-picker-cells-cell">29</li><li class="ivu-time-picker-cells-cell">30</li><li class="ivu-time-picker-cells-cell">31</li><li class="ivu-time-picker-cells-cell">32</li><li class="ivu-time-picker-cells-cell">33</li><li class="ivu-time-picker-cells-cell">34</li><li class="ivu-time-picker-cells-cell">35</li><li class="ivu-time-picker-cells-cell">36</li><li class="ivu-time-picker-cells-cell">37</li><li class="ivu-time-picker-cells-cell">38</li><li class="ivu-time-picker-cells-cell">39</li><li class="ivu-time-picker-cells-cell">40</li><li class="ivu-time-picker-cells-cell">41</li><li class="ivu-time-picker-cells-cell">42</li><li class="ivu-time-picker-cells-cell">43</li><li class="ivu-time-picker-cells-cell">44</li><li class="ivu-time-picker-cells-cell">45</li><li class="ivu-time-picker-cells-cell">46</li><li class="ivu-time-picker-cells-cell">47</li><li class="ivu-time-picker-cells-cell">48</li><li class="ivu-time-picker-cells-cell">49</li><li class="ivu-time-picker-cells-cell">50</li><li class="ivu-time-picker-cells-cell">51</li><li class="ivu-time-picker-cells-cell">52</li><li class="ivu-time-picker-cells-cell">53</li><li class="ivu-time-picker-cells-cell">54</li><li class="ivu-time-picker-cells-cell">55</li><li class="ivu-time-picker-cells-cell">56</li><li class="ivu-time-picker-cells-cell">57</li><li class="ivu-time-picker-cells-cell">58</li><li class="ivu-time-picker-cells-cell">59</li></ul></div> <div class="ivu-time-picker-cells-list" style="display: none;"><ul class="ivu-time-picker-cells-ul"><li class="ivu-time-picker-cells-cell ivu-time-picker-cells-cell-selected">00</li><li class="ivu-time-picker-cells-cell">01</li><li class="ivu-time-picker-cells-cell">02</li><li class="ivu-time-picker-cells-cell">03</li><li class="ivu-time-picker-cells-cell">04</li><li class="ivu-time-picker-cells-cell">05</li><li class="ivu-time-picker-cells-cell">06</li><li class="ivu-time-picker-cells-cell">07</li><li class="ivu-time-picker-cells-cell">08</li><li class="ivu-time-picker-cells-cell">09</li><li class="ivu-time-picker-cells-cell">10</li><li class="ivu-time-picker-cells-cell">11</li><li class="ivu-time-picker-cells-cell">12</li><li class="ivu-time-picker-cells-cell">13</li><li class="ivu-time-picker-cells-cell">14</li><li class="ivu-time-picker-cells-cell">15</li><li class="ivu-time-picker-cells-cell">16</li><li class="ivu-time-picker-cells-cell">17</li><li class="ivu-time-picker-cells-cell">18</li><li class="ivu-time-picker-cells-cell">19</li><li class="ivu-time-picker-cells-cell">20</li><li class="ivu-time-picker-cells-cell">21</li><li class="ivu-time-picker-cells-cell">22</li><li class="ivu-time-picker-cells-cell">23</li><li class="ivu-time-picker-cells-cell">24</li><li class="ivu-time-picker-cells-cell">25</li><li class="ivu-time-picker-cells-cell">26</li><li class="ivu-time-picker-cells-cell">27</li><li class="ivu-time-picker-cells-cell">28</li><li class="ivu-time-picker-cells-cell">29</li><li class="ivu-time-picker-cells-cell">30</li><li class="ivu-time-picker-cells-cell">31</li><li class="ivu-time-picker-cells-cell">32</li><li class="ivu-time-picker-cells-cell">33</li><li class="ivu-time-picker-cells-cell">34</li><li class="ivu-time-picker-cells-cell">35</li><li class="ivu-time-picker-cells-cell">36</li><li class="ivu-time-picker-cells-cell">37</li><li class="ivu-time-picker-cells-cell">38</li><li class="ivu-time-picker-cells-cell">39</li><li class="ivu-time-picker-cells-cell">40</li><li class="ivu-time-picker-cells-cell">41</li><li class="ivu-time-picker-cells-cell">42</li><li class="ivu-time-picker-cells-cell">43</li><li class="ivu-time-picker-cells-cell">44</li><li class="ivu-time-picker-cells-cell">45</li><li class="ivu-time-picker-cells-cell">46</li><li class="ivu-time-picker-cells-cell">47</li><li class="ivu-time-picker-cells-cell">48</li><li class="ivu-time-picker-cells-cell">49</li><li class="ivu-time-picker-cells-cell">50</li><li class="ivu-time-picker-cells-cell">51</li><li class="ivu-time-picker-cells-cell">52</li><li class="ivu-time-picker-cells-cell">53</li><li class="ivu-time-picker-cells-cell">54</li><li class="ivu-time-picker-cells-cell">55</li><li class="ivu-time-picker-cells-cell">56</li><li class="ivu-time-picker-cells-cell">57</li><li class="ivu-time-picker-cells-cell">58</li><li class="ivu-time-picker-cells-cell">59</li></ul></div></div></div> <!----></div></div></div></div></div>&nbsp;&nbsp;至&nbsp;&nbsp;<div data-v-c2e55c32="" class="ivu-date-picker" style="width: 80px;"><div class="ivu-date-picker-rel"><div class="ivu-input-wrapper ivu-input-wrapper-default ivu-input-type ivu-date-picker-editor"><!----> <div class="ivu-input-inner-container" style=""><span class="ivu-input-suffix"><i class="ivu-icon ivu-icon-ios-time-outline"></i></span> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="结束时间" class="ivu-input ivu-input-default ivu-input-with-suffix"></div> <!----></div></div> <div class="ivu-select-dropdown" style="display: none;"><div><div class="ivu-picker-panel-body-wrapper" selectionmode="time" picker-type="time" focused-date="Wed Nov 18 2020 11:00:09 GMT+0800 (中国标准时间)" time-picker-options="[object Object]"><div class="ivu-picker-panel-body"><!----> <div class="ivu-picker-panel-content"><div class="ivu-time-picker-cells"><div class="ivu-time-picker-cells-list"><ul class="ivu-time-picker-cells-ul"><li class="ivu-time-picker-cells-cell">00</li><li class="ivu-time-picker-cells-cell">01</li><li class="ivu-time-picker-cells-cell">02</li><li class="ivu-time-picker-cells-cell ivu-time-picker-cells-cell-selected">03</li><li class="ivu-time-picker-cells-cell">04</li><li class="ivu-time-picker-cells-cell">05</li><li class="ivu-time-picker-cells-cell">06</li><li class="ivu-time-picker-cells-cell">07</li><li class="ivu-time-picker-cells-cell">08</li><li class="ivu-time-picker-cells-cell">09</li><li class="ivu-time-picker-cells-cell">10</li><li class="ivu-time-picker-cells-cell">11</li><li class="ivu-time-picker-cells-cell">12</li><li class="ivu-time-picker-cells-cell">13</li><li class="ivu-time-picker-cells-cell">14</li><li class="ivu-time-picker-cells-cell">15</li><li class="ivu-time-picker-cells-cell">16</li><li class="ivu-time-picker-cells-cell">17</li><li class="ivu-time-picker-cells-cell">18</li><li class="ivu-time-picker-cells-cell">19</li><li class="ivu-time-picker-cells-cell">20</li><li class="ivu-time-picker-cells-cell">21</li><li class="ivu-time-picker-cells-cell">22</li><li class="ivu-time-picker-cells-cell">23</li></ul></div> <div class="ivu-time-picker-cells-list"><ul class="ivu-time-picker-cells-ul"><li class="ivu-time-picker-cells-cell ivu-time-picker-cells-cell-selected">00</li><li class="ivu-time-picker-cells-cell">01</li><li class="ivu-time-picker-cells-cell">02</li><li class="ivu-time-picker-cells-cell">03</li><li class="ivu-time-picker-cells-cell">04</li><li class="ivu-time-picker-cells-cell">05</li><li class="ivu-time-picker-cells-cell">06</li><li class="ivu-time-picker-cells-cell">07</li><li class="ivu-time-picker-cells-cell">08</li><li class="ivu-time-picker-cells-cell">09</li><li class="ivu-time-picker-cells-cell">10</li><li class="ivu-time-picker-cells-cell">11</li><li class="ivu-time-picker-cells-cell">12</li><li class="ivu-time-picker-cells-cell">13</li><li class="ivu-time-picker-cells-cell">14</li><li class="ivu-time-picker-cells-cell">15</li><li class="ivu-time-picker-cells-cell">16</li><li class="ivu-time-picker-cells-cell">17</li><li class="ivu-time-picker-cells-cell">18</li><li class="ivu-time-picker-cells-cell">19</li><li class="ivu-time-picker-cells-cell">20</li><li class="ivu-time-picker-cells-cell">21</li><li class="ivu-time-picker-cells-cell">22</li><li class="ivu-time-picker-cells-cell">23</li><li class="ivu-time-picker-cells-cell">24</li><li class="ivu-time-picker-cells-cell">25</li><li class="ivu-time-picker-cells-cell">26</li><li class="ivu-time-picker-cells-cell">27</li><li class="ivu-time-picker-cells-cell">28</li><li class="ivu-time-picker-cells-cell">29</li><li class="ivu-time-picker-cells-cell">30</li><li class="ivu-time-picker-cells-cell">31</li><li class="ivu-time-picker-cells-cell">32</li><li class="ivu-time-picker-cells-cell">33</li><li class="ivu-time-picker-cells-cell">34</li><li class="ivu-time-picker-cells-cell">35</li><li class="ivu-time-picker-cells-cell">36</li><li class="ivu-time-picker-cells-cell">37</li><li class="ivu-time-picker-cells-cell">38</li><li class="ivu-time-picker-cells-cell">39</li><li class="ivu-time-picker-cells-cell">40</li><li class="ivu-time-picker-cells-cell">41</li><li class="ivu-time-picker-cells-cell">42</li><li class="ivu-time-picker-cells-cell">43</li><li class="ivu-time-picker-cells-cell">44</li><li class="ivu-time-picker-cells-cell">45</li><li class="ivu-time-picker-cells-cell">46</li><li class="ivu-time-picker-cells-cell">47</li><li class="ivu-time-picker-cells-cell">48</li><li class="ivu-time-picker-cells-cell">49</li><li class="ivu-time-picker-cells-cell">50</li><li class="ivu-time-picker-cells-cell">51</li><li class="ivu-time-picker-cells-cell">52</li><li class="ivu-time-picker-cells-cell">53</li><li class="ivu-time-picker-cells-cell">54</li><li class="ivu-time-picker-cells-cell">55</li><li class="ivu-time-picker-cells-cell">56</li><li class="ivu-time-picker-cells-cell">57</li><li class="ivu-time-picker-cells-cell">58</li><li class="ivu-time-picker-cells-cell">59</li></ul></div> <div class="ivu-time-picker-cells-list" style="display: none;"><ul class="ivu-time-picker-cells-ul"><li class="ivu-time-picker-cells-cell ivu-time-picker-cells-cell-selected">00</li><li class="ivu-time-picker-cells-cell">01</li><li class="ivu-time-picker-cells-cell">02</li><li class="ivu-time-picker-cells-cell">03</li><li class="ivu-time-picker-cells-cell">04</li><li class="ivu-time-picker-cells-cell">05</li><li class="ivu-time-picker-cells-cell">06</li><li class="ivu-time-picker-cells-cell">07</li><li class="ivu-time-picker-cells-cell">08</li><li class="ivu-time-picker-cells-cell">09</li><li class="ivu-time-picker-cells-cell">10</li><li class="ivu-time-picker-cells-cell">11</li><li class="ivu-time-picker-cells-cell">12</li><li class="ivu-time-picker-cells-cell">13</li><li class="ivu-time-picker-cells-cell">14</li><li class="ivu-time-picker-cells-cell">15</li><li class="ivu-time-picker-cells-cell">16</li><li class="ivu-time-picker-cells-cell">17</li><li class="ivu-time-picker-cells-cell">18</li><li class="ivu-time-picker-cells-cell">19</li><li class="ivu-time-picker-cells-cell">20</li><li class="ivu-time-picker-cells-cell">21</li><li class="ivu-time-picker-cells-cell">22</li><li class="ivu-time-picker-cells-cell">23</li><li class="ivu-time-picker-cells-cell">24</li><li class="ivu-time-picker-cells-cell">25</li><li class="ivu-time-picker-cells-cell">26</li><li class="ivu-time-picker-cells-cell">27</li><li class="ivu-time-picker-cells-cell">28</li><li class="ivu-time-picker-cells-cell">29</li><li class="ivu-time-picker-cells-cell">30</li><li class="ivu-time-picker-cells-cell">31</li><li class="ivu-time-picker-cells-cell">32</li><li class="ivu-time-picker-cells-cell">33</li><li class="ivu-time-picker-cells-cell">34</li><li class="ivu-time-picker-cells-cell">35</li><li class="ivu-time-picker-cells-cell">36</li><li class="ivu-time-picker-cells-cell">37</li><li class="ivu-time-picker-cells-cell">38</li><li class="ivu-time-picker-cells-cell">39</li><li class="ivu-time-picker-cells-cell">40</li><li class="ivu-time-picker-cells-cell">41</li><li class="ivu-time-picker-cells-cell">42</li><li class="ivu-time-picker-cells-cell">43</li><li class="ivu-time-picker-cells-cell">44</li><li class="ivu-time-picker-cells-cell">45</li><li class="ivu-time-picker-cells-cell">46</li><li class="ivu-time-picker-cells-cell">47</li><li class="ivu-time-picker-cells-cell">48</li><li class="ivu-time-picker-cells-cell">49</li><li class="ivu-time-picker-cells-cell">50</li><li class="ivu-time-picker-cells-cell">51</li><li class="ivu-time-picker-cells-cell">52</li><li class="ivu-time-picker-cells-cell">53</li><li class="ivu-time-picker-cells-cell">54</li><li class="ivu-time-picker-cells-cell">55</li><li class="ivu-time-picker-cells-cell">56</li><li class="ivu-time-picker-cells-cell">57</li><li class="ivu-time-picker-cells-cell">58</li><li class="ivu-time-picker-cells-cell">59</li></ul></div></div></div> <!----></div></div></div></div></div></div></div><div data-v-c2e55c32="" class="modify-column"><div data-v-c2e55c32="" class="modify-item column"><span data-v-c2e55c32="">选择手动发言房间：</span>
+                            <select data-v-c2e55c32="">
+                                <option>英国赛车</option>
+                                <option>英国时时彩</option>
+                                <option>英国极速赛车</option>
+                                <option>英国极速时时彩</option>
+                                <option>澳洲10</option>
+                                <option>澳洲5</option>
+                                <option>极速赛车</option>
+                                <option>极速时时彩</option>
+                                <option>168飞艇</option>
+                            </select>
+                        </div><div data-v-c2e55c32="" class="modify-item input"><input data-v-c2e55c32="" placeholder="请输入聊天内容"></div><div data-v-c2e55c32="" class="modify-item"><div data-v-c2e55c32="" class="send-button">发送聊天</div></div></div></div>
+                    </div>
+                    <div data-v-c2e55c32="" class="modify-c-b"><div data-v-c2e55c32="" class="false-user-header"><span data-v-c2e55c32="" class="false-user-title">账户参与游戏及下注行为选择</span><div data-v-c2e55c32="" class="false-user-poptip"><p data-v-c2e55c32="">注：最大参与游戏最多选择两项，正常玩家无法在多个游戏中期期不漏的投注订单</p><p data-v-c2e55c32="">如果在多个游戏中增加虚拟玩家，请分别建立虚拟用户，并指定不同的游戏</p></div></div><div data-v-c2e55c32="" class="game-list"><div data-v-c2e55c32="" class="game-item"><div data-v-c2e55c32="" class="switch small small-close"><div class="switch-item"></div></div><p data-v-c2e55c32="">英国赛车</p><span data-v-c2e55c32="">下注行为</span><select data-v-c2e55c32=""><option data-v-c2e55c32="" value="7240f7f2-a454-445a-b1ef-bc8ab5f670a0">PK10-01每期2单</option><option data-v-c2e55c32="" value="ca7f18b7-85ac-4cd0-99a5-2b2020bc8226">PK10-02每期1单</option><option data-v-c2e55c32="" value="1f32c806-2456-47f3-a061-c2bbe2b8db31">PK10-03每期3单</option><option data-v-c2e55c32="" value="97d77f50-545e-4410-bd01-7c5b0d6fc733">PK10-04每期2单</option><option data-v-c2e55c32="" value="47f24879-c5f1-4107-a5f1-6bf4ac16adda">PK10-05每期1单</option><option data-v-c2e55c32="" value="e29c8528-0ddb-456f-8e0c-63f3db082fb0">PK10-08每期2单</option><option data-v-c2e55c32="" value="528f8537-6f5d-46d8-b56a-c83ad75fff81">PK10-09每期4单</option><option data-v-c2e55c32="" value="ec9863f2-84b5-4d7c-ae7e-8aa1067b7c82">PK10-10每期1单</option><option data-v-c2e55c32="" value="38fc46ea-130f-4ed3-abba-02f82fb2d028">SSC-01每期3单</option><option data-v-c2e55c32="" value="b8709547-a23a-4ae7-8f7d-ae0ced52ae9c">SSC-02每期2单</option><option data-v-c2e55c32="" value="3fb19731-c818-4f5d-afd0-9ed061967498">SSC-03每期4单</option><option data-v-c2e55c32="" value="04fe5ae2-358a-475b-83ba-1fdc7b0fc3ab">SSC-04每期1单</option><option data-v-c2e55c32="" value="25500b08-db54-48a1-b427-e2fb1958dd71">SSC-05每期4单</option><option data-v-c2e55c32="" value="81eba0f3-d32b-4fdc-a5b8-6b0afdbbd104">SSC-06每期2单</option><option data-v-c2e55c32="" value="7260cdc4-1dd5-4555-999b-db1a28224415">SSC-07每期3单</option><option data-v-c2e55c32="" value="9c673477-8e37-4cae-ba3a-5cd61f7ec56e">SSC-08每期1单</option><option data-v-c2e55c32="" value="cb07da92-497f-4a62-b984-43a38ea53f4a">SSC-09每期2单</option><option data-v-c2e55c32="" value="755032cc-3cef-4d33-afee-a8b451b090d4">SSC-10每期1单</option><option data-v-c2e55c32="" value="35ecc833-ad33-44e6-a474-11c011a3d78b">ssc-包号玩家</option><option data-v-c2e55c32="" value="0009f8ac-cdaf-441a-9e0d-4a1ad116a828">SSC-双面+2码</option><option data-v-c2e55c32="" value="563e5ba8-7202-4d53-956f-703a804e0738">SSC-5码</option></select></div><div data-v-c2e55c32="" class="game-item"><div data-v-c2e55c32="" class="switch small small-close"><div class="switch-item"></div></div><p data-v-c2e55c32="">英国时时彩</p><span data-v-c2e55c32="">下注行为</span><select data-v-c2e55c32=""><option data-v-c2e55c32="" value="7240f7f2-a454-445a-b1ef-bc8ab5f670a0">PK10-01每期2单</option><option data-v-c2e55c32="" value="ca7f18b7-85ac-4cd0-99a5-2b2020bc8226">PK10-02每期1单</option><option data-v-c2e55c32="" value="1f32c806-2456-47f3-a061-c2bbe2b8db31">PK10-03每期3单</option><option data-v-c2e55c32="" value="97d77f50-545e-4410-bd01-7c5b0d6fc733">PK10-04每期2单</option><option data-v-c2e55c32="" value="47f24879-c5f1-4107-a5f1-6bf4ac16adda">PK10-05每期1单</option><option data-v-c2e55c32="" value="e29c8528-0ddb-456f-8e0c-63f3db082fb0">PK10-08每期2单</option><option data-v-c2e55c32="" value="528f8537-6f5d-46d8-b56a-c83ad75fff81">PK10-09每期4单</option><option data-v-c2e55c32="" value="ec9863f2-84b5-4d7c-ae7e-8aa1067b7c82">PK10-10每期1单</option><option data-v-c2e55c32="" value="38fc46ea-130f-4ed3-abba-02f82fb2d028">SSC-01每期3单</option><option data-v-c2e55c32="" value="b8709547-a23a-4ae7-8f7d-ae0ced52ae9c">SSC-02每期2单</option><option data-v-c2e55c32="" value="3fb19731-c818-4f5d-afd0-9ed061967498">SSC-03每期4单</option><option data-v-c2e55c32="" value="04fe5ae2-358a-475b-83ba-1fdc7b0fc3ab">SSC-04每期1单</option><option data-v-c2e55c32="" value="25500b08-db54-48a1-b427-e2fb1958dd71">SSC-05每期4单</option><option data-v-c2e55c32="" value="81eba0f3-d32b-4fdc-a5b8-6b0afdbbd104">SSC-06每期2单</option><option data-v-c2e55c32="" value="7260cdc4-1dd5-4555-999b-db1a28224415">SSC-07每期3单</option><option data-v-c2e55c32="" value="9c673477-8e37-4cae-ba3a-5cd61f7ec56e">SSC-08每期1单</option><option data-v-c2e55c32="" value="cb07da92-497f-4a62-b984-43a38ea53f4a">SSC-09每期2单</option><option data-v-c2e55c32="" value="755032cc-3cef-4d33-afee-a8b451b090d4">SSC-10每期1单</option><option data-v-c2e55c32="" value="35ecc833-ad33-44e6-a474-11c011a3d78b">ssc-包号玩家</option><option data-v-c2e55c32="" value="0009f8ac-cdaf-441a-9e0d-4a1ad116a828">SSC-双面+2码</option><option data-v-c2e55c32="" value="563e5ba8-7202-4d53-956f-703a804e0738">SSC-5码</option></select></div><div data-v-c2e55c32="" class="game-item"><div data-v-c2e55c32="" class="switch small small-close"><div class="switch-item"></div></div><p data-v-c2e55c32="">英国极速赛车</p><span data-v-c2e55c32="">下注行为</span><select data-v-c2e55c32=""><option data-v-c2e55c32="" value="7240f7f2-a454-445a-b1ef-bc8ab5f670a0">PK10-01每期2单</option><option data-v-c2e55c32="" value="ca7f18b7-85ac-4cd0-99a5-2b2020bc8226">PK10-02每期1单</option><option data-v-c2e55c32="" value="1f32c806-2456-47f3-a061-c2bbe2b8db31">PK10-03每期3单</option><option data-v-c2e55c32="" value="97d77f50-545e-4410-bd01-7c5b0d6fc733">PK10-04每期2单</option><option data-v-c2e55c32="" value="47f24879-c5f1-4107-a5f1-6bf4ac16adda">PK10-05每期1单</option><option data-v-c2e55c32="" value="e29c8528-0ddb-456f-8e0c-63f3db082fb0">PK10-08每期2单</option><option data-v-c2e55c32="" value="528f8537-6f5d-46d8-b56a-c83ad75fff81">PK10-09每期4单</option><option data-v-c2e55c32="" value="ec9863f2-84b5-4d7c-ae7e-8aa1067b7c82">PK10-10每期1单</option><option data-v-c2e55c32="" value="38fc46ea-130f-4ed3-abba-02f82fb2d028">SSC-01每期3单</option><option data-v-c2e55c32="" value="b8709547-a23a-4ae7-8f7d-ae0ced52ae9c">SSC-02每期2单</option><option data-v-c2e55c32="" value="3fb19731-c818-4f5d-afd0-9ed061967498">SSC-03每期4单</option><option data-v-c2e55c32="" value="04fe5ae2-358a-475b-83ba-1fdc7b0fc3ab">SSC-04每期1单</option><option data-v-c2e55c32="" value="25500b08-db54-48a1-b427-e2fb1958dd71">SSC-05每期4单</option><option data-v-c2e55c32="" value="81eba0f3-d32b-4fdc-a5b8-6b0afdbbd104">SSC-06每期2单</option><option data-v-c2e55c32="" value="7260cdc4-1dd5-4555-999b-db1a28224415">SSC-07每期3单</option><option data-v-c2e55c32="" value="9c673477-8e37-4cae-ba3a-5cd61f7ec56e">SSC-08每期1单</option><option data-v-c2e55c32="" value="cb07da92-497f-4a62-b984-43a38ea53f4a">SSC-09每期2单</option><option data-v-c2e55c32="" value="755032cc-3cef-4d33-afee-a8b451b090d4">SSC-10每期1单</option><option data-v-c2e55c32="" value="35ecc833-ad33-44e6-a474-11c011a3d78b">ssc-包号玩家</option><option data-v-c2e55c32="" value="0009f8ac-cdaf-441a-9e0d-4a1ad116a828">SSC-双面+2码</option><option data-v-c2e55c32="" value="563e5ba8-7202-4d53-956f-703a804e0738">SSC-5码</option></select></div><div data-v-c2e55c32="" class="game-item"><div data-v-c2e55c32="" class="switch small small-open"><div class="switch-item"></div></div><p data-v-c2e55c32="">英国极速时时彩</p><span data-v-c2e55c32="">下注行为</span><select data-v-c2e55c32=""><option data-v-c2e55c32="" value="7240f7f2-a454-445a-b1ef-bc8ab5f670a0">PK10-01每期2单</option><option data-v-c2e55c32="" value="ca7f18b7-85ac-4cd0-99a5-2b2020bc8226">PK10-02每期1单</option><option data-v-c2e55c32="" value="1f32c806-2456-47f3-a061-c2bbe2b8db31">PK10-03每期3单</option><option data-v-c2e55c32="" value="97d77f50-545e-4410-bd01-7c5b0d6fc733">PK10-04每期2单</option><option data-v-c2e55c32="" value="47f24879-c5f1-4107-a5f1-6bf4ac16adda">PK10-05每期1单</option><option data-v-c2e55c32="" value="e29c8528-0ddb-456f-8e0c-63f3db082fb0">PK10-08每期2单</option><option data-v-c2e55c32="" value="528f8537-6f5d-46d8-b56a-c83ad75fff81">PK10-09每期4单</option><option data-v-c2e55c32="" value="ec9863f2-84b5-4d7c-ae7e-8aa1067b7c82">PK10-10每期1单</option><option data-v-c2e55c32="" value="38fc46ea-130f-4ed3-abba-02f82fb2d028">SSC-01每期3单</option><option data-v-c2e55c32="" value="b8709547-a23a-4ae7-8f7d-ae0ced52ae9c">SSC-02每期2单</option><option data-v-c2e55c32="" value="3fb19731-c818-4f5d-afd0-9ed061967498">SSC-03每期4单</option><option data-v-c2e55c32="" value="04fe5ae2-358a-475b-83ba-1fdc7b0fc3ab">SSC-04每期1单</option><option data-v-c2e55c32="" value="25500b08-db54-48a1-b427-e2fb1958dd71">SSC-05每期4单</option><option data-v-c2e55c32="" value="81eba0f3-d32b-4fdc-a5b8-6b0afdbbd104">SSC-06每期2单</option><option data-v-c2e55c32="" value="7260cdc4-1dd5-4555-999b-db1a28224415">SSC-07每期3单</option><option data-v-c2e55c32="" value="9c673477-8e37-4cae-ba3a-5cd61f7ec56e">SSC-08每期1单</option><option data-v-c2e55c32="" value="cb07da92-497f-4a62-b984-43a38ea53f4a">SSC-09每期2单</option><option data-v-c2e55c32="" value="755032cc-3cef-4d33-afee-a8b451b090d4">SSC-10每期1单</option><option data-v-c2e55c32="" value="35ecc833-ad33-44e6-a474-11c011a3d78b">ssc-包号玩家</option><option data-v-c2e55c32="" value="0009f8ac-cdaf-441a-9e0d-4a1ad116a828">SSC-双面+2码</option><option data-v-c2e55c32="" value="563e5ba8-7202-4d53-956f-703a804e0738">SSC-5码</option></select></div><div data-v-c2e55c32="" class="game-item"><div data-v-c2e55c32="" class="switch small small-close"><div class="switch-item"></div></div><p data-v-c2e55c32="">澳洲10</p><span data-v-c2e55c32="">下注行为</span><select data-v-c2e55c32=""><option data-v-c2e55c32="" value="7240f7f2-a454-445a-b1ef-bc8ab5f670a0">PK10-01每期2单</option><option data-v-c2e55c32="" value="ca7f18b7-85ac-4cd0-99a5-2b2020bc8226">PK10-02每期1单</option><option data-v-c2e55c32="" value="1f32c806-2456-47f3-a061-c2bbe2b8db31">PK10-03每期3单</option><option data-v-c2e55c32="" value="97d77f50-545e-4410-bd01-7c5b0d6fc733">PK10-04每期2单</option><option data-v-c2e55c32="" value="47f24879-c5f1-4107-a5f1-6bf4ac16adda">PK10-05每期1单</option><option data-v-c2e55c32="" value="e29c8528-0ddb-456f-8e0c-63f3db082fb0">PK10-08每期2单</option><option data-v-c2e55c32="" value="528f8537-6f5d-46d8-b56a-c83ad75fff81">PK10-09每期4单</option><option data-v-c2e55c32="" value="ec9863f2-84b5-4d7c-ae7e-8aa1067b7c82">PK10-10每期1单</option><option data-v-c2e55c32="" value="38fc46ea-130f-4ed3-abba-02f82fb2d028">SSC-01每期3单</option><option data-v-c2e55c32="" value="b8709547-a23a-4ae7-8f7d-ae0ced52ae9c">SSC-02每期2单</option><option data-v-c2e55c32="" value="3fb19731-c818-4f5d-afd0-9ed061967498">SSC-03每期4单</option><option data-v-c2e55c32="" value="04fe5ae2-358a-475b-83ba-1fdc7b0fc3ab">SSC-04每期1单</option><option data-v-c2e55c32="" value="25500b08-db54-48a1-b427-e2fb1958dd71">SSC-05每期4单</option><option data-v-c2e55c32="" value="81eba0f3-d32b-4fdc-a5b8-6b0afdbbd104">SSC-06每期2单</option><option data-v-c2e55c32="" value="7260cdc4-1dd5-4555-999b-db1a28224415">SSC-07每期3单</option><option data-v-c2e55c32="" value="9c673477-8e37-4cae-ba3a-5cd61f7ec56e">SSC-08每期1单</option><option data-v-c2e55c32="" value="cb07da92-497f-4a62-b984-43a38ea53f4a">SSC-09每期2单</option><option data-v-c2e55c32="" value="755032cc-3cef-4d33-afee-a8b451b090d4">SSC-10每期1单</option><option data-v-c2e55c32="" value="35ecc833-ad33-44e6-a474-11c011a3d78b">ssc-包号玩家</option><option data-v-c2e55c32="" value="0009f8ac-cdaf-441a-9e0d-4a1ad116a828">SSC-双面+2码</option><option data-v-c2e55c32="" value="563e5ba8-7202-4d53-956f-703a804e0738">SSC-5码</option></select></div><div data-v-c2e55c32="" class="game-item"><div data-v-c2e55c32="" class="switch small small-close"><div class="switch-item"></div></div><p data-v-c2e55c32="">澳洲10</p><span data-v-c2e55c32="">下注行为</span><select data-v-c2e55c32=""><option data-v-c2e55c32="" value="7240f7f2-a454-445a-b1ef-bc8ab5f670a0">PK10-01每期2单</option><option data-v-c2e55c32="" value="ca7f18b7-85ac-4cd0-99a5-2b2020bc8226">PK10-02每期1单</option><option data-v-c2e55c32="" value="1f32c806-2456-47f3-a061-c2bbe2b8db31">PK10-03每期3单</option><option data-v-c2e55c32="" value="97d77f50-545e-4410-bd01-7c5b0d6fc733">PK10-04每期2单</option><option data-v-c2e55c32="" value="47f24879-c5f1-4107-a5f1-6bf4ac16adda">PK10-05每期1单</option><option data-v-c2e55c32="" value="e29c8528-0ddb-456f-8e0c-63f3db082fb0">PK10-08每期2单</option><option data-v-c2e55c32="" value="528f8537-6f5d-46d8-b56a-c83ad75fff81">PK10-09每期4单</option><option data-v-c2e55c32="" value="ec9863f2-84b5-4d7c-ae7e-8aa1067b7c82">PK10-10每期1单</option><option data-v-c2e55c32="" value="38fc46ea-130f-4ed3-abba-02f82fb2d028">SSC-01每期3单</option><option data-v-c2e55c32="" value="b8709547-a23a-4ae7-8f7d-ae0ced52ae9c">SSC-02每期2单</option><option data-v-c2e55c32="" value="3fb19731-c818-4f5d-afd0-9ed061967498">SSC-03每期4单</option><option data-v-c2e55c32="" value="04fe5ae2-358a-475b-83ba-1fdc7b0fc3ab">SSC-04每期1单</option><option data-v-c2e55c32="" value="25500b08-db54-48a1-b427-e2fb1958dd71">SSC-05每期4单</option><option data-v-c2e55c32="" value="81eba0f3-d32b-4fdc-a5b8-6b0afdbbd104">SSC-06每期2单</option><option data-v-c2e55c32="" value="7260cdc4-1dd5-4555-999b-db1a28224415">SSC-07每期3单</option><option data-v-c2e55c32="" value="9c673477-8e37-4cae-ba3a-5cd61f7ec56e">SSC-08每期1单</option><option data-v-c2e55c32="" value="cb07da92-497f-4a62-b984-43a38ea53f4a">SSC-09每期2单</option><option data-v-c2e55c32="" value="755032cc-3cef-4d33-afee-a8b451b090d4">SSC-10每期1单</option><option data-v-c2e55c32="" value="35ecc833-ad33-44e6-a474-11c011a3d78b">ssc-包号玩家</option><option data-v-c2e55c32="" value="0009f8ac-cdaf-441a-9e0d-4a1ad116a828">SSC-双面+2码</option><option data-v-c2e55c32="" value="563e5ba8-7202-4d53-956f-703a804e0738">SSC-5码</option></select></div><div data-v-c2e55c32="" class="game-item"><div data-v-c2e55c32="" class="switch small small-close"><div class="switch-item"></div></div><p data-v-c2e55c32="">极速赛车</p><span data-v-c2e55c32="">下注行为</span><select data-v-c2e55c32=""><option data-v-c2e55c32="" value="7240f7f2-a454-445a-b1ef-bc8ab5f670a0">PK10-01每期2单</option><option data-v-c2e55c32="" value="ca7f18b7-85ac-4cd0-99a5-2b2020bc8226">PK10-02每期1单</option><option data-v-c2e55c32="" value="1f32c806-2456-47f3-a061-c2bbe2b8db31">PK10-03每期3单</option><option data-v-c2e55c32="" value="97d77f50-545e-4410-bd01-7c5b0d6fc733">PK10-04每期2单</option><option data-v-c2e55c32="" value="47f24879-c5f1-4107-a5f1-6bf4ac16adda">PK10-05每期1单</option><option data-v-c2e55c32="" value="e29c8528-0ddb-456f-8e0c-63f3db082fb0">PK10-08每期2单</option><option data-v-c2e55c32="" value="528f8537-6f5d-46d8-b56a-c83ad75fff81">PK10-09每期4单</option><option data-v-c2e55c32="" value="ec9863f2-84b5-4d7c-ae7e-8aa1067b7c82">PK10-10每期1单</option><option data-v-c2e55c32="" value="38fc46ea-130f-4ed3-abba-02f82fb2d028">SSC-01每期3单</option><option data-v-c2e55c32="" value="b8709547-a23a-4ae7-8f7d-ae0ced52ae9c">SSC-02每期2单</option><option data-v-c2e55c32="" value="3fb19731-c818-4f5d-afd0-9ed061967498">SSC-03每期4单</option><option data-v-c2e55c32="" value="04fe5ae2-358a-475b-83ba-1fdc7b0fc3ab">SSC-04每期1单</option><option data-v-c2e55c32="" value="25500b08-db54-48a1-b427-e2fb1958dd71">SSC-05每期4单</option><option data-v-c2e55c32="" value="81eba0f3-d32b-4fdc-a5b8-6b0afdbbd104">SSC-06每期2单</option><option data-v-c2e55c32="" value="7260cdc4-1dd5-4555-999b-db1a28224415">SSC-07每期3单</option><option data-v-c2e55c32="" value="9c673477-8e37-4cae-ba3a-5cd61f7ec56e">SSC-08每期1单</option><option data-v-c2e55c32="" value="cb07da92-497f-4a62-b984-43a38ea53f4a">SSC-09每期2单</option><option data-v-c2e55c32="" value="755032cc-3cef-4d33-afee-a8b451b090d4">SSC-10每期1单</option><option data-v-c2e55c32="" value="35ecc833-ad33-44e6-a474-11c011a3d78b">ssc-包号玩家</option><option data-v-c2e55c32="" value="0009f8ac-cdaf-441a-9e0d-4a1ad116a828">SSC-双面+2码</option><option data-v-c2e55c32="" value="563e5ba8-7202-4d53-956f-703a804e0738">SSC-5码</option></select></div><div data-v-c2e55c32="" class="game-item"><div data-v-c2e55c32="" class="switch small small-close"><div class="switch-item"></div></div><p data-v-c2e55c32="">极速时时彩</p><span data-v-c2e55c32="">下注行为</span><select data-v-c2e55c32=""><option data-v-c2e55c32="" value="7240f7f2-a454-445a-b1ef-bc8ab5f670a0">PK10-01每期2单</option><option data-v-c2e55c32="" value="ca7f18b7-85ac-4cd0-99a5-2b2020bc8226">PK10-02每期1单</option><option data-v-c2e55c32="" value="1f32c806-2456-47f3-a061-c2bbe2b8db31">PK10-03每期3单</option><option data-v-c2e55c32="" value="97d77f50-545e-4410-bd01-7c5b0d6fc733">PK10-04每期2单</option><option data-v-c2e55c32="" value="47f24879-c5f1-4107-a5f1-6bf4ac16adda">PK10-05每期1单</option><option data-v-c2e55c32="" value="e29c8528-0ddb-456f-8e0c-63f3db082fb0">PK10-08每期2单</option><option data-v-c2e55c32="" value="528f8537-6f5d-46d8-b56a-c83ad75fff81">PK10-09每期4单</option><option data-v-c2e55c32="" value="ec9863f2-84b5-4d7c-ae7e-8aa1067b7c82">PK10-10每期1单</option><option data-v-c2e55c32="" value="38fc46ea-130f-4ed3-abba-02f82fb2d028">SSC-01每期3单</option><option data-v-c2e55c32="" value="b8709547-a23a-4ae7-8f7d-ae0ced52ae9c">SSC-02每期2单</option><option data-v-c2e55c32="" value="3fb19731-c818-4f5d-afd0-9ed061967498">SSC-03每期4单</option><option data-v-c2e55c32="" value="04fe5ae2-358a-475b-83ba-1fdc7b0fc3ab">SSC-04每期1单</option><option data-v-c2e55c32="" value="25500b08-db54-48a1-b427-e2fb1958dd71">SSC-05每期4单</option><option data-v-c2e55c32="" value="81eba0f3-d32b-4fdc-a5b8-6b0afdbbd104">SSC-06每期2单</option><option data-v-c2e55c32="" value="7260cdc4-1dd5-4555-999b-db1a28224415">SSC-07每期3单</option><option data-v-c2e55c32="" value="9c673477-8e37-4cae-ba3a-5cd61f7ec56e">SSC-08每期1单</option><option data-v-c2e55c32="" value="cb07da92-497f-4a62-b984-43a38ea53f4a">SSC-09每期2单</option><option data-v-c2e55c32="" value="755032cc-3cef-4d33-afee-a8b451b090d4">SSC-10每期1单</option><option data-v-c2e55c32="" value="35ecc833-ad33-44e6-a474-11c011a3d78b">ssc-包号玩家</option><option data-v-c2e55c32="" value="0009f8ac-cdaf-441a-9e0d-4a1ad116a828">SSC-双面+2码</option><option data-v-c2e55c32="" value="563e5ba8-7202-4d53-956f-703a804e0738">SSC-5码</option></select></div><div data-v-c2e55c32="" class="game-item"><div data-v-c2e55c32="" class="switch small small-close"><div class="switch-item"></div></div><p data-v-c2e55c32="">168飞艇</p><span data-v-c2e55c32="">下注行为</span><select data-v-c2e55c32=""><option data-v-c2e55c32="" value="7240f7f2-a454-445a-b1ef-bc8ab5f670a0">PK10-01每期2单</option><option data-v-c2e55c32="" value="ca7f18b7-85ac-4cd0-99a5-2b2020bc8226">PK10-02每期1单</option><option data-v-c2e55c32="" value="1f32c806-2456-47f3-a061-c2bbe2b8db31">PK10-03每期3单</option><option data-v-c2e55c32="" value="97d77f50-545e-4410-bd01-7c5b0d6fc733">PK10-04每期2单</option><option data-v-c2e55c32="" value="47f24879-c5f1-4107-a5f1-6bf4ac16adda">PK10-05每期1单</option><option data-v-c2e55c32="" value="e29c8528-0ddb-456f-8e0c-63f3db082fb0">PK10-08每期2单</option><option data-v-c2e55c32="" value="528f8537-6f5d-46d8-b56a-c83ad75fff81">PK10-09每期4单</option><option data-v-c2e55c32="" value="ec9863f2-84b5-4d7c-ae7e-8aa1067b7c82">PK10-10每期1单</option><option data-v-c2e55c32="" value="38fc46ea-130f-4ed3-abba-02f82fb2d028">SSC-01每期3单</option><option data-v-c2e55c32="" value="b8709547-a23a-4ae7-8f7d-ae0ced52ae9c">SSC-02每期2单</option><option data-v-c2e55c32="" value="3fb19731-c818-4f5d-afd0-9ed061967498">SSC-03每期4单</option><option data-v-c2e55c32="" value="04fe5ae2-358a-475b-83ba-1fdc7b0fc3ab">SSC-04每期1单</option><option data-v-c2e55c32="" value="25500b08-db54-48a1-b427-e2fb1958dd71">SSC-05每期4单</option><option data-v-c2e55c32="" value="81eba0f3-d32b-4fdc-a5b8-6b0afdbbd104">SSC-06每期2单</option><option data-v-c2e55c32="" value="7260cdc4-1dd5-4555-999b-db1a28224415">SSC-07每期3单</option><option data-v-c2e55c32="" value="9c673477-8e37-4cae-ba3a-5cd61f7ec56e">SSC-08每期1单</option><option data-v-c2e55c32="" value="cb07da92-497f-4a62-b984-43a38ea53f4a">SSC-09每期2单</option><option data-v-c2e55c32="" value="755032cc-3cef-4d33-afee-a8b451b090d4">SSC-10每期1单</option><option data-v-c2e55c32="" value="35ecc833-ad33-44e6-a474-11c011a3d78b">ssc-包号玩家</option><option data-v-c2e55c32="" value="0009f8ac-cdaf-441a-9e0d-4a1ad116a828">SSC-双面+2码</option><option data-v-c2e55c32="" value="563e5ba8-7202-4d53-956f-703a804e0738">SSC-5码</option></select></div></div></div>
+                    <div data-v-c2e55c32="" class="modify-operate"><div data-v-c2e55c32="" class="enter-button">确定</div><div data-v-c2e55c32="" class="cancel-button">取消</div></div>
+                </form>
+            </div>
+        </div>
+<!--添加行为-->
+        <div class="Topdownplan tbx1" >
+            <div class="branch-recode" style="height: 771px">
+                <div class="user-info-header">
+                    <span>行为管理</span>
+                    <span class="modal-close" onclick="methodtile()">X</span>
+                </div>
+                <div class="ai-setting-list">
+                    <div class="active-list">
+                        <div class="active-1">
+                            <div class="active-header">
+                                <span class="active-title">行为设置</span></div><div class="active-item"><span>名称：</span><div class="column-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type" style="width: 228px;"><!----> <div class="ivu-input-inner-container" style=""><!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="" class="ivu-input ivu-input-default"></div> <!----></div></div><div class="active-item"><label class="ivu-checkbox-wrapper ivu-checkbox-wrapper-checked ivu-checkbox-default"><span class="ivu-checkbox ivu-checkbox-checked"><span class="ivu-checkbox-inner"></span> <input type="checkbox" class="ivu-checkbox-input"></span> 开战</label><div class="columns-item-input ivu-input-number ivu-input-number-default"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>至</span><div class="columns-item-input ivu-input-number ivu-input-number-default"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>秒内使用方案进行攻击。（需勾选方案“启用”按钮）</span></div><div class="active-item"><label class="ivu-checkbox-wrapper ivu-checkbox-wrapper-checked ivu-checkbox-default"><span class="ivu-checkbox ivu-checkbox-checked"><span class="ivu-checkbox-inner"></span> <input type="checkbox" class="ivu-checkbox-input"></span> 开战</label><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 50px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>至</span><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 50px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>秒内使用查询指令，几率为</span><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 50px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down ivu-input-number-handler-down-disabled"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>(1为100%)</span><span>命令</span><div class="column-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type" style="width: 130px;"><!----> <div class="ivu-input-inner-container" style=""><!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="" class="ivu-input ivu-input-default"></div> <!----></div></div><div class="active-item"><label class="ivu-checkbox-wrapper ivu-checkbox-wrapper-checked ivu-checkbox-default"><span class="ivu-checkbox ivu-checkbox-checked"><span class="ivu-checkbox-inner"></span> <input type="checkbox" class="ivu-checkbox-input"></span> 休战</label><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 50px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>至</span><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 50px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>秒内使用查询指令，几率为</span><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 50px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down ivu-input-number-handler-down-disabled"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>(1为100%)</span><span>命令</span><div class="column-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type" style="width: 130px;"><!----> <div class="ivu-input-inner-container" style=""><!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="" class="ivu-input ivu-input-default"></div> <!----></div></div><div class="active-item"><label class="ivu-checkbox-wrapper ivu-checkbox-wrapper-checked ivu-checkbox-default"><span class="ivu-checkbox ivu-checkbox-checked"><span class="ivu-checkbox-inner"></span> <input type="checkbox" class="ivu-checkbox-input"></span> 余额低于</label><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 107px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>时，发送上分指令，操作金额</span><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 107px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>命令</span><div class="column-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type" style="width: 130px;"><!----> <div class="ivu-input-inner-container" style=""><!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="" class="ivu-input ivu-input-default"></div> <!----></div></div><div class="active-item"><label class="ivu-checkbox-wrapper ivu-checkbox-wrapper-checked ivu-checkbox-default"><span class="ivu-checkbox ivu-checkbox-checked"><span class="ivu-checkbox-inner"></span> <input type="checkbox" class="ivu-checkbox-input"></span> 余额高于</label><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 107px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>时，发送下分指令，操作金额</span><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 107px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>命令</span><div class="column-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type" style="width: 130px;"><!----> <div class="ivu-input-inner-container" style=""><!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="" class="ivu-input ivu-input-default"></div> <!----></div></div><div class="active-item"><label class="ivu-checkbox-wrapper ivu-checkbox-wrapper-checked ivu-checkbox-default"><span class="ivu-checkbox ivu-checkbox-checked"><span class="ivu-checkbox-inner"></span> <input type="checkbox" class="ivu-checkbox-input"></span> 余额低于</label><div class="columns-item-input ivu-input-number ivu-input-number-default" style="width: 107px;"><div class="ivu-input-number-handler-wrap"><a class="ivu-input-number-handler ivu-input-number-handler-up"><span class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a class="ivu-input-number-handler ivu-input-number-handler-down ivu-input-number-handler-down-disabled"><span class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a></div> <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false" placeholder="" class="ivu-input-number-input"></div></div><span>时，停止攻击</span></div></div><div class="active-2"><p class="poptip-header">行为设置说明</p><ul><li>1.攻击时间可根据需求酌情微调，攻击时间范围尽量覆盖对应游戏类型的整个未封盘时间区间。</li><li>2.开战休战订单查询和流水查询，默认触发概率0.1比较接近实际场景，各个行为中的开战和休战起止尽量设置一些差异。</li><li>3.余额低于XX停止攻击，默认不勾选。选中后会根据场景触发停止运行。</li><li>4.余额低于XX上分，此数值的比例请对应您的方案金额。不然会出现冲大买小的现象。</li></ul></div><div class="active-2"><p class="poptip-header">方案管理说明</p><ul><li>1.方案列表中，每多一个方案，则会在每期多一个投注订单，订单是从方案中随机抽取的。重盖概率接近于0。用户可根据自己的情况在方案中增加、修改和删除。</li><li>2.默认方案已经设置了近万种组合，如果不愿意自定义，则直接使用预设的方案就能满足几乎全部场景。</li></ul></div><div class="method-operate"><span>保存</span><span>取消</span></div></div>
+                    <div class="method-list" id="method-tile" style="display: none;">
+                        <div class="active-header">
+                            <span class="active-title">方案设置</span>
+                        </div>
+                        <div class="method-l">
+                            <div class="method-item">
+                                <span style="font-size: 13px">方案列表：</span>
+                                <select>
+                                    <option value="">第一单</option>
+                                    <option value="">第二单</option>
+                                </select>
+                                <select disabled>
+                                    <option value="">不翻倍</option>
+                                </select>
+                            </div>
+                            <div class="method-item">
+                                <span style="font-size: 13px">金额设置：</span>
+                                <input class="textsa" type="text" value="10，15，20" disabled>
+                                <input type="checkbox"><span style="font-size: 12px">启用</span>
+                            </div>
+                        </div>
+                        <div class="bet-list"><p>此方案可随机抽取注单列表（点击表格添加或修改）</p><p>和17/{m}</p><p>和11121314/{m}</p><p>6小{m}</p><p>和1718/{m}</p><p>7/0/{m}</p><p>1/7890/{m}</p><p>和10111213/{m}</p><p>和大{m}</p><p>2/3456789/{m}</p><p>12龙{m}</p><p>5/456789/{m}</p><p>1/567/{m}</p><p>2虎{m}</p><p>1虎{m}</p><p>和6789/{m}</p><p>0/123/{m}</p><p>和单{m}</p><p>8/34567/{m}</p><p>4/4/{m}</p><p>和双{m}</p><p>和 单{m}</p><p>和3/{m}</p><p>3/45678/{m}</p><p>和双{m}</p><p>3龙{m}</p><p>和12131415/{m}</p><p>和1516/{m}</p><p>和小{m}</p><p>2/3456/{m}</p><p>4/890/{m}</p><p>4龙{m}</p><p>2小{m}</p><p>1/345/{m}</p><p>4单{m}</p><p>和14/{m}</p><p>5/2/{m}</p><p>和双{m}</p><p>4虎{m}</p><p>7/4/{m}</p><p>和15/{m}</p><p>6/56/{m}</p><p>45龙{m}</p><p>3/8/{m}</p><p>6小{m}</p><p>6/8/{m}</p><p>和14151617/{m}</p><p>和15161718/{m}</p><p>和小{m}</p><p>8/234/{m}</p><p>2/12/{m}</p><p>和小{m}</p><p>6/234567/{m}</p><p>8/8/{m}</p><p>和双{m}</p><p>和小{m}</p><p>8小{m}</p><p>3/6/{m}</p><p>和6789/{m}</p><p>9/0/{m}</p><p>9/345678/{m}</p><p>4/3/{m}</p><p>3/234567/{m}</p><p>和18/{m}</p><p>8/3456789/{m}</p><p>和4/{m}</p><p>和 大{m}</p><p>5/234567/{m}</p><p>7小{m}</p><p>和13/{m}</p><p>和45/{m}</p><p>和双{m}</p><p>345虎{m}</p><p>和单{m}</p><p>5/6/{m}</p><p>4/567890/{m}</p><p>6/34/{m}</p><p>和8/{m}</p><p>1单{m}</p><p>和1112/{m}</p><p>5/90/{m}</p><p>2/34/{m}</p><p>和双{m}</p><p>5/45/{m}</p><p>和67/{m}</p><p>和16/{m}</p><p>和3/{m}</p><p>0/567890/{m}</p><p>8/12345/{m}</p><p>4/12345678/{m}</p><p>4/34/{m}</p><p>24龙{m}</p><p>5/123/{m}</p><p>和双{m}</p><p>9/5678/{m}</p><p>1虎{m}</p><p>1/789/{m}</p><p>4/6/{m}</p><p>8/123456/{m}</p><p>3/567890/{m}</p><p>9/12345678/{m}</p><p>345龙{m}</p><p>和5678/{m}</p><p>6单{m}</p><p>和大{m}</p><p>3虎{m}</p><p>8/0/{m}</p><p>7/45678/{m}</p><p>3/456789/{m}</p><p>5小{m}</p><p>9/2345678/{m}</p><p>2/5678/{m}</p><p>6/6/{m}</p><p>7/34567/{m}</p><p>3/23/{m}</p><p>7双{m}</p><p>3虎{m}</p><p>和双{m}</p><p>和78/{m}</p><p>1234虎{m}</p><p>5/456/{m}</p><p>5/2345/{m}</p><p>3/45/{m}</p><p>9/234/{m}</p><p>和1011/{m}</p><p>和6/{m}</p><p>7/67/{m}</p><p>和小{m}</p><p>4/67890/{m}</p><p>和大{m}</p><p>8/123/{m}</p><p>和13/{m}</p><p>6/23/{m}</p><p>和6/{m}</p><p>和小{m}</p><p>2345龙{m}</p><p>4/123/{m}</p><p>2大{m}</p><p>2双{m}</p><p>12345虎{m}</p><p>和双{m}</p><p>4/234567890/{m}</p><p>0/12345/{m}</p><p>0/45678/{m}</p><p>和单{m}</p><p>和67/{m}</p><p>和4567/{m}</p><p>1小{m}</p><p>4小{m}</p><p>9/345/{m}</p><p>和3/{m}</p><p>和7890/{m}</p><p>和10/{m}</p><p>和16171819/{m}</p><p>9大{m}</p><p>7双{m}</p><p>5单{m}</p><p>4/789/{m}</p><p>2龙{m}</p><p>6双{m}</p><p>1/90/{m}</p><p>6/6789/{m}</p><p>2/1/{m}</p><p>0单{m}</p><p>1/2/{m}</p><p>和大{m}</p><p>和13141516/{m}</p><p>2小{m}</p><p>和小{m}</p><p>7/1234567/{m}</p><p>9/45678/{m}</p><p>6/2/{m}</p><p>6/567890/{m}</p><p>和6789/{m}</p><p>0/456/{m}</p><p>和大{m}</p><p>2虎{m}</p><p>0/67890/{m}</p><p>和11/{m}</p><p>1双{m}</p><p>1/2345678/{m}</p><p>4虎{m}</p><p>5/2345678/{m}</p><p>5/56/{m}</p><p>3/3/{m}</p><p>和16171819/{m}</p><p>9/2345/{m}</p><p>和大{m}</p><p>和1415/{m}</p><p>和10111213/{m}</p><p>0/45/{m}</p><p>3/7/{m}</p><p>1/890/{m}</p><p>9/123456/{m}</p><p>1/123456/{m}</p><p>7/567/{m}</p><p>8/56/{m}</p><p>和13141516/{m}</p><p>5大{m}</p><p>2/4567/{m}</p><p>2/345678/{m}</p><p>4虎{m}</p><p>和1011/{m}</p><p>9/67/{m}</p><p>和14/{m}</p><p>8/456/{m}</p><p>和6789/{m}</p><p>和45/{m}</p><p>和14151617/{m}</p><p>9/12/{m}</p><p>12虎{m}</p><p>9/90/{m}</p><p>9双{m}</p><p>2/45/{m}</p><p>7/456789/{m}</p><p>6/2345/{m}</p><p>和1819/{m}</p><p>7/34/{m}</p><p>和大{m}</p><p>2双{m}</p><p>和7/{m}</p><p>35龙{m}</p><p>和13/{m}</p><p>7/1/{m}</p><p>5/34567890/{m}</p><p>4龙{m}</p><p>9/456789/{m}</p><p>和16/{m}</p><p>4/3456789/{m}</p><p>35龙{m}</p><p>1双{m}</p><p>8/12/{m}</p><p>6/7/{m}</p><p>和10/{m}</p><p>7单{m}</p><p>7/6/{m}</p><p>和双{m}</p><p>4/345678/{m}</p><p>和18/{m}</p><p>0/78/{m}</p><p>6/78/{m}</p><p>1/45678/{m}</p><p>和5/{m}</p><p>和9/{m}</p><p>5/4/{m}</p><p>9双{m}</p><p>3/123456789/{m}</p><p>0大{m}</p><p>7/456/{m}</p><p>1/1/{m}</p><p>和12131415/{m}</p><p>0/12345678/{m}</p><p>9单{m}</p><p>和14/{m}</p><p>0大{m}</p><p>和双{m}</p><p>6/3456789/{m}</p><p>5虎{m}</p><p>4/90/{m}</p><p>和15161718/{m}</p><p>0/2345/{m}</p><p>7小{m}</p><p>0/567/{m}</p><p>5/67890/{m}</p><p>6/7890/{m}</p><p>和小{m}</p><p>1小{m}</p><p>8/12345678/{m}</p><p>5/4567890/{m}</p><p>0单{m}</p><p>1/345678/{m}</p><p>8双{m}</p><p>和小{m}</p><p>0/6/{m}</p><p>2/789/{m}</p><p>1/1234567/{m}</p><p> 和大{m}</p><p>6/89/{m}</p><p>1/2345/{m}</p><p>2/7890/{m}</p><p>和89/{m}</p><p>3虎{m}</p><p>2/3/{m}</p><p>和单{m}</p><p>6/789/{m}</p><p>5/23456789/{m}</p><p>1虎{m}</p><p>和5678/{m}</p><p>5小{m}</p><p>和9/{m}</p><p>0/2345678/{m}</p><p>和6/{m}</p><p>5虎{m}</p><p>和89/{m}</p><p>1小{m}</p><p>3/2/{m}</p><p>3/34567/{m}</p><p>1虎{m}</p><p>和3456/{m}</p><p>6/23456/{m}</p><p>4/89/{m}</p><p>123龙{m}</p><p>4单{m}</p><p>6/456/{m}</p><p>3虎{m}</p><p>5龙{m}</p><p>2345龙{m}</p><p>6/12345678/{m}</p><p>5/3456/{m}</p><p>1双{m}</p><p>5小{m}</p><p>和单{m}</p><p>8/4567/{m}</p><p>9双{m}</p><p>4大{m}</p><p>3/6789/{m}</p><p>4/7/{m}</p><p>0/234567890/{m}</p><p>1单{m}</p><p>13虎{m}</p><p>4/34567890/{m}</p><p>2龙{m}</p><p>和5678/{m}</p><p>5/12345678/{m}</p><p>0/123456789/{m}</p><p>和11/{m}</p><p>9/567890/{m}</p><p>4双{m}</p><p>和18/{m}</p><p>1龙{m}</p><p>7/6789/{m}</p><p>3/1/{m}</p><p>和小{m}</p><p>和9/{m}</p><p>5单{m}</p><p>5/23456/{m}</p><p>2345虎{m}</p><p>3/12/{m}</p><p>6双{m}</p><p>和小{m}</p><p>和17/{m}</p><p>4双{m}</p><p>7/2345678/{m}</p><p>4龙{m}</p><p>7小{m}</p><p>9/456/{m}</p><p>2/7/{m}</p><p>8/345/{m}</p><p>3小{m}</p><p>和19/{m}</p><p>和10111213/{m}</p><p>34龙{m}</p><p>1/4567890/{m}</p><p>7/12/{m}</p><p>3/890/{m}</p><p>0/3456/{m}</p><p>和1819/{m}</p><p>和16171819/{m}</p><p>8/23/{m}</p><p>1/5678/{m}</p><p>和6/{m}</p><p>和双{m}</p><p>8/23456789/{m}</p><p>和12131415/{m}</p><p>1/6/{m}</p><p>和4/{m}</p><p>4小{m}</p><p>8小{m}</p><p>123虎{m}</p><p>8/78/{m}</p><p>3小{m}</p><p>7/8/{m}</p><p>和1314/{m}</p><p>0/4/{m}</p><p>1/34567/{m}</p><p>2单{m}</p><p>和单{m}</p><p>24虎{m}</p><p>和大{m}</p><p>4/12/{m}</p><p>和1516/{m}</p><p>34龙{m}</p><p>1虎{m}</p><p>1/123/{m}</p><p>1龙{m}</p><p>5/234/{m}</p><p>5龙{m}</p><p>和大{m}</p><p>1/7/{m}</p><p>0大{m}</p><p>9/1234567/{m}</p><p>4单{m}</p><p>23龙{m}</p><p>和1617/{m}</p><p>5单{m}</p><p>和15161718/{m}</p><p>4龙{m}</p><p>5龙{m}</p><p>4/23456/{m}</p><p>1/23456789/{m}</p><p>和13141516/{m}</p><p>2/123456789/{m}</p><p>1234虎{m}</p><p>1/234567/{m}</p><p>和大{m}</p><p>和7/{m}</p><p>1/6789/{m}</p><p>7/23/{m}</p><p>3虎{m}</p><p> 和单{m}</p><p>3/9/{m}</p><p>8/456789/{m}</p><p>4双{m}</p><p>5/7890/{m}</p><p>8/5678/{m}</p><p>2/234567890/{m}</p><p>6单{m}</p><p>和16171819/{m}</p><p>和67/{m}</p><p>3/23456789/{m}</p><p>9/34/{m}</p><p>3虎{m}</p><p>和1718/{m}</p><p>8/567/{m}</p><p>和双{m}</p><p>2/2345/{m}</p><p>34虎{m}</p><p>和7/{m}</p><p>6/4567890/{m}</p><p>3/7890/{m}</p><p>12龙{m}</p><p>23虎{m}</p><p>和双{m}</p><p>和大{m}</p><p>4虎{m}</p><p>1大{m}</p><p>7/567890/{m}</p><p>3/345/{m}</p><p>8/2/{m}</p><p>和4567/{m}</p><p>1虎{m}</p><p>和15161718/{m}</p><p>和7890/{m}</p><p>1/23/{m}</p><p>6/34567890/{m}</p><p>0/7890/{m}</p><p>和单{m}</p><p>3/4567890/{m}</p><p>和大{m}</p><p>4/123456789/{m}</p><p>9/4567890/{m}</p><p>3双{m}</p><p>和单{m}</p><p>1/23456/{m}</p><p>和单{m}</p><p>9/567/{m}</p><p>4/345/{m}</p><p>1小{m}</p><p>3/123/{m}</p><p>2/34567/{m}</p><p>和4/{m}</p><p>4/456/{m}</p><p>6/2345678/{m}</p><p>0/3/{m}</p><p>和10/{m}</p><p>5/123456/{m}</p><p>4虎{m}</p><p>和单{m}</p><p>和双{m}</p><p>5/6789/{m}</p><p>4/45678/{m}</p><p>和4/{m}</p><p>6/45/{m}</p><p>和7/{m}</p><p>3龙{m}</p><p>2/4567890/{m}</p><p>8/7/{m}</p><p>和45/{m}</p><p>和1314/{m}</p><p>0/9/{m}</p><p>3/2345678/{m}</p><p>和5/{m}</p><p>和小{m}</p><p>5/1/{m}</p><p>和小{m}</p><p>4/3456/{m}</p><p>3/90/{m}</p><p>5/3/{m}</p><p>和4/{m}</p><p>9/2/{m}</p><p>7/345/{m}</p><p>6/0/{m}</p><p>6/3/{m}</p><p>3单{m}</p><p>和4567/{m}</p><p>7大{m}</p><p>4大{m}</p><p>2/2/{m}</p><p>和89/{m}</p><p>和14/{m}</p><p>和小{m}</p><p>和8/{m}</p><p>和11121314/{m}</p><p>1单{m}</p><p>0小{m}</p><p>13虎{m}</p><p>9/789/{m}</p><p>和大{m}</p><p>4/67/{m}</p><p>和12131415/{m}</p><p>345虎{m}</p><p>4/34567/{m}</p><p>4/123456/{m}</p><p>4/56/{m}</p><p>5/7/{m}</p><p>8/234567890/{m}</p><p>6/12345/{m}</p><p>8/345678/{m}</p><p>4双{m}</p><p>9/78/{m}</p><p>8/3/{m}</p><p>8/123456789/{m}</p><p>7大{m}</p><p>和89/{m}</p><p>2/78/{m}</p><p>0/23456/{m}</p><p>4龙{m}</p><p>6大{m}</p><p>和1112/{m}</p><p>6/34567/{m}</p><p>12虎{m}</p><p>5 虎{m}</p><p>和双{m}</p><p>和78/{m}</p><p>3/56/{m}</p><p>2双{m}</p><p>2虎{m}</p><p>1龙{m}</p><p>和1112/{m}</p><p>和双{m}</p><p>7/7/{m}</p><p>2/12345/{m}</p><p>3/34/{m}</p><p>1/67890/{m}</p><p>和6789/{m}</p><p>4虎{m}</p><p>4/1234567/{m}</p><p>7/234567890/{m}</p><p>0/6789/{m}</p><p>9/123456789/{m}</p><p>8大{m}</p><p>和15/{m}</p><p>和大{m}</p><p>1龙{m}</p><p>4小{m}</p><p>5大{m}</p><p>和小{m}</p><p>6/45678/{m}</p><p>4/2/{m}</p><p>5/12/{m}</p><p>1/3456/{m}</p><p>1/3/{m}</p><p>2大{m}</p><p>和67/{m}</p><p>5/23/{m}</p><p>和5678/{m}</p><p>和1415/{m}</p><p>3/456/{m}</p><p>和16/{m}</p><p>7/5678/{m}</p><p>和大{m}</p><p>和18/{m}</p><p>7/90/{m}</p><p>8大{m}</p><p>5双{m}</p><p>4小{m}</p><p>0/345/{m}</p><p>4/12345/{m}</p><p>和7/{m}</p><p>1虎{m}</p><p>和3456/{m}</p><p>和小{m}</p><p>9/34567/{m}</p><p>6小{m}</p><p>和16/{m}</p><p>和1415/{m}</p><p>4龙{m}</p><p>和双{m}</p><p>24龙{m}</p><p>12345虎{m}</p><p>8/4567890/{m}</p><p>2/567/{m}</p><p>和单{m}</p><p>0/345678/{m}</p><p>3龙{m}</p><p>和单{m}</p><p>1龙{m}</p><p>和单{m}</p><p>6/9/{m}</p><p>和1213/{m}</p><p>和19/{m}</p><p>和小{m}</p><p>7双{m}</p><p>和13/{m}</p><p>0/1234/{m}</p><p>8/2345678/{m}</p><p>和1314/{m}</p><p>5/34/{m}</p><p>和9/{m}</p><p>2龙{m}</p><p>9小{m}</p><p>0/34567890/{m}</p><p>和3/{m}</p><p>3/3456/{m}</p><p>2龙{m}</p><p>和1213/{m}</p><p>8/6789/{m}</p><p>6/5678/{m}</p><p>0双{m}</p><p>5/5678/{m}</p><p>6单{m}</p><p>6单{m}</p><p>和6/{m}</p><p>7/67890/{m}</p><p>和78/{m}</p><p>和小{m}</p><p>和双{m}</p><p>5/345678/{m}</p><p>1龙{m}</p><p>5虎{m}</p><p>和6/{m}</p><p>0小{m}</p><p>0/456789/{m}</p><p>和小{m}</p><p>5/8/{m}</p><p>2虎{m}</p><p>9/234567890/{m}</p><p>和大{m}</p><p>3/78/{m}</p><p>9/23456789/{m}</p><p>8/7890/{m}</p><p>和单{m}</p><p>2虎{m}</p><p>和12/{m}</p><p>和1314/{m}</p><p>和单{m}</p><p>和15/{m}</p><p>3虎{m}</p><p>0/5/{m}</p><p>3大{m}</p><p>0/56/{m}</p><p>2/123456/{m}</p><p>和17/{m}</p><p>5/345/{m}</p><p>和双{m}</p><p>6双{m}</p><p>7/56/{m}</p><p>和7890/{m}</p><p>2/67/{m}</p><p>3/67890/{m}</p><p>和1718/{m}</p><p>7大{m}</p><p>和15/{m}</p><p>3/5/{m}</p><p>和单{m}</p><p>8/2345/{m}</p><p>4虎{m}</p><p>0/0/{m}</p><p>3单{m}</p><p>1/1234/{m}</p><p>和5/{m}</p><p>和15161718/{m}</p><p>4/7890/{m}</p><p>5/123456789/{m}</p><p>9大{m}</p><p>7/3456/{m}</p><p>0/3456789/{m}</p><p>1/56/{m}</p><p>0/7/{m}</p><p>9单{m}</p><p>和单{m}</p><p>7/23456/{m}</p><p>6/1/{m}</p><p>5/45678/{m}</p><p>8/567890/{m}</p><p>0/4567/{m}</p><p>4虎{m}</p><p>5龙{m}</p><p>和1213/{m}</p><p>和13141516/{m}</p><p>2/456/{m}</p><p>7/123456/{m}</p><p>7/12345/{m}</p><p>4虎{m}</p><p>8小{m}</p><p>7/5/{m}</p><p>234虎{m}</p><p>和14151617/{m}</p><p>8单{m}</p><p>5/4567/{m}</p><p>2龙{m}</p><p>4 龙{m}</p><p>8/34/{m}</p><p>和大{m}</p><p>和1819/{m}</p><p>8/1234/{m}</p><p>和大{m}</p><p>和11/{m}</p><p>3/34567890/{m}</p><p>和16/{m}</p><p>8双{m}</p><p>2虎{m}</p><p>3/1234/{m}</p><p>8双{m}</p><p>5/234567890/{m}</p><p>1/4567/{m}</p><p>和19/{m}</p><p>0/1/{m}</p><p>2/23456/{m}</p><p>5/890/{m}</p><p>和单{m}</p><p>和11121314/{m}</p><p>8/6/{m}</p><p>9/7/{m}</p><p>5/789/{m}</p><p>1/0/{m}</p><p>和双{m}</p><p>和单{m}</p><p>0/1234567/{m}</p><p>0小{m}</p><p>8大{m}</p><p>和双{m}</p><p>234虎{m}</p><p>2/67890/{m}</p><p>7/34567890/{m}</p><p>1/12345/{m}</p><p>35虎{m}</p><p>35虎{m}</p><p>和12/{m}</p><p>和双{m}</p><p>7/7890/{m}</p><p>9/123/{m}</p><p>3龙{m}</p><p>1大{m}</p><p>9/3/{m}</p><p>8大{m}</p><p>2双{m}</p><p>3/789/{m}</p><p>6/5/{m}</p><p>7/234567/{m}</p><p>1虎{m}</p><p>3/12345/{m}</p><p>45龙{m}</p><p>4/45/{m}</p><p>8/1234567/{m}</p><p>123龙{m}</p><p>6/234567890/{m}</p><p>和11121314/{m}</p><p>4/456789/{m}</p><p>7/789/{m}</p><p>和单{m}</p><p>45虎{m}</p><p>和15161718/{m}</p><p>234龙{m}</p><p>1/12345678/{m}</p><p>和双{m}</p><p>5小{m}</p><p>7/2/{m}</p><p>和16171819/{m}</p><p>7单{m}</p><p>8小{m}</p><p>和大{m}</p><p>6/1234567/{m}</p><p>3单{m}</p><p>3/89/{m}</p><p>9/45/{m}</p><p>3/234/{m}</p><p>3/5678/{m}</p><p>和小{m}</p><p>0/5678/{m}</p><p>和小{m}</p><p>1234龙{m}</p><p>0/34567/{m}</p><p>0/234567/{m}</p><p>和大{m}</p><p>7大{m}</p><p>和大{m}</p><p>4/4567890/{m}</p><p>7/4567/{m}</p><p>和14151617/{m}</p><p>4/5/{m}</p><p>8/234567/{m}</p><p>1/9/{m}</p><p>和大{m}</p><p>1/78/{m}</p><p>23龙{m}</p><p>4龙{m}</p><p>2龙{m}</p><p>0单{m}</p><p>和7890/{m}</p><p>2/890/{m}</p><p>12345龙{m}</p><p>2/8/{m}</p><p>1/234567890/{m}</p><p>3/567/{m}</p><p>4/0/{m}</p><p>和单{m}</p><p>8/90/{m}</p><p>8单{m}</p><p>7/78/{m}</p><p>9小{m}</p><p>2/45678/{m}</p><p>3龙{m}</p><p>0/89/{m}</p><p>和15/{m}</p><p>3小{m}</p><p>9/67890/{m}</p><p></p></div>
+                        <div class="method-item operate-list">
+                            <span onclick="showtbx4()">添加方案</span><span onclick="showtbx5()">修改方案</span><span>删除方案</span></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+<!--        添加方案-->
+            <div class="Topdownplan tbx4" >
+                <div class="user-info-header">
+                    <span>新增方案</span>
+                    <span class="modal-close" onclick="tbx4()">X</span>
+                </div>
+                <div class="method-l">
+                    <div class="method-item">
+                        <span style="font-size: 13px">方案列表：</span>
+                        <select>
+                            <option value="">第一单</option>
+                            <option value="">第二单</option>
+                        </select>
+                        <select disabled>
+                            <option value="">不翻倍</option>
+                        </select>
+                    </div>
+                    <div class="method-item">
+                        <span style="font-size: 13px">金额设置：</span>
+                        <input class="textsa" type="text" value="10，15，20" disabled>
+                        <input type="checkbox"><span style="font-size: 12px">启用</span>
+                    </div>
+                    <div class="method-item">
+                        <span>投注信息：</span>
+                        <div class="edit-operate">
+                            <span class="plus"></span>
+                            <span class="minus">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="edit-item"><ul><li><div class="column-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type"><!----> <div class="ivu-input-inner-container" style=""><!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="请填写投注信息" class="ivu-input ivu-input-default"></div> <!----></div></li></ul></div>
+                    <div class="edit-item save-item"><span>确定保存</span><span onclick="showaddbatch()">导入模板</span></div>
+                </div>
+            </div>
+<!--        修改方案-->
+        <div class="Topdownplan tbx5" >
+            <div class="user-info-header">
+                <span>修改方案</span>
+                <span class="modal-close" onclick="tbx5()">X</span>
+            </div>
+            <div class="method-l">
+                <div class="method-item">
+                    <span style="font-size: 13px">方案列表：</span>
+                    <select>
+                        <option value="">第一单</option>
+                        <option value="">第二单</option>
+                    </select>
+                    <select disabled>
+                        <option value="">不翻倍</option>
+                    </select>
+                </div>
+                <div class="method-item">
+                    <span style="font-size: 13px">金额设置：</span>
+                    <input class="textsa" type="text" value="10，15，20" disabled>
+                    <input type="checkbox"><span style="font-size: 12px">启用</span>
+                </div>
+                <div class="method-item">
+                    <span>投注信息：</span>
+                    <div class="edit-operate">
+                        <span class="plus"></span>
+                        <span class="minus">
+                            </span>
+                    </div>
+                </div>
+                <div class="edit-item"><ul><li><div class="column-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type"><!----> <div class="ivu-input-inner-container" style=""><!----> <i class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i> <input autocomplete="off" spellcheck="false" type="text" placeholder="请填写投注信息" class="ivu-input ivu-input-default"></div> <!----></div></li></ul></div>
+                <div class="edit-item save-item"><span>确定保存</span><span onclick="showaddbatch()">导入模板</span></div>
+        </div>
+        </div>
+<!--        导入-->
+        <div class="add-batch"><div class="batch-header"><p class="batch-title">批量添加<span class="modal-close" onclick="addbatch()">X</span></p><p class="batch-poptip">各个投注信息之间用逗号","或者分号";"隔开，支持中文符号</p></div><div class="batch-content"><textarea></textarea></div><div class="enter-add">确认添加</div><div class="list-operate"><div class="import-item">导入10球模板</div><div class="import-item">导入5球模板</div></div></div>
+<!--        添加虚拟用户-->
+        <div class="Topdownplan tbx6">
+            <div class="user-info-header">
+                <span>添加虚拟用户</span>
+                <span class="modal-close" onclick="tbx6()">X</span>
+            </div>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 control-label">用户昵称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="firstname" placeholder="请输入名字">
+                    </div>
+                </div>
+                <button type="button" class="btn bns btn-default">添加</button>
+            </form>
+        </div>
+        </div >
+<script>
+
+    $(function (){
+        if ($("#pagination")) {
+            var pagecount = 40;
+            var pagesize = 10;
+            var currentpage = 1;
+            var counts, pagehtml = "";
+            if (pagecount % pagesize == 0) {
+                counts = parseInt(pagecount / pagesize);
+            } else {
+                counts = parseInt(pagecount / pagesize) + 1;
+            }
+            //只有一页内容
+            if (pagecount <= pagesize) {
+                pagehtml = "";
+            }
+            //大于一页内容
+            if (pagecount > pagesize) {
+                if (currentpage > 1) {
+                    pagehtml += '<li><a >上一页</a></li>';
+                }
+                for (var i = 0; i < counts; i++) {
+                    if (i >= (currentpage - 3) && i < (currentpage + 3)) {
+                        if (i == currentpage - 1) {
+                            pagehtml += '<li class="active"><a >' + (i + 1) + '</a></li>';
+                        }else {
+                          pagehtml += '<li><a >' + (i + 1) + '</a></li>';
+                     }
+                  }
+                }
+                if (currentpage < counts) {
+                    pagehtml += '<li><a >下一页</a></li>';
+                }
+            }
+            $("#pagination").html(pagehtml);
+        }
+    })
+    function hidtable2() {
+        $('.tbx3').hide()
+
+    }
+    function usrshow() {
+        $('.tbx3').show()
+        document.documentElement.scrollTop= 0;
+    }
+    function hidtable1() {
+        $('.tbx1').hide()
+    }
+    function hidtableshow() {
+        $('.tbx1').show()
+        document.documentElement.scrollTop= 0;
+    }
+    function methodtile() {
+        $('.tbx1').hide()
+        $('#method-tile').hide()
+    }
+    function methodtileshow() {
+        $('.tbx1').show()
+        $('#method-tile').show()
+        document.documentElement.scrollTop= 0;
+
+    }
+    function tbx4() {
+        $('.tbx4').hide()
+    }
+    function showtbx4 () {
+        $('.tbx4').show()
+        document.documentElement.scrollTop = 0
+    }
+    function tbx5(){
+        $('.tbx5').hide()
+    }
+    function  showtbx5() {
+        $('.tbx5').show()
+        document.documentElement.scrollTop = 0
+    }
+    function addbatch () {
+        $('.add-batch').hide()
+    }
+    function  showaddbatch() {
+        $('.add-batch').show()
+        document.documentElement.scrollTop = 0
+    }
+    function tbx6() {
+        $('.tbx6').hide()
+    }
+    function showtbx() {
+        $('.tbx6').show()
+        document.documentElement.scrollTop = 0
+    }
+</script>
+</body>
+</html>

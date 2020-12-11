@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>唐商</title>
+    <link href="./../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./../static/css/common.css" rel="stylesheet">
+    <link href="./../static/js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../static/css/datetimepicker.min.css">
+    <script src="./../static/js/jqery.js"></script>
+    <script src="./../static/js/moment.js"></script>
+    <script src="./../static/js/bootstrap.min.js"></script>
+    <script src="./../static/js/datatimepicker.js"></script>
+    <script src="./../static/js/layui/layui.all.js"></script>
+    <style>
+        input{
+            height: 32px;
+        }
+        .Pricelimit{
+            width: 100vw;
+            height: 100vh;
+            background: url("../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        .zh{
+            height: 10px;
+        }
+        .content{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            background: #f2f2f2;
+            border-radius: 5px;
+            border: 1px solid #d7d7d7;
+        }
+        .content .checkboxs{
+            width: 40%;
+        }
+        .content .btns{
+            width: 20%;
+        }
+        .content1{
+            margin-top: 10px;
+            height: 410px;
+            background: #f2f2f2;
+            border-radius: 5px;
+            border: 1px solid #d7d7d7;
+        }
+        .content1 .list-header{
+            display: flex;
+            align-items: center;
+            height: 70px;
+
+            border-bottom: 1px solid #e4e4e4;
+            text-align: left;
+            justify-content: space-between;
+        }
+        .content1 .list-header .list-title {
+            position: relative;
+            /*padding-bottom: 10px;*/
+            display: flex;
+            /*min-height: 28px;*/
+            font-weight: 700;
+            color: #333;
+            align-items: center;
+            height: 70px;
+            width: 100%;
+            justify-content: space-between;
+            box-sizing: content-box;
+        }
+        .list-title input{
+            height: 28px;
+            margin-top: 0;
+        }
+        .content1 .list-header .list-title span{
+            display: block;
+            width: 30%;
+            margin-left: 20px;
+        }
+        .content1 .list-header .list-title:before {
+            content: "";
+            position: absolute;
+            top: 35%;
+            left: 7px;
+            width: 4px;
+            height: 15px;
+            background-color: #399;
+        }
+        .content1 .list-header .list-p{
+            display: flex;
+            background: #e4e4e4;
+            border-radius: 5px;
+            justify-content: space-around;
+            border: 1px solid #d7d7d7;
+            margin: 0 10px;
+
+        }
+        .content1 .list-header .list-p .p-item{
+            display: flex;
+            margin-bottom: 5px;
+            padding-top: 5px;
+            margin-left: 5px;
+        }
+        .content1 .list-header .list-p .p-item input{
+            width: 30%;
+            margin-left: 10px;
+        }
+        .tablecet{
+            margin-top: 10px;
+            width: 98%;
+            margin-left: 1%;
+            overflow-x: auto;
+            height: 250px;
+        }
+        #tbva{
+            width: 100%;
+        }
+        #tbva thead tr{
+            display: flex;
+            align-items: center;
+        }
+        #tbva thead tr th{
+           flex: 1;
+        }
+        #tbva tbody tr{
+            display: flex;
+            align-items: center;
+        }
+        #tbva tbody tr td{
+            flex: 1;
+            height: 50px;
+            line-height: 50px;
+        }
+        #tbva td input{
+            width: 90%;
+        }
+        .content2{
+            margin-top: 10px;
+            border-radius: 5px;
+            background: #f2f2f2;
+            border: 1px solid #d7d7d7;
+        }
+        .content2 .list-header{
+            display: flex;
+            align-items: center;
+            height: 35px;
+            border-bottom: 1px solid #e4e4e4;
+            text-align: left;
+            justify-content: space-between;
+        }
+        .content2 .list-header .list-title {
+            position: relative;
+            /*padding-bottom: 10px;*/
+            display: flex;
+            /*min-height: 28px;*/
+            font-weight: 700;
+            color: #333;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            box-sizing: content-box;
+        }
+        .content2 .list-header .list-title span{
+            display: block;
+            width: 30%;
+            margin-left: 20px;
+        }
+        .content2 .list-header .list-title:before {
+            content: "";
+            position: absolute;
+            top: 20%;
+            left: 7px;
+            width: 4px;
+            height: 15px;
+            background-color: #399;
+        }
+        .content2 .list-header .list-p{
+            display: flex;
+            flex-direction: column;
+            background: #e4e4e4;
+            border-radius: 5px;
+            justify-content: space-around;
+            border: 1px solid #d7d7d7;
+            margin: 0 10px;
+        }
+        .content2 .tbalebox{
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .box-item{
+            display: flex;
+            align-items: center;
+            border-bottom: 1px dashed #c5c5c5;
+        }
+        .itemtitle{
+            width: 15%;
+            background: #e4e4e4;
+            text-align: center;
+            margin: 0 5px;
+            height: 100%;
+        }
+        .iteminput{
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .iteminput li {
+            width: 20%;
+            display: flex;
+            margin: 10px 0;
+        }
+        .iteminput li input{
+            width: 90%;
+            margin:  0 5%;
+            text-align: center;
+        }
+        #tbva td{
+            height: 50px;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<!--Pricelimit-->
+<div class="Pricelimit">
+    <div class="zh"></div>
+    <div class="content">
+        <div class="checkboxs">
+            <select class="form-control" value="极速赛车">
+                <option>英国赛车</option>
+                <option>英国时时彩</option>
+                <option>英国极速赛车</option>
+                <option>英国极速时时彩</option>
+                <option>澳洲10</option>
+                <option>澳洲5</option>
+                <option>极速赛车</option>
+                <option>极速时时彩</option>
+                <option>168飞艇</option>
+            </select>
+        </div>
+        <div class="btns">
+            <button class="btn btn-primary" type="button">修改/保存</button>
+        </div>
+    </div>
+    <div class="content1">
+        <div class="list-header">
+            <div class="list-title">
+                <span>限额设置</span>
+                <div class="list-p">
+                    <div class="p-item">
+                        单个玩家所有玩法总限额
+                        <input type="number" value="10000">
+                    </div>
+                    <div class="p-item">
+                        所有玩家所有玩法总限额
+                        <input type="number" value="500000">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tablecet">
+            <table class="table-striped qiliangqifei-tab" id="tbva">
+                <thead>
+                <tr style="height: 40px;line-height: 40px;">
+                    <th >玩法类型</th>
+                    <th>最小投注限额</th>
+                    <th>个人最大投注</th>
+                    <th>所有人最大投注</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  style="height: 50px;line-height: 50px;">
+                    <td>数字【1-10名】</td>
+                    <td><input type="number" value="2"></td>
+                    <td><input type="number" value="30000"></td>
+                    <td><input type="number" value="60000"></td>
+                </tr>
+                <tr  style="height: 50px;line-height: 50px;">
+                    <td>大/小/单/双【1-10名】</td>
+                    <td><input type="number" value="2"></td>
+                    <td><input type="number" value="30000"></td>
+                    <td><input type="number" value="60000"></td>
+                </tr>
+                <tr  style="height: 50px;line-height: 50px;">
+                    <td>龙/虎【1-10名】</td>
+                    <td><input type="number" value="2"></td>
+                    <td><input type="number" value="30000"></td>
+                    <td><input type="number" value="60000"></td>
+                </tr>
+                <tr  style="height: 50px;line-height: 50px;">
+                    <td>大/小/单/双【冠亚和】</td>
+                    <td><input type="number" value="2"></td>
+                    <td><input type="number" value="30000"></td>
+                    <td><input type="number" value="60000"></td>
+                </tr>
+                <tr  style="height: 50px;line-height: 50px;">
+                    <td>数字【冠亚和】</td>
+                    <td><input type="number" value="2"></td>
+                    <td><input type="number" value="30000"></td>
+                    <td><input type="number" value="60000"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="content2">
+        <div class="list-header">
+            <div class="list-title">
+                <span>限额设置</span>
+                <div class="list-p">
+                    注：赔率为数字格式（含本金）
+                </div>
+            </div>
+        </div>
+        <div class="tbalebox">
+            <div class="box-item">
+                <div class="itemtitle">1-10名（数字）</div>
+                <ul class="iteminput">
+                    <li>
+                        <span>1</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>2</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>3</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>4</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>5</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>6</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>7</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>8</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>9</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>10</span>
+                        <input type="number" value="9.8">
+                    </li>
+                </ul>
+            </div>
+            <div class="box-item">
+                <div class="itemtitle">1-10名（双面）</div>
+                <ul class="iteminput">
+                    <li>
+                        <span>大</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>小</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>单</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>双</span>
+                        <input type="number" value="9.8">
+                    </li>
+
+                </ul>
+            </div>
+            <div class="box-item">
+                <div class="itemtitle">冠亚和值（数字）</div>
+                <ul class="iteminput">
+                    <li>
+                        <span>3</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>4</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>5</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>6</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>7</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>8</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>9</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>10</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>11</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>12</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>13</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>14</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>15</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>16</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>17</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>18</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>19</span>
+                        <input type="number" value="9.8">
+                    </li>
+                </ul>
+            </div>
+            <div class="box-item">
+                <div class="itemtitle">冠亚和值（双面）</div>
+                <ul class="iteminput">
+                    <li>
+                        <span>大</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>小</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>单</span>
+                        <input type="number" value="9.8">
+                    </li>
+                    <li>
+                        <span>双</span>
+                        <input type="number" value="9.8">
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

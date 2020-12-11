@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>唐商</title>
+    <link rel="stylesheet" href="./../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./../static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./../static/css/common.css">
+    <script src="./../static/js/jqery.js"></script>
+
+    <script src="./../static/js/rem.js"></script>
+    <script src="./../static/js/flexible.js"></script>
+    <script src="./../static/js/bootstrap.min.js"></script>
+    <style>
+        /*#logins{*/
+        /*    !*background: url("../static/img/indexbg.jpg") no-repeat;*!*/
+        /*    background-size: 100% 100%;*/
+        /*    height: 100vh;*/
+        /*    width: 100%;*/
+        /*    position: relative;*/
+        /*    top: 0;*/
+        /*    left: 0;*/
+        /*}*/
+        #logins {
+            position: relative;
+            width: 100%;
+
+            background: url(./../static/img/bg.jpg) no-repeat;
+            background-position-x: 0%;
+            background-position-y: 0%;
+            background-size: auto;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center center;
+            z-index: 1;
+        }
+        .login-form {
+            position: absolute;
+            top: 50%;
+            font-family: "微软雅黑", Microsoft YaHei UI;
+            margin-top: -225px;
+            margin-left: -225px;
+            left: 50%;
+            z-index: 999;
+            -webkit-transition: all 550ms ease-in-out;
+            -moz-transition: all 550ms ease-in-out;
+            -o-transition: all 550ms ease-in-out;
+            transition: all 550ms ease-in-out;
+        }
+        .login-content {
+            position: relative;
+            width: 450px;
+            z-index: 999;
+            height: 380px;
+            box-shadow: 0px 3px 6px #333333;
+            background: rgba(0,0,0,.3);
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -o-border-radius: 5px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 10px 0;
+            -webkit-transition: all 550ms ease-in-out;
+            -moz-transition: all 550ms ease-in-out;
+            -o-transition: all 550ms ease-in-out;
+            transition: all 550ms ease-in-out;
+        }
+        .login-content .title_name {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .login_padding {
+            padding: 15px 40px;
+            position: relative;
+        }
+        .form-group {
+            margin-bottom: 25px;
+            display: block;
+        }
+       .login-content {
+            text-align: center;
+        }
+       .input-group {
+            height: 45px;
+            float: left;
+        }
+        .input-group {
+            position: relative;
+            display: table;
+            border-collapse: separate;
+        }
+         .input-group-addon {
+            padding: 6px 20px;
+        }
+        .input-group-addon i {
+            background-size: 25px;
+            position: absolute;
+            left: 3px;
+            top: 7px;
+            width: 30px;
+            height: 30px;
+        }
+        .form-control {
+            height: 45px;
+        }
+        .content-item input{
+            height: 45px;
+        }
+        .content-item img{
+            height: 45px;
+            width: 80px;
+        }
+        .content-item label{
+            line-height: 45px;
+            margin-right: 10px;
+            color: #FFFFFF;
+        }
+        .icon_user {
+            background: url(./../static/img/iconfont-yonghu.png) no-repeat 7px center;
+            background-size: auto;
+        }
+        .icon_password {
+            background: url(./../static/img/iconfont-psw.png) no-repeat 7px center;
+            background-size: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="logins" class="logisa">
+        <canvas id="demo-canvas"></canvas>
+<!--        <div class="content1">-->
+<!--            <from >-->
+<!--                <div class="content-item">-->
+<!--                    <input class="item-input nickname" placeholder="请输入用户名或邮箱">-->
+<!--                </div>-->
+<!--                <div class="content-item">-->
+<!--                    <input class="item-input passwd" type="password" placeholder="请输入密码">-->
+<!--                </div>-->
+<!--                <div class="content-item">-->
+<!--                    <input class="item-verify" placeholder="验证码">-->
+<!--                    <img class="content-item-verity"  src="./../static/img/1604364818(1).png" alt="">-->
+<!--                </div>-->
+<!--                <div class="submit" onclick="Confirm(event)"></div>-->
+<!--            </from>-->
+<!--        </div>-->
+        <div class="login-form">
+            <div class="login-content">
+                <h1 class="title_name">用户登录</h1>
+                <form method="post" role="form" id="form_login" class="login_padding">
+                    <div class="form-group clearfix">
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="icon_user"></i>
+                            </div>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="手机号" autocomplete="off">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group clearfix">
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="icon_password"></i>
+                            </div>
+
+                            <input type="password" class="form-control" name="password" id="password" placeholder="密码" autocomplete="off">
+                        </div>
+
+                    </div>
+                    <div class="form-group clearfix">
+                        <div class="content-item" style="display: flex">
+                            <label for="name1">验证码</label>
+                            <input class="item-verify" id="name1" placeholder="验证码">
+                            <img class="content-item-verity"  src="./../static/img/1604364818(1).png" alt="">
+                        </div>
+                    </div>
+                    <div class="tishi"></div>
+                    <div class="form-group">
+                        <a href="./index.html" style="background: #0a5ecc;border: none" type="submit" class="btn btn-danger btn-block btn-login" >
+                            <i class="fa fa-sign-in"></i>
+                            登录
+                        </a>
+                    </div>
+               		<div class="form-group">
+
+                </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script src="./../static/js/tweenLite.js"></script>
+    <script src="./../static/js/EasePack.js"></script>
+    <script src="./../static/js/rAf.js"></script>
+    <script src="./../static/js/cavan.js"></script>
+<script>
+    function Confirm() {
+        $(location).attr('href', './index.html')
+    }
+</script>
+</body>
+</html>

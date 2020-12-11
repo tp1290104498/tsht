@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>唐商</title>
+    <link href="./../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./../static/css/common.css" rel="stylesheet">
+    <link href="./../static/js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../static/css/datetimepicker.min.css">
+    <script src="./../static/js/jqery.js"></script>
+    <script src="./../static/js/moment.js"></script>
+    <script src="./../static/js/bootstrap.min.js"></script>
+    <script src="./../static/js/datatimepicker.js"></script>
+    <script src="./../static/js/layui/layui.all.js"></script>
+    <style>
+        .proxySettings{
+            width: 100%;
+            height: 100vh;
+            background: url("./../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        .zh{
+            height: 10px;
+        }
+        .content{
+            width: 100%;
+            background: #f2f2f2;
+            border: 1px solid #d7d7d7;
+            border-radius: 5px;
+        }
+
+        .list-header {
+            margin: 10px 13px 0;
+            display: flex;
+            align-items: center;
+            height: 75px;
+            border-bottom: 1px solid #e4e4e4;
+            text-align: left;
+            justify-content: space-between;
+        }
+
+        .list-header .list-title {
+            position: relative;
+            /*padding-bottom: 10px;*/
+            display: flex;
+            /*min-height: 28px;*/
+            font-weight: 700;
+            color: #333;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            box-sizing: content-box;
+        }
+        .list-title span{
+            width: 20%;
+            margin-left: 5px;
+        }
+        .list-title .list-p{
+            width: 80%;
+            display: flex;
+        }
+        .list-header .list-title:before {
+            content: "";
+            position: absolute;
+            top: 40%;
+            left: 0px;
+            width: 4px;
+            height: 15px;
+            background-color: #399;
+        }
+        .list-p{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .list-p input{
+            height: 34px;
+        }
+        .tbales{
+            margin-top: 10px;
+            height: 320px;
+            width: calc(100% - 20px);
+            overflow-x: auto;
+            background: #f2f2f2;
+            border: 1px solid #d7d7d7;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .btns{
+            display: flex;
+            justify-content: space-around;
+        }
+        .btns .btn{
+            width: 60px;
+            height: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        #qiliangqifei{
+            width: 100%;
+        }
+        #qiliangqifei th{
+            text-align: center;
+        }
+        #qiliangqifei td{
+            margin: 10px;
+            text-align: center;
+        }
+        #qiliangqifei tr{
+            margin: 10px 0;
+        }
+        #qiliangqifei td img{
+            width: 35px;
+            height: 35px;
+        }
+        .Topdownplan {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            z-index: 9;
+            display: none;
+            top: 0;
+            background: rgba(0, 0, 0, .4);
+        }
+
+        .Topdownplan .branch-recode {
+            width: 90%;
+            height: 675px;
+            position: absolute;
+            z-index: 99;
+            left: 5%;
+            top: 30px;
+            background: #f2f2f2;
+            border: 3px solid #cdcdcd;
+        }
+
+        .user-info-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            background-color: #ddd;
+            font-weight: 700;
+        }
+        #qiliangqife1i{
+            width: 100%;
+        }
+        #qiliangqife1i th{
+            text-align: center;
+        }
+        .boxs{
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .boxs .title{
+            width: 40%;
+        }
+        .btning{
+            margin-top: 30px;
+            margin-left: 40%;
+        }
+        .form-group{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+            border-bottom: 1px dashed #d7d7d7;
+        }
+        .form-group input{
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div class="proxySettings">
+        <div class="zh"></div>
+        <div class="content">
+            <div class="list-header">
+                <div class="list-title">
+                    <span>代理列表</span>
+                    <div class="list-p">
+                        <div class="p-item" >
+                            <input type="text" placeholder="用户ID/用户名">
+                            <button class="btn btn-primary" type="button" >搜索</button>
+
+                        </div>
+                        <div class="p-item" >
+                            1、玩家输入房号的时候填入代理推荐码则自动绑定上下级关系
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tbales">
+                <table class="table-striped table-bordered qiliangqifei-tab" id="qiliangqifei">
+                    <thead>
+                    <tr>
+                        <th data-valign="middle">头像</th>
+                        <th>用户名</th>
+                        <th>ID</th>
+                        <th>账户余额</th>
+                        <th>专属房间号(代理推荐码)</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><img src="./../static/img/133.jpg" alt=""></td>
+                        <td>万事，聊别开</td>
+                        <td>85719</td>
+                        <td>0</td>
+                        <td>635592</td>
+                        <td>
+                            <div class="btns">
+                                <button class="btn btn-primary" type="button" onclick="hidtshow()" >下线管理</button>
+                                <button class="btn btn-primary" type="button" onclick="hidtshwo1()">添加下线</button>
+                                <button class="btn btn-primary" type="button" >取消代理</button>
+                                <button class="btn btn-primary" type="button" onclick="hidshow2()">回水管理</button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination" id="pagination" style="margin-left: 15%"></ul>
+        </div>
+    </div>
+<!--    下线列表-->
+    <div class="Topdownplan tbx1" >
+        <div class="branch-recode">
+            <div class="user-info-header">
+                <span>下线列表</span>
+                <span class="modal-close" onclick="hidtable()">X</span>
+            </div>
+            <div class="tbales">
+                <table class="table-striped qiliangqifei-tab" id="qiliangqife1i">
+                    <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<!--    添加下线-->
+    <div class="Topdownplan tbx2" >
+        <div class="branch-recode">
+            <div class="user-info-header">
+                <span>下线列表</span>
+                <span class="modal-close" onclick="hidtable1()">X</span>
+            </div>
+            <div class="boxs">
+                <div class="title">登录账户</div>
+                <select class="form-control" id="name" value="用户">-->
+                    <option>用户</option>
+                    <option>用户</option>
+                    <option>用户</option>
+                    <option>用户</option>
+                    <option>用户</option>
+                    <option>用户</option>
+                    <option>用户</option>
+                    <option>用户</option>
+                </select>
+            </div>
+            <button class="btn btn-primary btning" type="button" >添加</button>
+
+        </div>
+    </div>
+<!-- 回水管理 -->
+    <div class="Topdownplan tbx3" >
+        <div class="branch-recode">
+            <div class="user-info-header">
+                <span>设置代理回水比例</span>
+                <span class="modal-close" onclick="hidtable2()">X</span>
+            </div>
+            <form role="form">
+                <div class="form-group">
+                    <label for="name1">英国赛车回水</label>
+                    <input type="text" class="form-control" id="name1" placeholder="请输入名称" value="0">%
+                </div>
+                <div class="form-group">
+                    <label for="name2"> 英国时时彩回水</label>
+                    <input type="text" class="form-control" id="name2" placeholder="请输入名称" value="0">%
+                </div>
+                <div class="form-group">
+                    <label for="name3">英国极速赛车回水</label>
+                    <input type="text" class="form-control" id="name3" placeholder="请输入名称" value="0">%
+                </div>
+                <div class="form-group">
+                    <label for="name4">英国极速时时彩回水</label>
+                    <input type="text" class="form-control" id="name4" placeholder="请输入名称" value="0">%
+                </div>
+                <div class="form-group">
+                    <label for="name5">澳州10回水</label>
+                    <input type="text" class="form-control" id="name5" placeholder="请输入名称" value="0">%
+                </div>
+                <div class="form-group">
+                    <label for="name6">澳州5回水</label>
+                    <input type="text" class="form-control" id="name6" placeholder="请输入名称" value="0">%
+                </div>
+                <div class="form-group">
+                    <label for="name6">极速赛车回水</label>
+                    <input type="text" class="form-control" id="name6" placeholder="请输入名称" value="0">%
+                </div>
+                <div class="form-group">
+                    <label for="name6">极速时时彩回水</label>
+                    <input type="text" class="form-control" id="name6" placeholder="请输入名称" value="0">%
+                </div>
+                <div class="form-group">
+                    <label for="name6">168飞艇回水</label>
+                    <input type="text" class="form-control" id="name6" placeholder="请输入名称" value="0">%
+                </div>
+                <button type="submit" class="btn btn-default" style="margin-left: 40%">提交修改</button>
+
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+    $(document).ready(function () {
+        //分页
+        if ($("#pagination")) {
+            var pagecount = 40;
+            var pagesize = 10;
+            var currentpage = 2;
+            var counts, pagehtml = "";
+            if (pagecount % pagesize == 0) {
+                counts = parseInt(pagecount / pagesize);
+            } else {
+                counts = parseInt(pagecount / pagesize) + 1;
+            }
+            //只有一页内容
+            if (pagecount <= pagesize) {
+                pagehtml = "";
+            }
+            //大于一页内容
+            if (pagecount > pagesize) {
+                if (currentpage > 1) {
+                    pagehtml += '<li><a >上一页</a></li>';
+                }
+                for (var i = 0; i < counts; i++) {
+                    if (i >= (currentpage - 3) && i < (currentpage + 3)) {
+                        if (i == currentpage - 1) {
+                            pagehtml += '<li class="active"><a >' + (i + 1) + '</a></li>';
+                        } else {
+                            pagehtml += '<li><a >' + (i + 1) + '</a></li>';
+                        }
+
+                    }
+                }
+                if (currentpage < counts) {
+                    pagehtml += '<li><a >下一页</a></li>';
+                }
+            }
+            $("#pagination").html(pagehtml);
+        }
+    })
+    function hidtable() {
+        $('.tbx1').hide()
+    }
+    function hidtshow() {
+        $('.tbx1').show()
+    }
+    function hidtable1() {
+        $('.tbx2').hide()
+    }
+    function hidtshwo1() {
+        $('.tbx2').show()
+    }
+    function hidtable2(){
+        $('.tbx3').hide()
+    }
+    function hidshow2() {
+        $('.tbx3').show()
+    }
+</script>
+</body>
+</html>

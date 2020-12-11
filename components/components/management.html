@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--    其他设置-->
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>唐商</title>
+    <link href="./../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./../../static/css/common.css" rel="stylesheet">
+    <link href="./../../static/js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../../static/css/datetimepicker.min.css">
+    <script src="./../../static/js/jqery.js"></script>
+    <script src="./../../static/js/moment.js"></script>
+    <script src="./../../static/js/bootstrap.min.js"></script>
+    <script src="./../../static/js/datatimepicker.js"></script>
+    <script src="./../../static/js/layui/layui.all.js"></script>
+    <style>
+        .management{
+            background: url("./../../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+            height: 100vh;
+            overflow: hidden;
+            width: 930px;
+        }
+        .list-header{
+            width: 100%;
+            border-bottom: 1px solid #d7d7d7;
+            height: 40px;
+        }
+        .list-title{
+            position: relative;
+            padding-bottom: 10px;
+            height: 40px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+        .list-header .list-title:before {
+            content: "";
+            position: absolute;
+            top: 21%;
+            left: 7px;
+            width: 4px;
+            height: 15px;
+            background-color: #399;
+        }
+        .list-header .list-title>span {
+            margin-left: 18px;
+        }
+       .list-header .list-title .list-operate .send {
+            width: 122px;
+            height: 30px;
+            line-height: 30px;
+            background-color: #11ad44;
+            -webkit-box-shadow: inset 0 0 5px 0 rgba(124,255,158,.75);
+            box-shadow: inset 0 0 5px 0 rgba(124,255,158,.75);
+            border-radius: 10px;
+            border: 1px solid #0e903c;
+            text-align: center;
+            font-weight: 400;
+            cursor: pointer;
+            color: #fff;
+        }
+       .cnentes{
+           margin:auto;
+           height: 395px;
+           background: #f2f2f2;
+           border: 1px solid #d7d7d7;
+           border-radius: 5px;
+       }
+       .fromsd{
+           width: 98%;
+           margin: auto;
+           height: 340px;
+           border: 1px solid #d7d7d7;
+           border-radius: 5px;
+           margin-top: 10px;
+       }
+       .form-group{
+           height: 60px;
+           display: flex;
+           align-items: center;
+           margin: 0 20px;
+           border-bottom: 1px dashed #d7d7d7;
+       }
+       .form-group label{
+           width: 10%;
+       }
+       .ches{
+           margin-right: 15px;
+       }
+       .centens1{
+           height: 275px;
+           margin: auto;
+           background: #f2f2f2;
+           border: 1px solid #d7d7d7;
+           border-radius: 5px;
+           margin-top: 10px;
+       }
+       #qiliangqifei{
+           width: 100%;
+       }
+       #qiliangqifei th{
+           text-align: center;
+           height: 40px;
+           line-height: 40px;
+       }
+       .tbas .title{
+           text-align: center;
+           line-height: 50px;
+           background: #FFFFFF;
+       }
+    </style>
+</head>
+<body>
+    <div class="management">
+        <div class="cnentes">
+            <div class="zh"></div>
+            <div class="centent">
+                <div class="list-header">
+                    <div  class="list-title">
+                        <span >群内管理员消息/弹窗推送</span>
+                        <div  class="list-operate">
+                            <div  class="send">
+                                <span >发送</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form role="form" class="fromsd">
+                    <div class="form-group">
+                        <label for="name" >消息类型</label>
+                        <select type="text" class="form-control" id="name" placeholder="请输入名称">
+                            <option value="">群内管理员消息</option>
+                            <option value="">房间弹框推送消息</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="name1" >游戏类型</label>
+                        <select type="text" class="form-control" id="name1" value="彩票游戏">
+                            <option value="">彩票游戏</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label  >选择彩种</label>
+                        <div>
+                            <input type="checkbox" class="ches"> 英国赛车
+                        </div>
+                        <div>
+                            <input type="checkbox" class="ches"> 英国时时彩
+                        </div>
+                        <div>
+                            <input type="checkbox" class="ches"> 英国极速赛车
+                        </div>
+                        <div>
+                            <input type="checkbox" class="ches"> 英国极速时时彩
+                        </div>
+                        <div>
+                            <input type="checkbox" class="ches"> 澳州10
+                        </div>
+                        <div>
+                            <input type="checkbox" class="ches">  澳州5
+                        </div>
+                        <div>
+                            <input type="checkbox" class="ches"> 极速赛车
+                        </div>
+                        <div>
+                            <input type="checkbox" class="ches"> 极速时时彩
+                        </div>
+                        <div>
+                            <input type="checkbox" class="ches"> 168飞艇
+                        </div>
+                    </div>
+                    <div class="form-group" style="height: 150px">
+                        <label for="name1" >消息内容</label>
+                        <textarea></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="centens1">
+            <div class="list-header">
+                <div  class="list-title">
+                    <span >滚动公告</span>
+                    <div  class="list-operate">
+                        <div  class="send">
+                            <span >发送/修改</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form role="form" class="fromsds">
+                <div class="form-group" style="height: 150px">
+                    <label for="name1" >公告内容</label>
+                    <textarea></textarea>
+                </div>
+            </form>
+            <div class="tbas">
+                <div class="title">公告列表</div>
+                <table class="table-striped qiliangqifei-tab" id="qiliangqifei">
+                    <thead>
+                        <tr>
+                            <th>是否启用</th>
+                            <th>公告内容</th>
+                            <th>发布时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+<script>
+    $(function (){
+    })
+
+</script>
+</body>
+</html>

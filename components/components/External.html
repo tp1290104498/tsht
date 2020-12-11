@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 手动上下分-->
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>唐商</title>
+    <link href="./../../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./../../static/css/common.css" rel="stylesheet">
+    <link href="./../../static/js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../../static/css/datetimepicker.min.css">
+    <script src="./../../static/js/jqery.js"></script>
+    <script src="./../../static/js/moment.js"></script>
+    <script src="./../../static/js/bootstrap.min.js"></script>
+    <script src="./../../static/js/datatimepicker.js"></script>
+    <script src="./../../static/js/layui/layui.all.js"></script>
+    <style>
+        .External{
+            height: 100vh;
+            width: 100%;
+            background: url("./../../static/img/back.1.2.0.jpg") no-repeat;
+        }
+        .zh{
+            height: 10px;
+        }
+        .centern{
+            height: 100px;
+            margin: auto;
+            background: #f2f2f2;
+            border-radius: 5px;
+            border: 1px solid #d7d7d7;
+        }
+        .list-header{
+            width: 100%;
+            border-bottom: 1px solid #d7d7d7;
+            height: 40px;
+        }
+        .list-title{
+            position: relative;
+            padding-bottom: 10px;
+            height: 40px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+        .list-header .list-title:before {
+            content: "";
+            position: absolute;
+            top: 21%;
+            left: 7px;
+            width: 4px;
+            height: 15px;
+            background-color: #399;
+        }
+        .list-header .list-title>span {
+            margin-left: 18px;
+        }
+        .froms{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+        }
+        .form-group{
+            margin-top: 20px;
+            display: flex;
+            height: 50px;
+            align-items: center;
+        }
+        .form-group input{
+            height: 34px;
+        }
+        .form-group label{
+            width: 100px;
+            line-height: 50px;
+        }
+        .centern1{
+            margin: auto;
+            margin-top: 10px;
+            background: #f2f2f2;
+            border-radius: 5px;
+            height: 700px;
+        }
+        .form-control{
+            background-color: #FFFFFF;
+        }
+        .fromss {
+            background: #f2f2f2;
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #FFFFFF;
+            margin: 0 20px;
+        }
+        #qiliangqifei{
+            width: calc(100% - 40px);
+            border-radius: 5px;
+            border: 1px solid #d7d7d7;
+            margin: 20px;
+            height: 470px;
+        }
+        #qiliangqifei th{
+            line-height: 40px;
+            text-align: center;
+        }
+        #qiliangqifei td{
+            text-align: center;
+        }
+        #qiliangqifei tbody{
+            background: #FFFFFF;
+            height: 260px;
+        }
+        #pagination{
+            width: 300px;
+            margin-left: 40%;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="External">
+    <div class="zh"></div>
+<!--    <div class="centern">-->
+<!--        <div class="list-header">-->
+<!--            <div  class="list-title">-->
+<!--                <span >手动上下分</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <form role="form" class="froms">-->
+<!--            <div class="form-group">-->
+<!--                <label for="name">用户名</label>-->
+<!--                <select type="text" class="form-control" id="name" placeholder="请输入名称">-->
+<!--                    <option value=""></option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <select type="text" class="form-control" placeholder="请输入名称">-->
+<!--                    <option value="">加款</option>-->
+<!--                    <option value="">扣款</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <input type="number">-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label for="name1">备注</label>-->
+<!--                <input type="text" id="name1" placeholder="备注信息">-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn btn-default">确定</button>-->
+<!--        </form>-->
+<!--    </div>-->
+    <div class="centern1">
+        <div class="list-header">
+            <div  class="list-title">
+                <span >上下分记录</span>
+            </div>
+        </div>
+        <div class="cxbox">
+            <form role="form" class="fromss">
+                <div class="form-group">
+                    <label for="name">时间</label>
+                    <div class='input-group date' id='datetimeStart'>
+                        <input type='text' id="name" class="form-control input-group-addon" />
+                    </div>
+                    --
+                    <div class='input-group date' id='datetimeEnd'>
+                        <input type='text' class="form-control input-group-addon" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="zt" >状态</label>
+                    <select class="form-control" id="zt" value="全部">
+                        <option value="全部">全部</option>
+                        <option value="">已接收</option>
+                        <option value="">未接收</option>
+                        <option value="">等待发送</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    合计金额： 0
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">查询</button>
+                </div>
+            </form>
+            <div class="tblst">
+                <table class="table-striped qiliangqifei-tab" id="qiliangqifei">
+                    <thead>
+                    <tr>
+                        <th data-valign="middle">UUID</th>
+                        <th>游戏</th>
+                        <th>期号</th>
+                        <th>注单内容</th>
+                        <th>注单金额</th>
+                        <th>注单时间</th>
+                        <th>状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <ul class="pagination" id="pagination"></ul>
+        </div>
+    </div>
+</div>
+<script>
+    $(function (){
+        var picker1 = $('#datetimeStart').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+            //minDate: '2016-7-1'
+        });
+        var picker2 = $('#datetimeEnd').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+        //动态设置最小值
+        picker1.on('dp.change', function (e) {
+            picker2.data('DateTimePicker').minDate(e.date);
+        });
+        //动态设置最大值
+        picker2.on('dp.change', function (e) {
+            picker1.data('DateTimePicker').maxDate(e.date);
+
+        });
+    })
+    $(document).ready(function () {
+        if ($("#pagination")) {
+            var pagecount = 40;
+            var pagesize = 10;
+            var currentpage = 2;
+            var counts, pagehtml = "";
+            if (pagecount % pagesize == 0) {
+                counts = parseInt(pagecount / pagesize);
+            } else {
+                counts = parseInt(pagecount / pagesize) + 1;
+            }
+            //只有一页内容
+            if (pagecount <= pagesize) {
+                pagehtml = "";
+            }
+            //大于一页内容
+            if (pagecount > pagesize) {
+                if (currentpage > 1) {
+                    pagehtml += '<li><a >上一页</a></li>';
+                }
+                for (var i = 0; i < counts; i++) {
+                    if (i >= (currentpage - 3) && i < (currentpage + 3)) {
+                        if (i == currentpage - 1) {
+                            pagehtml += '<li class="active"><a >' + (i + 1) + '</a></li>';
+                        } else {
+                            pagehtml += '<li><a >' + (i + 1) + '</a></li>';
+                        }
+
+                    }
+                }
+                if (currentpage < counts) {
+                    pagehtml += '<li><a >下一页</a></li>';
+                }
+            }
+            $("#pagination").html(pagehtml);
+        }
+    })
+
+
+</script>
+</body>
+</html>

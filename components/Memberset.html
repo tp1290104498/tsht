@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>唐商</title>
+    <link href="./../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./../static/css/common.css" rel="stylesheet">
+    <link href="./../static/js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../static/css/datetimepicker.min.css">
+    <script src="./../static/js/jqery.js"></script>
+    <script src="./../static/js/moment.js"></script>
+    <script src="./../static/js/bootstrap.min.js"></script>
+    <script src="./../static/js/datatimepicker.js"></script>
+    <script src="./../static/js/layui/layui.all.js"></script>
+    <style lang="scss">
+        #toggle-button {
+            display: none;
+        }
+
+        .button-label {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 20px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label .text {
+            line-height: 20px;
+            font-size: 14px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        .on {
+            color: #fff;
+            display: none;
+            text-indent: -40px;
+        }
+
+        .off {
+            color: #fff;
+            display: inline-block;
+            text-indent: 30px;
+        }
+
+        .button-label .circle {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button:checked + label.button-label .circle {
+            left: 50px;
+        }
+
+        #toggle-button:checked + label.button-label .on {
+            display: inline-block;
+        }
+
+        #toggle-button:checked + label.button-label .off {
+            display: none;
+        }
+
+        #toggle-button:checked + label.button-label {
+            background-color: #19e236;
+        }
+
+        .Memberset {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: url("./../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .Memberset .zh {
+            height: 10px;
+        }
+
+        .Memberset .centers {
+            background: #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .Memberset .centers .soso {
+            height: 100px;
+            border-radius: 5px;
+            background: #e4e4e4;
+            padding-top: 10px;
+            border: 1px solid #bcbcbc;
+        }
+
+        .Memberset .centers .soso .left {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .Memberset .centers .soso .selectbox {
+            width: 218px;
+            height: 34px;
+            line-height: 34px;
+        }
+
+        .Memberset .centers .soso .inputname {
+            height: 34px;
+            line-height: 34px;
+            width: 160px;
+            border-radius: 5px;
+        }
+
+        .Memberset .centers .soso .inputname input {
+            height: 34px;
+            line-height: 34px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .btns .btn {
+            background: #0078ff;
+            width: 80px;
+            height: 30px;
+            padding: 0;
+            margin-right: 10px;
+        }
+
+        .soso .rights {
+            line-height: 34px;
+            height: 34px;
+            text-align: right;
+            border-bottom: 1px solid #d7d7d7;
+            margin: 0 10px;
+        }
+
+        .soso .rights span {
+            color: rgb(255, 153, 51)
+        }
+
+        .soso .xqsm {
+            font-size: 14px;
+            line-height: 60px;
+            margin: 0 10px;
+        }
+
+        .Memberset .tables {
+            overflow: auto;
+            width: 100%;
+            margin-top: 10px;
+            border: 1px solid #bcbcbc;
+            border-radius: 5px;
+            height: 629px;
+        }
+
+        #qiliangqifei {
+            width: 100%;
+        }
+
+        #qiliangqifei td {
+            width: 50px;
+            height: 60px;
+            text-align: center;
+        }
+
+        #qiliangqifei td img {
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            margin-top: 5px;
+
+        }
+
+        #qiliangqifei th {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+
+        #qiliangqifei th:last-child {
+            width: 220px !important;
+            height: 50px;
+            text-align: center;
+        }
+
+        #qiliangqifei td .btns .btn {
+            width: 70px;
+            height: 20px;
+            text-align: center;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(1) {
+            background: #6cc;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(2) {
+            background: #6cc;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(3) {
+            background: #6cc;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(4) {
+            background: #6cc;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(7) {
+            background: #c9c;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(6) {
+            background: #c9c;
+            color: #333333;
+            width: 50px;
+            height: 20px;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(5) {
+            background: #c9c9c9;
+            color: #333333;
+            width: 50px;
+            height: 20px;
+        }
+
+        .pagination {
+            margin: auto;
+            margin-top: 10px;
+            margin-left: 10%;
+        }
+
+        .Topdownplan {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            z-index: 9;
+            display: none;
+            top: 0;
+            background: rgba(0, 0, 0, .4);
+        }
+
+        .Topdownplan .branch-recode {
+            width: 90%;
+            height: 430px;
+            position: absolute;
+            z-index: 99;
+            left: 5%;
+            top: 30px;
+            background: #f2f2f2;
+            border: 3px solid #cdcdcd;
+        }
+
+        .user-info-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            background-color: #ddd;
+            font-weight: 700;
+        }
+
+        .list-header {
+            margin: 10px 13px 0;
+            display: flex;
+            align-items: center;
+            height: 35px;
+            border-bottom: 1px solid #e4e4e4;
+            text-align: left;
+            justify-content: space-between;
+        }
+
+        .list-header .list-title {
+            position: relative;
+            padding-bottom: 10px;
+            display: flex;
+            min-height: 28px;
+            font-weight: 700;
+            color: #333;
+            width: 100%;
+            justify-content: space-between;
+            box-sizing: content-box;
+        }
+
+        .list-header .list-title:before {
+            content: "";
+            position: absolute;
+            top: 0%;
+            left: 7px;
+            width: 4px;
+            height: 15px;
+            background-color: #399;
+        }
+
+        .list-header .list-title > span {
+            margin-left: 18px;
+        }
+
+        .list-info span:nth-child(2) {
+            color: #066;
+        }
+
+        .list-info span:nth-child(4) {
+            color: #f30;
+        }
+        .recode-search{
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #datetimepicker1{
+            margin-left: 10px;
+        }
+        #datetimepicker1 input{
+            border-radius: 0;
+            border-right: none;
+        }
+        #datetimepicker2 input{
+            border-radius: 0;
+            border-left: none;
+        }
+        .tabless{
+            margin-top: 10px;
+        }
+        #qiliangqifei1 th{
+            text-align: center;
+            background: #f8f8f9;
+        }
+        #qiliangqifei1 td{
+            text-align: center;
+        }
+        .user-top {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 10px;
+            border-radius: 2px;
+            background-color: #e4e4e4;
+            border: 1px solid #d7d7d7;
+            padding: 10px 0;
+        }
+        .immgbox{
+            width: 60px;
+            height: 60px;
+            border-right: 1px solid #d7d7d7;
+            position: relative;
+            border-right: 1px solid #d7d7d7;
+        }
+        .immgbox img{
+            left:0;top: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        #avatar_file{
+            width: 100%;
+            height:100%;
+            opacity: 0;
+            position: absolute;
+            left:0;
+            top: 0;
+        }
+        .username{
+            width:  35%;
+        }
+        .username input{
+            margin-top: 5px;
+        }
+        .idbox{
+            width: 35%;
+        }
+        .idbox input{
+            margin-top: 3px;
+        }
+        .user-butpm{
+            /*padding: 0 10px;*/
+            margin-top: 10px;
+            width: 100%;
+        }
+     .grant-wechat {
+            /*display: flex;*/
+            align-items: center;
+            height: 70px;
+            border-radius: 2px;
+            background-color: #e8e8e8;
+            border: 1px solid #c9c9c9;
+        }
+      .grant-wechat .wechat-item {
+            flex-grow: 1;
+            text-align: left;
+          margin-left: 2px;
+        }
+       .button{
+           margin-top: 5px;
+          display: inline-block;
+          width: 100px;
+          height: 20px;
+          line-height: 20px;
+          background-color: #0078ff;
+          box-shadow: inset 0 0 5px 0 rgba(124,183,255,.75);
+          border-radius: 4px;
+          border: 1px solid #0e3c90;
+          text-align: center;
+          cursor: pointer;
+          color: #fff;
+      }
+      .wechat-poptip{
+          padding: 10px 0;
+          text-align: left;
+          color: #666;
+          font-size: 14px;
+      }
+      .user-top-item{
+          display: flex;
+          flex-wrap: wrap;
+      }
+      .user-top-item .itemdpm{
+          display: flex;
+          width: 48%;
+          margin-top: 5px;
+          justify-content: space-between;
+          margin-left: 5px;
+      }
+      .user-top-item .itemdpm .names{
+          width: 30%;
+      }
+      .user-top-item .itemdpm .form-control{
+        padding-left: 0;
+      }
+    .btnan{
+        width: 40%;
+        margin: auto;
+        margin-top: 30px;
+    }
+    .fh{
+        margin-left: 20px;
+        margin-top: 50px;
+    }
+    .amend{
+        display: none;
+    }
+        #pagination{
+          margin-top: 20px;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="Memberset">
+    <div class="zh"></div>
+    <div class="centers">
+        <div class="soso">
+            <div class="left">
+                <div class="selectbox">
+                    <select class="form-control" value="所有用户">
+                        <option>所有用户</option>
+                        <option>正式用户</option>
+                        <option>虚假用户</option>
+                        <option>封禁踢人</option>
+                    </select>
+                </div>
+                <div class="inputname">
+                    <input placeholder="搜索用户ID或用户名称" type="text">
+                </div>
+                <div class="rights">
+                    当前注册会员：<span>33</span>（最大注册数1000）
+                </div>
+
+                <div class="btns">
+                    <button class="btn btn-primary" type="button">搜索</button>
+                </div>
+            </div>
+            <div class="xqsm">
+                说明：整个后台的用户名默认显示用户昵称，如果在账户设置填写了用户备注，则用户名显示备注名，这样方便管理员识别会员玩家。
+            </div>
+        </div>
+        <div class="tables">
+            <table class="table-striped table-bordered qiliangqifei-tab" id="qiliangqifei">
+                <thead>
+                <tr>
+                    <th data-valign="middle">头像</th>
+                    <th>用户名</th>
+                    <th>ID</th>
+                    <th>账户余额</th>
+                    <th>今日盈亏</th>
+                    <th style="width: 55px">今日投注游戏</th>
+                    <th>是否飞单</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><img alt="" src="./../static/img/133.jpg"></td>
+                    <td>乐在其中</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>无</td>
+                    <td>0</td>
+                    <td>
+                        <div class="switchbtn">
+                            <input checked id="toggle-button" name="switch" type="checkbox" οnclick="SwitchClick()">
+                            <label class="button-label" for="toggle-button">
+                                <span class="circle"></span>
+                                <span class="text on">ON</span>
+                                <span class="text off">OFF</span>
+                            </label>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="btns">
+                            <button class="btn btn-primary" type="button" onclick="showtale()">上下分记录</button>
+                            <button class="btn btn-primary" type="button" onclick="showtale1()">账变记录</button>
+                            <button class="btn btn-primary" type="button" onclick="showtale2()">收款账号</button>
+                            <button class="btn btn-primary" type="button">切换假人</button>
+                            <button class="btn btn-primary" type="button">冻结</button>
+                            <button class="btn btn-primary" type="button">删除</button>
+                            <button class="btn btn-primary" type="button">取消代理</button>
+                            <button class="btn btn-primary" type="button" onclick="showtale3()">账户设置</button>
+
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><img alt="" src="./../static/img/133.jpg"></td>
+                    <td>乐在其中</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>无</td>
+                    <td>0</td>
+                    <td>
+                        <div class="switchbtn">
+                            <input checked id="toggle-button" name="switch" style="display: none" type="checkbox"
+                                   οnclick="SwitchClick()">
+                            <label class="button-label" for="toggle-button">
+                                <span class="circle"></span>
+                                <span class="text on">ON</span>
+                                <span class="text off">OFF</span>
+                            </label>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="btns">
+                            <button class="btn btn-primary" type="button" onclick="showtale()">上下分记录</button>
+                            <button class="btn btn-primary" type="button" onclick="showtale1()">账变记录</button>
+                            <button class="btn btn-primary" type="button" onclick="showtale2()">收款账号</button>
+                            <button class="btn btn-primary" type="button">切换假人</button>
+                            <button class="btn btn-primary" type="button">冻结</button>
+                            <button class="btn btn-primary" type="button">删除</button>
+                            <button class="btn btn-primary" type="button">取消代理</button>
+                            <button class="btn btn-primary" type="button" onclick="showtale3()">账户设置</button>
+
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <ul class="pagination" id="pagination"></ul>
+    </div>
+    <!--    上下分记录 弹框-->
+    <div class="Topdownplan tbx1">
+        <div class="branch-recode">
+            <div class="user-info-header">
+                <span>上下分记录</span>
+                <span class="modal-close" onclick="hidtable()">X</span>
+            </div>
+            <div class="list-header">
+                <div class="list-title">
+                    <span>上下分记录</span>
+                    <div class="list-info" style="">
+                        <span>上分合计：</span>
+                        <span>0</span>
+                        <span>下分合计：</span>
+                        <span>0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="recode-search">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control input-group-addon" />
+                    </div>
+                    <!--指定 date标记-->
+                    <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control input-group-addon" />
+                        <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                    </div>
+                <div class="btns">
+                    <button class="btn btn-primary" type="button">搜索</button>
+
+                </div>
+            </div>
+            <div class="tabless" >
+                <table class="table table-striped "  id="qiliangqifei1">
+                    <thead>
+                    <tr>
+                        <th sdata-valign="middle">用户</th>
+                        <th>金额</th>
+                        <th>申请时间</th>
+                        <th>上分/下分</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>0</td>
+                            <td>2020-10-30</td>
+                            <td>上分</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<!--    账变记录-->
+    <div class="Topdownplan tbx2">
+        <div class="branch-recode">
+            <div class="user-info-header">
+                <span>账变记录</span>
+                <span class="modal-close" onclick="hidtable1()">X</span>
+            </div>
+            <div class="list-header">
+                <div class="list-title">
+                    <span>账变记录</span>
+                    <div class="list-info" style="">
+<!--                        <span>上分合计：</span>-->
+<!--                        <span>0</span>-->
+<!--                        <span>下分合计：</span>-->
+<!--                        <span>0</span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="recode-search">
+                <div class='input-group date' id='datetimepicker3'>
+                    <input type='text' class="form-control input-group-addon" />
+                </div>
+                <!--指定 date标记-->
+                <div class='input-group date' id='datetimepicker4'>
+                    <input type='text' class="form-control input-group-addon" />
+                    <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                     </span>
+                </div>
+                <div class="btns">
+                    <button class="btn btn-primary" type="button">搜索</button>
+
+                </div>
+            </div>
+            <div class="tabless" >
+                <table class="table table-striped "  id="qiliangqifei11">
+                    <thead>
+                    <tr>
+                        <th sdata-valign="middle">时间</th>
+                        <th>变动金额</th>
+                        <th>变动后余额</th>
+                        <th>信息</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<!--    下分账户-->
+    <div class="Topdownplan tbx3">
+        <div class="branch-recode">
+            <div class="user-info-header">
+                <span>账变记录</span>
+                <span class="modal-close" onclick="hidtable2()">X</span>
+            </div>
+            <div class="list-header">
+                <div class="list-title">
+                    <span>账变记录</span>
+                    <div class="list-info" style="">
+                        <!--                        <span>上分合计：</span>-->
+                        <!--                        <span>0</span>-->
+                        <!--                        <span>下分合计：</span>-->
+                        <!--                        <span>0</span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="tabless" >
+                <table class="table table-striped "  id="qiliangqifei3">
+                    <thead>
+                    <tr>
+                        <th sdata-valign="middle">账户号码</th>
+                        <th>二维码</th>
+                        <th>账户类型</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<!--    账户设置-->
+    <div class="Topdownplan tbx4">
+        <div class="branch-recode">
+            <div class="user-info-header">
+                <span>用户信息</span>
+                <span class="modal-close" onclick="hidtable3()">X</span>
+            </div>
+            <div class="yhyx" >
+                <div class="user-top">
+                    <div class="userimg">
+                        <div class="immgbox">
+                            <img src="./../static/img/133.jpg" alt="选择并上传头像" id="avatar_img"/>
+                            <input type="file" id="avatar_file" name="avatar_file"
+                                   accept="image/jpg,image/png"
+                                 />
+                        </div>
+
+                    </div>
+                    <div class="username">
+                        <input type="text" class="form-control"  id="name" placeholder="昵称">
+                        <input type="text" class="form-control"  id="name1" placeholder="余额">
+                        <input type="text" class="form-control"  id="name2" placeholder="所属代理">
+                    </div>
+                    <div class="idbox">
+                        <input type="text" class="form-control"  id="ID" placeholder="ID">
+                        <input type="text" class="form-control"  id="dlfs" placeholder="登录方式">
+                        <input type="text" class="form-control"  id="zhdl" placeholder="最后登录">
+                    </div>
+                </div>
+                <div class="user-butpm">
+                        <div class="grant-wechat">
+                            <p class="wechat-item">
+                                授权微信:&nbsp;&nbsp;oxIQ3t2W9LOPTWMiwVbVTtuOPxyo
+                            </p>
+                            <p  class="wechat-item">
+                                登录账号:&nbsp;&nbsp;无
+                            </p>
+                            <div  class="button">
+                                生成登录账号
+                            </div>
+                        </div>
+                        <div  class="wechat-poptip">
+                            <p >
+                                1.如果客户是微信登录，可以在此给他生成登录账号，绑定数据，方便账号登录，默认密码888888。
+                            </p>
+                            <p >
+                                2.如果客户是账号登录，需要绑定微信授权，则客户可以通过微信登录后，在个人信息页面自助绑定。
+                            </p>
+                            <p >
+                                3.已绑定过的微信或者账号无法解绑或者再次绑定。
+                            </p>
+                    </div>
+                </div>
+                <div  class="button" onclick="goxiugyongx()">
+                    修改用户信息
+                </div>
+            </div>
+            <div class="amend">
+                <div class="list-header">
+                    <div class="list-title">
+                        <span>用户设置/修改</span>
+                    </div>
+                </div>
+                <div class="user-top-item">
+                    <div class="itemdpm">
+                        <div class="names">用户发言</div>
+                        <select class="form-control" value="开发">
+                            <option>开发</option>
+                            <option>禁止</option>
+                        </select>
+                    </div>
+                    <div class="itemdpm">
+                        <div class="names">彩票回水</div>
+                        <select class="form-control" value="方案一所有游戏">
+                            <option>方案一所有游戏</option>
+                        </select>
+                    </div>
+                    <div class="itemdpm">
+                        <div class="names">备注名</div>
+                        <input class="form-control" type="text" value="">
+                    </div>
+                    <div class="itemdpm">
+                        <div class="names">登录密码</div>
+                        <input class="form-control" type="text" value="">
+                    </div>
+                    <div class="itemdpm">
+                        <div class="names">群信息显示</div>
+                        <input  type="radio" name="sex" value="male">昵称<br>
+                        <input type="radio" name="sex" value="female">备注名
+                    </div>
+                </div>
+                <div class="btnan">
+                    <button class="btn btn-primary" type="button" onclick="hidtable3()">取消</button>
+                    <button class="btn btn-primary" type="button" onclick="hidtable3()">保存</button>
+                </div>
+                <button class="btn fh btn-primary" type="button" onclick="fh()">返回上一级</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        if ($("#pagination")) {
+            var pagecount = 40;
+            var pagesize = 10;
+            var currentpage = 2;
+            var counts, pagehtml = "";
+            if (pagecount % pagesize == 0) {
+                counts = parseInt(pagecount / pagesize);
+            } else {
+                counts = parseInt(pagecount / pagesize) + 1;
+            }
+            //只有一页内容
+            if (pagecount <= pagesize) {
+                pagehtml = "";
+            }
+            //大于一页内容
+            if (pagecount > pagesize) {
+                if (currentpage > 1) {
+                    pagehtml += '<li><a >上一页</a></li>';
+                }
+                for (var i = 0; i < counts; i++) {
+                    if (i >= (currentpage - 3) && i < (currentpage + 3)) {
+                        if (i == currentpage - 1) {
+                            pagehtml += '<li class="active"><a >' + (i + 1) + '</a></li>';
+                        } else {
+                            pagehtml += '<li><a >' + (i + 1) + '</a></li>';
+                        }
+
+                    }
+                }
+                if (currentpage < counts) {
+                    pagehtml += '<li><a >下一页</a></li>';
+                }
+            }
+            $("#pagination").html(pagehtml);
+        }
+        var picker1 = $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+            //minDate: '2016-7-1'
+        });
+        var picker2 = $('#datetimepicker2').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+        //动态设置最小值
+        picker1.on('dp.change', function (e) {
+            picker2.data('DateTimePicker').minDate(e.date);
+        });
+        //动态设置最大值
+        picker2.on('dp.change', function (e) {
+            picker1.data('DateTimePicker').maxDate(e.date);
+
+        });
+        var picker3 = $('#datetimepicker3').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+            //minDate: '2016-7-1'
+        });
+        var picker4 = $('#datetimepicker4').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+        //动态设置最小值
+        picker3.on('dp.change', function (e) {
+            picker3.data('DateTimePicker').minDate(e.date);
+        });
+        //动态设置最大值
+        picker4.on('dp.change', function (e) {
+            picker4.data('DateTimePicker').maxDate(e.date);
+
+        });
+    })
+    $("#avatar_file").change(function () {
+        // 获取上传文件对象
+        var file = $(this)[0].files[0];
+        // 读取文件URL
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        // 阅读文件完成后触发的事件
+        reader.onload = function () {
+            // 读取的URL结果：this.result
+            $("#avatar_img").attr("src", this.result);
+        }
+    });
+
+    function hidtable() {
+      $('.tbx1').hide();
+    }
+    function showtale(){
+        $('.tbx1').show();
+    }
+    function hidtable1() {
+        $('.tbx2').hide();
+    }
+    function showtale1(){
+        $('.tbx2').show();
+    }
+    function hidtable2() {
+        $('.tbx3').hide()
+    }
+    function showtale2(){
+        $('.tbx3').show();
+    }
+    function hidtable3() {
+        $('.tbx4').hide()
+        $('.yhyx').show()
+        $('.amend').hide()
+    }
+    function showtale3(){
+        $('.tbx4').show();
+    }
+    function goxiugyongx() {
+        $('.yhyx').hide()
+        $('.amend').show()
+    }
+    function fh() {
+        $('.amend').hide()
+        $('.yhyx').show()
+    }
+</script>
+</body>
+</html>

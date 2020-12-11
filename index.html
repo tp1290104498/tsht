@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>唐商</title>
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./static/css/common.css">
+    <script src="./static/js/rem.js"></script>
+    <script src="./static/js/flexible.js"></script>
+    <script src="./static/js/jqery.js"></script>
+    <script src="./static/js/bootstrap.min.js"></script>
+    <style >
+        #app{
+            background-color: #2f99d6;
+            height: 100vh;
+        }
+        .logo{
+            padding-top: 100px !important;
+        }
+        .logo img{
+            width: 150px;
+            margin: auto;
+        }
+        .neirf{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10%;
+        }
+        .neirf .lnced {
+            padding-left: 4px;
+            width: 90%;
+            max-width: 750px;
+            color: #fff;
+            font-size: 15px;
+            line-height: 37px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+        .neirf .Line-back {
+            width: 90%;
+            padding: 20px 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(247, 244, 244, 0.4);
+            list-style: none;
+            box-sizing: border-box;
+        }
+        .neirf .Line-back .line-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+            height: 45px;
+            border-radius: 30px;
+            background: #FFFFFF;
+            color: #313242;
+            box-sizing: border-box;
+        }
+        .neirf .Line-back .line-item .xianl {
+            width: 100%;
+            padding: 20px 24px;
+            text-decoration: none;
+            font-size: 15px;
+            color: #313242;
+            text-align: left;
+            box-sizing: border-box;
+        }
+        .neirf .Line-back .line-item .line-speed {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 24px;
+            top: 0;
+            bottom: 0;
+            font-size: 15px;
+            pointer-events: none;
+        }
+        .neirf .Line-back .line-item .line-speed img {
+            margin-left: 6px;
+            width: 24px;
+            height: 24px;
+        }
+        .neirf .Line-back .line-fast {
+            background-color: #64f378;
+            color: #fff;
+        }
+        .neirf .Line-back .line-fast .xianl {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="logo">
+        <img src="./static/img/login.png" alt="">
+    </div>
+    <section class="neirf">
+        <div class="lnced">线路入口</div>
+        <ul class="Line-back" id="line-list">
+            <li class="line-item line-0">
+                <div class="xianl">线路入口一</div>
+                <div class="line-speed" id="line-speed-div-0">
+                    <span id="line-2">5631毫秒</span>
+                    <img id="line-fast-img-1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADUUlEQVRYR8WXS2gTURSG/zM2jVBRUMFuBMWVQXQyReJCpElcuBDdqEREUNSNqAtdCHVhXVRwI4i6kCq6ECwqSN3owkzqAzVo544i7aroQvGBFBTqK+09ctNMOmkykztx4SyT8/juOWfOf4fwnx/6z/nRMsCqVHYJSlgyh6bm0xTex+M/x4vF4veoB9IGWGVlV7cBm4k5A0I2INEYiAchjRdC5Ad0YLQATDOzH4QzRFioE3Tahu+XYBx/4+Rfh/mEAqRSqfl/Sh2XAOT0E9daEvi04xROBPkHAphWZg8BV1tNPMtvVDh2olGshgCq5GSgv2FyxgcYeMZTvJQMSukCsuSi6xbWzbavA1DDFgM/BdDRGIC3ClG4q/5LdmVugbFNF6JRO+oAklbmRljPWcrlrjv0zksaFQLMG4Uo5D3/GoBkMpsDsQIIfgi3xbC93W8QCYKRF8Le2BDANNPPdfrKwHXXsXe3DkE7vT1RrYBpdi8jw3ir208QXxHDhf2tQPgPMAPQlT5ITBe1AcqG8oJwhg5HhWDGuCvsRcqvCpC0us8DxqFoACoCnxXDhWNRIdpjEwuUdvgAwqc/fC7rt51pZk6Sgd7gDTiZcJxHozMAyXQBRN2RK1BxYIle17VPef5KLWMl/hQYr/I6+iqQvgfQphYBRkugnF94mr7SLNcKMfRyBqArfRlM+1oAGAPLnArm+VZE7FtYLG+hVQEsK93HoJ5IAIwP0pC5V8NDT7RLXzH8/etTfGRk5I9/BrIgeqALoF4lAu/wr9WKjrxqFsMvTFWARCLR3h7v/Kh56ZgAl0WputPXdHWvN9h43Cy5+t8/sLVaoLsLppOXFVE9yWR6C4gGtZIzxieJ0t7A1gCoKsTndo4AWBEUjIG9rmNfm0muIWC+YCxxwHXty95P9XLcRBFLMep8U8x/nj55tOQABoRj7/QfruGNKExeVf8MY/KmRFsq6pXNW79NAcqnszKs01Ndm9mtC2yBP6BpZXsI3KebJMBuDMxH/UOrVYGaCQcdCfkYCeKbIPC5WOzHmbAvJq0PE5WhfFMm3tVUsNStmeSdEub0N/soUXG1AbxjWtaGlVK27SBDLgYZnWCex6CvRPwFEg+DSh1UpsgA/zgPde5/AbxBeDDm16QDAAAAAElFTkSuQmCC"></div></li><li class="line-item line-1"><div class="xianl">线路入口二</div><div class="line-speed" id="line-speed-div-1"><span id="line-2">5536毫秒</span><img id="line-fast-img-1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADUUlEQVRYR8WXS2gTURSG/zM2jVBRUMFuBMWVQXQyReJCpElcuBDdqEREUNSNqAtdCHVhXVRwI4i6kCq6ECwqSN3owkzqAzVo544i7aroQvGBFBTqK+09ctNMOmkykztx4SyT8/juOWfOf4fwnx/6z/nRMsCqVHYJSlgyh6bm0xTex+M/x4vF4veoB9IGWGVlV7cBm4k5A0I2INEYiAchjRdC5Ad0YLQATDOzH4QzRFioE3Tahu+XYBx/4+Rfh/mEAqRSqfl/Sh2XAOT0E9daEvi04xROBPkHAphWZg8BV1tNPMtvVDh2olGshgCq5GSgv2FyxgcYeMZTvJQMSukCsuSi6xbWzbavA1DDFgM/BdDRGIC3ClG4q/5LdmVugbFNF6JRO+oAklbmRljPWcrlrjv0zksaFQLMG4Uo5D3/GoBkMpsDsQIIfgi3xbC93W8QCYKRF8Le2BDANNPPdfrKwHXXsXe3DkE7vT1RrYBpdi8jw3ir208QXxHDhf2tQPgPMAPQlT5ITBe1AcqG8oJwhg5HhWDGuCvsRcqvCpC0us8DxqFoACoCnxXDhWNRIdpjEwuUdvgAwqc/fC7rt51pZk6Sgd7gDTiZcJxHozMAyXQBRN2RK1BxYIle17VPef5KLWMl/hQYr/I6+iqQvgfQphYBRkugnF94mr7SLNcKMfRyBqArfRlM+1oAGAPLnArm+VZE7FtYLG+hVQEsK93HoJ5IAIwP0pC5V8NDT7RLXzH8/etTfGRk5I9/BrIgeqALoF4lAu/wr9WKjrxqFsMvTFWARCLR3h7v/Kh56ZgAl0WputPXdHWvN9h43Cy5+t8/sLVaoLsLppOXFVE9yWR6C4gGtZIzxieJ0t7A1gCoKsTndo4AWBEUjIG9rmNfm0muIWC+YCxxwHXty95P9XLcRBFLMep8U8x/nj55tOQABoRj7/QfruGNKExeVf8MY/KmRFsq6pXNW79NAcqnszKs01Ndm9mtC2yBP6BpZXsI3KebJMBuDMxH/UOrVYGaCQcdCfkYCeKbIPC5WOzHmbAvJq0PE5WhfFMm3tVUsNStmeSdEub0N/soUXG1AbxjWtaGlVK27SBDLgYZnWCex6CvRPwFEg+DSh1UpsgA/zgPde5/AbxBeDDm16QDAAAAAElFTkSuQmCC"></div></li><li class="line-item line-fast line-2"><div class="xianl">线路入口三</div><div class="line-speed" id="line-speed-div-2"><span id="line-1">682毫秒
+                最快</span>
+            <img id="line-fast-img-0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACm0lEQVRYR8WXPWxOYRTHf/+FhAQNQaLpwFISiy4kBrXURCupwcdCiKViMJFoSBiIAYOEMGHQiRjUoElJsBgYmg4MglSkiYXBcuTIvTfPe9/78dxbSe/6no/f83/Oc855xSJ/WuT8tAYws3XAWmAl8A2Yk/S76YGiAcxsKzAC7AIGSxLNAk+Bt5ImYmCiAMzsKHAFWB0TNLGZBM5KelflUwlgZquA28Bog8R508uSzpX5lwIkp767gMSh66yk/qJYhQBmdhK4VZL8s98xsBEYaAD4RtKOvH0XgJltA6aB5SXB90l64r+Z2aOG19N1HUUAdUE3SfqUwrWAGJL0PPXvADCzg8CDGlknJB0IbRpCTEraUwbwGtgeca/3JR1ZAMQhSQ/dP1PAzLyoPkYkT03uSDrREiI7QAhQVfllXDclnWoBMS9pTV6BG8BYAwVS02uSzrSA6JH0M1Sgrvqr2Lqel5mdBy5UOG2RNBMCvKgYMjHCjEu6GDxPn5ZzFY67JU2FAM+AoZhMBTY+BUclfQgA6p70gA+qEMCHzvEWAN6aR8KpZ2bLgF81sXolfQ0BLvn4bAgwDwxLehWcfAPwJSLOUkl/QgBfMrwOYj9P7rJPBcl9aXkfESAbTCHAkmS1ilk6XN79YU83s53Ay4jkbpIVbH4WxPaCbCJ6NDPbCzyOTO7KDaYFmwfw4pkB+iqCHZN0L5DdtyXvIbFfh3/ROK57PuslfU9O3jR51yQt24iquuI44BuvbzdNV7Z/7TeUqmontFhNI+06pE996rbiun4ek9sb1Vi6xuUdav8XJBV+usWc8Kd6Hbialz3qCvKkyZp+OALET+xP0heWbDaUSVWrQAHI5mQT7gX8j8sK4AfgL2O6TOr/BhBz6U1s/gJfV/shQB+pPgAAAABJRU5ErkJggg=="></div></li><li class="line-item line-3"><div class="xianl">线路入口四</div><div class="line-speed" id="line-speed-div-3"><span id="line-2">1531毫秒</span><img id="line-fast-img-1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADUUlEQVRYR8WXS2gTURSG/zM2jVBRUMFuBMWVQXQyReJCpElcuBDdqEREUNSNqAtdCHVhXVRwI4i6kCq6ECwqSN3owkzqAzVo544i7aroQvGBFBTqK+09ctNMOmkykztx4SyT8/juOWfOf4fwnx/6z/nRMsCqVHYJSlgyh6bm0xTex+M/x4vF4veoB9IGWGVlV7cBm4k5A0I2INEYiAchjRdC5Ad0YLQATDOzH4QzRFioE3Tahu+XYBx/4+Rfh/mEAqRSqfl/Sh2XAOT0E9daEvi04xROBPkHAphWZg8BV1tNPMtvVDh2olGshgCq5GSgv2FyxgcYeMZTvJQMSukCsuSi6xbWzbavA1DDFgM/BdDRGIC3ClG4q/5LdmVugbFNF6JRO+oAklbmRljPWcrlrjv0zksaFQLMG4Uo5D3/GoBkMpsDsQIIfgi3xbC93W8QCYKRF8Le2BDANNPPdfrKwHXXsXe3DkE7vT1RrYBpdi8jw3ir208QXxHDhf2tQPgPMAPQlT5ITBe1AcqG8oJwhg5HhWDGuCvsRcqvCpC0us8DxqFoACoCnxXDhWNRIdpjEwuUdvgAwqc/fC7rt51pZk6Sgd7gDTiZcJxHozMAyXQBRN2RK1BxYIle17VPef5KLWMl/hQYr/I6+iqQvgfQphYBRkugnF94mr7SLNcKMfRyBqArfRlM+1oAGAPLnArm+VZE7FtYLG+hVQEsK93HoJ5IAIwP0pC5V8NDT7RLXzH8/etTfGRk5I9/BrIgeqALoF4lAu/wr9WKjrxqFsMvTFWARCLR3h7v/Kh56ZgAl0WputPXdHWvN9h43Cy5+t8/sLVaoLsLppOXFVE9yWR6C4gGtZIzxieJ0t7A1gCoKsTndo4AWBEUjIG9rmNfm0muIWC+YCxxwHXty95P9XLcRBFLMep8U8x/nj55tOQABoRj7/QfruGNKExeVf8MY/KmRFsq6pXNW79NAcqnszKs01Ndm9mtC2yBP6BpZXsI3KebJMBuDMxH/UOrVYGaCQcdCfkYCeKbIPC5WOzHmbAvJq0PE5WhfFMm3tVUsNStmeSdEub0N/soUXG1AbxjWtaGlVK27SBDLgYZnWCex6CvRPwFEg+DSh1UpsgA/zgPde5/AbxBeDDm16QDAAAAAElFTkSuQmCC"></div></li><li class="line-item line-4"><div class="xianl">线路入口五</div><div class="line-speed" id="line-speed-div-4"><span id="line-2">11171毫秒</span><img id="line-fast-img-1" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADUUlEQVRYR8WXS2gTURSG/zM2jVBRUMFuBMWVQXQyReJCpElcuBDdqEREUNSNqAtdCHVhXVRwI4i6kCq6ECwqSN3owkzqAzVo544i7aroQvGBFBTqK+09ctNMOmkykztx4SyT8/juOWfOf4fwnx/6z/nRMsCqVHYJSlgyh6bm0xTex+M/x4vF4veoB9IGWGVlV7cBm4k5A0I2INEYiAchjRdC5Ad0YLQATDOzH4QzRFioE3Tahu+XYBx/4+Rfh/mEAqRSqfl/Sh2XAOT0E9daEvi04xROBPkHAphWZg8BV1tNPMtvVDh2olGshgCq5GSgv2FyxgcYeMZTvJQMSukCsuSi6xbWzbavA1DDFgM/BdDRGIC3ClG4q/5LdmVugbFNF6JRO+oAklbmRljPWcrlrjv0zksaFQLMG4Uo5D3/GoBkMpsDsQIIfgi3xbC93W8QCYKRF8Le2BDANNPPdfrKwHXXsXe3DkE7vT1RrYBpdi8jw3ir208QXxHDhf2tQPgPMAPQlT5ITBe1AcqG8oJwhg5HhWDGuCvsRcqvCpC0us8DxqFoACoCnxXDhWNRIdpjEwuUdvgAwqc/fC7rt51pZk6Sgd7gDTiZcJxHozMAyXQBRN2RK1BxYIle17VPef5KLWMl/hQYr/I6+iqQvgfQphYBRkugnF94mr7SLNcKMfRyBqArfRlM+1oAGAPLnArm+VZE7FtYLG+hVQEsK93HoJ5IAIwP0pC5V8NDT7RLXzH8/etTfGRk5I9/BrIgeqALoF4lAu/wr9WKjrxqFsMvTFWARCLR3h7v/Kh56ZgAl0WputPXdHWvN9h43Cy5+t8/sLVaoLsLppOXFVE9yWR6C4gGtZIzxieJ0t7A1gCoKsTndo4AWBEUjIG9rmNfm0muIWC+YCxxwHXty95P9XLcRBFLMep8U8x/nj55tOQABoRj7/QfruGNKExeVf8MY/KmRFsq6pXNW79NAcqnszKs01Ndm9mtC2yBP6BpZXsI3KebJMBuDMxH/UOrVYGaCQcdCfkYCeKbIPC5WOzHmbAvJq0PE5WhfFMm3tVUsNStmeSdEub0N/soUXG1AbxjWtaGlVK27SBDLgYZnWCex6CvRPwFEg+DSh1UpsgA/zgPde5/AbxBeDDm16QDAAAAAElFTkSuQmCC">
+        </div>
+        </li>
+        </ul>
+        <div class="lnced" style="text-align: center;">当所选线路不稳定或无法登录时请更换其它线路</div>
+    </section>
+<!--    <iframe class="link-iframe" id="current-iframe" style="display: block;"></iframe>-->
+</div>
+<script>
+    $(function () {
+        $(location).attr('href', './pages/login.html')
+    })
+</script>
+</body>
+</html>

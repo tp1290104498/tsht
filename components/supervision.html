@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>唐商</title>
+    <link href="./../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./../static/css/common.css" rel="stylesheet">
+    <link href="./../static/js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../static/css/datetimepicker.min.css">
+    <script src="./../static/js/jqery.js"></script>
+    <script src="./../static/js/moment.js"></script>
+    <script src="./../static/js/bootstrap.min.js"></script>
+    <script src="./../static/js/datatimepicker.js"></script>
+    <script src="./../static/js/layui/layui.all.js"></script>
+    <style>
+        html{
+            background: url("./../static/img/back.1.2.0.jpg") no-repeat;
+
+        }
+        .supervision{
+            width: 100%;
+            height: 100%;
+            background: url("./../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        .zh{
+            height: 10px;
+        }
+        .content{
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            border: 1px solid #d7d7d7;
+            /*display: flex;*/
+        }
+        .content .query-list{
+            width: 85%;
+            height: 100px;
+            background-color: #e4e4e4;
+            margin: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            border: 1px solid #d7d7d7;
+        }
+        .cent{
+            display: flex;
+        }
+        .content .btnsa{
+            width: 15%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .content .query-list .list-item{
+            width: 22%;
+            display: flex;
+            margin-top: 10px;
+        }
+        .content .query-list .list-item .btn-group{
+            display: flex;
+        }
+        #datetimepicker1{
+            margin-left: 10px;
+        }
+        #datetimepicker1 input{
+            border-radius: 0;
+            border-right: none;
+        }
+        #datetimepicker2 input{
+            border-radius: 0;
+            border-left: none;
+        }
+        .recode-search{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .content .query-poptip{
+            height: 40px;
+            line-height: 20px;
+            color: #f60;
+            margin: 0 10px;
+        }
+        .content1{
+            height: 500px;
+            margin-top: 10px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            border: 1px solid #d7d7d7;
+        }
+        .list-header{
+            display: flex;
+            align-items: center;
+            height: 35px;
+            border-bottom: 1px solid #e4e4e4;
+            text-align: left;
+        }
+        .list-header .list-title {
+            position: relative;
+            min-height: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: #333;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .list-header .list-title:before {
+            content: "";
+            position: absolute;
+            top: 21%;
+            left: 7px;
+            width: 4px;
+            height: 15px;
+            background-color: #399;
+        }
+        .list-header .list-title>span {
+            margin-left: 18px;
+        }
+        .list-p{
+            display: flex;
+        }
+        .list-header .list-title .list-p .list-flush-time {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-right: 12px;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .list-header .list-title .list-p .list-flush-time .button{
+            margin-left: 12px;
+            width: 60px;
+            height: 20px;
+            line-height: 20px;
+            background-color: #0078ff;
+            -webkit-box-shadow: inset 0 0 5px 0 rgba(124,183,255,.75);
+            box-shadow: inset 0 0 5px 0 rgba(124,183,255,.75);
+            border-radius: 10px;
+            border: 1px solid #0e3c90;
+            text-align: center;
+            cursor: pointer;
+            color: #fff;
+        }
+        .list-header .list-title .list-p .list-poptip[data-v-02f922f6] {
+            width: 400px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 2px;
+            background-color: #e4e4e4;
+            border: 1px solid #c9c9c9;
+        }
+        .list-header .list-title .list-p .list-poptip>span:nth-child(odd) {
+            text-align: right;
+            display: inline-block;
+            font-weight: 400;
+        }
+        .list-header .list-title .list-p .list-poptip>span:nth-child(2n+2) {
+            color: #396;
+            display: inline-block;
+            font-weight: 400;
+        }
+        .tables{
+            height: 400px;
+            margin-top: 10px;
+            width: 100%;
+            background: #e4e4e4;
+            overflow-x: auto;
+        }
+        #qiliangqifei {
+            width: 100%;
+        }
+        #qiliangqifei th{
+            text-align: center;
+        }
+        #qiliangqifei td{
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+        }
+        .pagination {
+            margin: auto;
+            margin-top: 10px;
+            margin-left: 10%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="supervision">
+        <div class="zh"></div>
+        <div class="content">
+            <div class="cent">
+                <div class="query-list">
+                    <div class="list-item">
+                        <select class="form-control" value="所有游戏">
+                            <option>所有游戏</option>
+                            <option>英国赛车</option>
+                            <option>英国时时彩</option>
+                            <option>英国极速赛车</option>
+                            <option>英国极速时时彩</option>
+                            <option>澳洲10</option>
+                            <option>澳洲5</option>
+                            <option>极速赛车</option>
+                            <option>极速时时彩</option>
+                            <option>168飞艇</option>
+                        </select>
+                    </div>
+                    <div class="list-item">
+                        <select class="form-control" value="所有注单">
+                            <option>所有注单</option>
+                            <option>为开奖注单</option>
+                            <option>已开奖注单</option>
+                        </select>
+                    </div>
+                    <div class="list-item">
+                        <select class="form-control" value="正式用户">
+                            <option>正式用户</option>
+                            <option>虚假用户</option>
+                        </select>
+                    </div>
+                    <div class="list-item">
+                        <input class="form-control" value="" placeholder="查询用户ID/用户名" />
+                    </div>
+                    <div class="list-item" style="width: 33%">
+                        <div class="btn-group" role="group" >
+                            <button type="button" class="btn btn-default">今天</button>
+                            <button type="button" class="btn btn-default">昨天</button>
+                            <button type="button" class="btn btn-default">近一周</button>
+                            <button type="button" class="btn btn-default">自定义</button>
+                        </div>
+                    </div>
+                    <div class="list-item" style="width: 38%;">
+                        <label for="datetimepicker1">区间</label>
+                        <div class="recode-search">
+                            <div class='input-group date' id='datetimepicker1'>
+                                <input type='text' class="form-control input-group-addon" />
+                            </div>
+                            6:00
+                            <!--指定 date标记-->
+                            <div class='input-group date' id='datetimepicker2'>
+                                <input type='text' class="form-control input-group-addon" />
+                                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                         </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item" >
+                        <input class="form-control" value="" placeholder="查询用户ID/用户名" />
+                    </div>
+                </div>
+                <div class="btnsa">
+                    <button class="btn btn-primary" type="button">查询</button>
+                    <button class="btn btn-primary" type="button">撤销未结注单</button>
+                </div>
+            </div>
+            <div class="query-poptip">
+                <span>说明：撤销未结注单流程为先条件查询再撤销，撤销的目标是以列表内显示的查询结果中未开奖的注单为准。</span>
+            </div>
+
+        </div>
+        <div class="content1">
+            <div  class="list-header">
+                <div  class="list-title">
+                    <span >注单列表</span>
+                    <div  class="list-p">
+                        <div  class="list-flush-time">
+                            <span  style="display: none;">下次注单刷新：0秒</span>
+<!--                            <span >刷新中</span>-->
+                            <div  class="button">刷新</div>
+                        </div>
+                        <div  class="list-poptip">
+                            <span >下注合计：</span>
+                            <span >0</span>
+                            <span >盈亏合计：</span>
+                            <span >0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tables">
+                <table class="table-striped table-bordered qiliangqifei-tab" id="qiliangqifei">
+                    <thead>
+                    <tr>
+                        <th data-valign="middle">用户名</th>
+                        <th>ID</th>
+                        <th>游戏</th>
+                        <th>期号</th>
+                        <th>下注内容</th>
+                        <th>使用积分</th>
+                        <th>下注时间</th>
+                        <th>状态</th>
+                        <th>盈亏</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination" id="pagination"></ul>
+        </div>
+    </div>
+<script>
+    $(function (){
+        var picker1 = $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+            //minDate: '2016-7-1'
+        });
+        var picker2 = $('#datetimepicker2').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+        //动态设置最小值
+        picker1.on('dp.change', function (e) {
+            picker2.data('DateTimePicker').minDate(e.date);
+        });
+        //动态设置最大值
+        picker2.on('dp.change', function (e) {
+            picker1.data('DateTimePicker').maxDate(e.date);
+
+        });
+    })
+    $(document).ready(function () {
+        if ($("#pagination")) {
+            var pagecount = 40;
+            var pagesize = 10;
+            var currentpage = 2;
+            var counts, pagehtml = "";
+            if (pagecount % pagesize == 0) {
+                counts = parseInt(pagecount / pagesize);
+            } else {
+                counts = parseInt(pagecount / pagesize) + 1;
+            }
+            //只有一页内容
+            if (pagecount <= pagesize) {
+                pagehtml = "";
+            }
+            //大于一页内容
+            if (pagecount > pagesize) {
+                if (currentpage > 1) {
+                    pagehtml += '<li><a >上一页</a></li>';
+                }
+                for (var i = 0; i < counts; i++) {
+                    if (i >= (currentpage - 3) && i < (currentpage + 3)) {
+                        if (i == currentpage - 1) {
+                            pagehtml += '<li class="active"><a >' + (i + 1) + '</a></li>';
+                        } else {
+                            pagehtml += '<li><a >' + (i + 1) + '</a></li>';
+                        }
+
+                    }
+                }
+                if (currentpage < counts) {
+                    pagehtml += '<li><a >下一页</a></li>';
+                }
+            }
+            $("#pagination").html(pagehtml);
+        }
+    })
+</script>
+</body>
+</html>

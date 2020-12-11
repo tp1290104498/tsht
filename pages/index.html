@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>唐商</title>
+    <link rel="stylesheet" href="./../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./../static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./../static/css/common.css">
+    <script src="./../static/js/jqery.js"></script>
+    <script src="./../static/js/rem.js"></script>
+    <script src="./../static/js/flexible.js"></script>
+    <script src="./../static/js/bootstrap.min.js"></script>
+    <style>
+
+        html,body{
+            background: url("../static/img/back.1.2.0.jpg") no-repeat;
+
+        }
+        #home{
+            width: 950px;
+            margin: auto;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        #home .header{
+            height: 50px;
+            line-height: 50px;
+            background: rgba(0,0,0,.8);
+
+            text-align: center;
+            font-size: 20px;
+            color: #FFFFFF;
+            position: fixed;
+            top: 0;
+        }
+        #home .contert{
+            height: calc(100vh);
+            padding-top: 50px;
+            background: url("../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        #home .contert .swipertab{
+            position: fixed;
+            /*border: 1px solid red;*/
+            overflow: hidden;
+            background: #FFFFFF;
+            width: 950px;
+            top: 50px;
+            overflow-x: auto;
+        }
+        #home .contert .tba{
+            display: flex;
+            width: 100%;
+        }
+        #home .contert .tba li{
+            height: 40px;
+            flex: 1;
+            line-height: 40px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .active{
+            color: #2f99d6;
+            font-size: 18px;
+            border-bottom: 1px solid #2f99d6;
+        }
+        #comentper{
+            width: 100%;
+            position: absolute;
+            top: 90px;
+            height: calc(100vh - 90px);
+        }
+        .btommbtn{
+            height: 50px;
+            width: 100%;
+            display: flex;
+            background: #f2f2f2;
+            align-items: center;
+            justify-content: space-around;
+            border-top: 1px solid #0a5ecc;
+        }
+        .btommbtn .btneitem span{
+            display: block;
+        }
+        .btommbtn .btneitem  img{
+            height: 25px;
+            width: 25px;
+            margin: auto;
+            display: block;
+        }
+        .btneitem{
+            color: #ccc;
+        }
+        .btneitem img:nth-child(1){
+            display: none;
+        }
+        .btneitem img:nth-child(2){
+            display: block;
+        }
+        .btneitem span{
+            text-align: center;
+        }
+        .activbnt{
+            color: #2f99d6;
+        }
+        .activbnt img:nth-child(2){
+            display: none;
+        }
+        .activbnt img:nth-child(1){
+            display: block;
+        }
+        .container{
+            margin: auto;
+        }
+        .header{
+            /*display: flex;*/
+            /*justify-content: space-between;*/
+        }
+        .header .user>span:first-child {
+            margin-right: 8px;
+            font-size: 14px;
+            color: #666;
+            height: 25px;
+        }
+        .header span{
+            height: 25px;
+            line-height: 25px;
+        }
+
+         .header {
+             -webkit-box-align: center;
+             -ms-flex-align: center;
+             align-items: center;
+             -ms-flex-negative: 0;
+             display: flex;
+             flex-shrink: 0;
+             padding: 0 20px;
+             font-size: 12px;
+             height: 50px;
+             background-color: #191919;
+             border: 1px solid hsla(0, 0%, 40%, 0);
+         }
+        .header .logo {
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+        .header .item {
+            margin-right: 10px;
+        }
+         .header .logo>img {
+            width: 30px;
+            height: 30px;
+        }
+         .header .logo .version {
+            line-height: 7px;
+            font-size: 12px;
+            color: #fff;
+        }
+         .header .time {
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            width: 230px;
+            text-align: right;
+             display: flex;
+             flex-direction: column;
+             font-size: 14px;
+        }
+         .header .time>p:first-child {
+            color: #f90;
+             line-height: 20px;
+        }
+         .header .time>p:last-child {
+            color: #666;
+             line-height: 20px;
+
+         }
+        .header .notice {
+            position: relative;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            height: 36px;
+            line-height: 36px;
+            border-radius: 5px;
+            background-color: #282828;
+            border: 1px solid #434343;
+            overflow: hidden;
+        }
+         .header .user>span:first-child {
+            margin-right: 8px;
+            font-family: jdIonicons;
+            font-size: 12px;
+            color: #666;
+        }
+         .header .user>span:last-child {
+            color: #a1a1a1;
+        }
+         .header .money {
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            cursor: help;
+             display: flex;
+        }
+         .header .money>img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+         .header .money>span {
+            margin-left: 8px;
+            vertical-align: middle;
+            color: #a1a1a1;
+             font-size: 16px;
+        }
+         .header .email>img {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+         .header .exit {
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            width: 70px;
+            height: 28px;
+            line-height: 28px;
+            background-color: #282828;
+            border-radius: 4px;
+            border: 1px solid #666;
+            color: #f2f2f2;
+             font-size: 12px;
+            text-align: center;
+            cursor: pointer;
+        }
+       .header .user>span:first-child {
+            margin-right: 8px;
+            font-family: jdIonicons;
+            font-size: 16px;
+            color: #666;
+        }
+         .header .user>span:last-child {
+            color: #a1a1a1;
+        }
+         .user span{
+             font-size: 16px;
+         }
+    </style>
+</head>
+<body>
+    <div id="home">
+        <header class="header">
+            <div class="item logo">
+                <img src="http://dw.qhxyu.com/h/static/img/logo.1.2.5.png" alt="" title="">
+                <p class="version">v1.2.5</p>
+            </div>
+            <div class="item time">
+                <p>到期时间：2020-12-16 16:35:15</p>
+                <p>服务器时间：2020-11-18 09:00:38</p>
+            </div>
+            <div id="home-notice" class="item notice">
+
+            </div>
+            <div class="item user">
+                <span></span>
+                <span>ppoopp</span>
+            </div>
+            <div title="火星币：账户预存金额，上级代理处充值" class="item money">
+                <img src="../static/img/jb.png" alt="">
+                <span>0.00</span>
+            </div>
+            <div class="item email">
+                <img src="../static/img/xinxi.png" alt="">
+            </div>
+            <div class="item exit">
+                <span>锁定</span>
+            </div>
+            <div class="item exit">
+                <span>退出</span>
+            </div>
+        </header>
+
+        <div class="contert">
+            <div class="swipertab">
+                <ul class="tba">
+                    <li class="active" onclick="gorouter('./../components/home.html')">
+                        首页</li>
+                    <li onclick="gorouter('./../components/basic.html')">基础设置</li>
+                    <li onclick="gorouter('./../components/Memberset.html')">会员管理</li>
+                    <li onclick="gorouter('./../components/supervision.html')">现场监控</li>
+                    <li onclick="gorouter('./../components/report.html')">会员列表</li>
+                    <li onclick="gorouter('./../components/Backwaterset.html')">回水设置</li>
+                    <li onclick="gorouter('./../components/Pricelimit.html')">赔率限额</li>
+                    <li onclick="gorouter('./../components/Setuptheroom.html')">房间设置</li>
+                    <li onclick="gorouter('./../components/proxySettings.html')">代理管理</li>
+                    <li onclick="gorouter('./../components/statements.html')">代理报表</li>
+                    <li onclick="gorouter('./../components/Robots.html')">机器人托</li>
+                    <li onclick="gorouter('./../components/OtherSettings.html')">其他设置</li>
+                </ul>
+            </div>
+            <iframe id="comentper" src="" frameborder="0"></iframe>
+        </div>
+<!--        <ul class="btommbtn">-->
+<!--            <li class="btneitem activbnt">-->
+<!--                <img src="./../static/img/xuanzhongshangcheng.png" alt="">-->
+<!--                <img src="./../static/img/xuanzhongshangcheng%20(1).png" alt="">-->
+<!--                <span>首页</span>-->
+<!--            </li>-->
+<!--            <li class="btneitem">-->
+<!--                <img src="./../static/img/wode.png" alt="">-->
+<!--                <img src="./../static/img/wode%20(1).png" alt="">-->
+<!--                <span>我的</span>-->
+<!--            </li>-->
+<!--        </ul>-->
+        </div>
+<script>
+    window.onload = function () {
+        gorouter(undefined)
+    }
+    function gorouter(url) {
+        if(url) {
+            $('#comentper')[0].src = url
+        }else {
+            $('#comentper')[0].src = '../components/home.html'
+        }
+    }
+
+    function Slide(){
+        this.windowWidth = $(window).width();//屏幕的宽度
+        this.divWidth = 0;//每个div宽度
+        this.resPlaceX = 0;//最终的位置X
+        this.moveDistance = 0;//移动的距离
+        this.startTranform = 0;//当前的transform值
+        this.startTranformStr = ''//transform字符串
+        this.translate3dX = 0;//每次算到的ul移动translate3dX值
+        this.disX = 0;//当前div距离屏幕左边距离
+        this.startX = 0;//触摸开始的x值
+    }
+    $('.btommbtn li').click(function() {
+        $('.btommbtn li').removeClass('activbnt');
+        $(this).addClass('activbnt');
+    })
+    // Slide.prototype.getTransfrom = function(){
+    //     this.startTranformStr = $('.tba').get(0).style.transform;
+    //     this.startTranform = this.startTranformStr.slice(this.startTranformStr.indexOf('(') + 1,
+    //         this.startTranformStr.indexOf('px'));
+    //     if (this.startTranform == '') {this.startTranform = 0};
+    //     this.startTranform = parseFloat(this.startTranform);
+    // }
+    //
+    // Slide.prototype.changeActive = function(myIndex){
+    //     this.disX = $('.tba li').eq(myIndex).offset().left;//当前div距离屏幕左边距离
+    //     this.divWidth = $('.tba li').eq(myIndex).width();
+    //     this.resPlaceX = (this.windowWidth - this.divWidth) / 2;
+    //     this.moveDistance = this.disX - this.resPlaceX;
+    //     this.getTransfrom();
+    //     this.translate3dX = this.startTranform + -this.moveDistance
+    //     this.boundaryCondition();
+    //     $('.tba').css({
+    //         'transform' : 'translate3d('+ this.translate3dX +'px,0,0)',
+    //         'transition-duration' : '1s'
+    //     });
+    // }
+    //
+    // Slide.prototype.boundaryCondition = function(){
+    //     if(this.translate3dX > 0){
+    //         this.translate3dX = 0;
+    //     }else if(-this.translate3dX > $('.tba').width() - this.windowWidth + 0){
+    //         this.translate3dX = -($('.tba').width() - this.windowWidth + 0);
+    //     }
+    // }
+    //
+    // var slide = new Slide();
+
+    $('.tba li').on('click',function(){
+        $('.tba li').removeClass('active');
+        $(this).addClass('active');
+        // slide.changeActive($(this).index());
+    // });
+
+    // $('.tba').on('touchstart',function(e){
+    //     $('.tba').css({'transition-duration' : '0s'});
+    //     slide.getTransfrom();
+    //     var touchestartEv = e || event;
+    //     slide.startX = touchestartEv.touches[0].clientX;
+    //
+    // });
+    //
+    // $('.tba').on('touchmove',function(ev){
+    //     var touchmoveEv = ev || event;
+    //     var moveX = touchmoveEv.touches[0].clientX;;
+    //     var translateX = slide.startX - moveX;
+    //     slide.translate3dX = slide.startTranform + -translateX;
+    //     slide.boundaryCondition();
+    //     console.log(slide.startTranform)
+    //     $('.tba').css({
+    //         'transform' : 'translate3d('+ slide.translate3dX +'px,0,0)'
+    //     })
+    });
+
+</script>
+</body>
+</html>

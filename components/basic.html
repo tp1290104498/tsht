@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>唐商</title>
+    <link rel="stylesheet" href="./../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./../static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./../static/css/common.css">
+    <script src="./../static/js/jqery.js"></script>
+    <script src="./../static/js/bootstrap.min.js"></script>
+    <style>
+        .basic {
+            height: 100vh;
+            width: 100%;
+            background: url("./../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+            overflow-y: auto;
+        }
+
+        .he {
+            height: 10px;
+        }
+
+        .comnetr {
+            width: 100%;
+            background: #f2f2f2;
+            border: 1px solid #d7d7d7;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .comnetr .compantitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+            background: #02b0d5;
+
+        }
+
+        .comnetr .compantitle .titletext {
+            padding-top: 10px;
+            font-size: 16px;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #390;
+        }
+
+        .comnetr .btns {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .comnetr .btns .btn {
+            width: 80px;
+            height: 30px;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .comnetr .btns .btn:nth-child(1) {
+            background: #0078ff;
+            color: #FFFFFF;
+            margin-left: 20px;
+        }
+
+        .comnetr .btns .btn:nth-child(2) {
+            background: #00e14a;
+            color: #FFFFFF;
+            margin-right: 20px;
+        }
+
+        .tablesx {
+            margin-top: 10px;
+            display: flex;
+            width: 100%;
+            background: #e4e4e4;
+            text-align: center;
+        }
+
+        .tablesx .nameform {
+            display: flex;
+            height: 107px;
+            flex-direction: column;
+            justify-content: space-around;
+            border: 1px solid #d7d7d7;
+        }
+
+
+        .tablesx .nameform .kjs input {
+            width: 90%;
+        }
+
+        .comnetr1 {
+            margin-top: 10px;
+            background: #f2f2f2;
+            overflow: hidden;
+            border: 1px solid #d7d7d7;
+            min-height: 170px;
+            border-radius: 5px;
+        }
+
+        .comnetr1 .compantitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            background: #02b0d5;
+        }
+
+        .comnetr1 .compantitle .titletext {
+            display: flex;
+            font-size: 16px;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #390;
+        }
+
+        .comnetr1 .compantitle .btns .btn {
+            background: #00e14a;
+            width: 80px;
+            height: 30px;
+            padding: 0;
+            margin-right: 10px;
+        }
+
+        .comnetr1 .list-1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .list-1 .base-list-item {
+            margin-top: 10px;
+            margin-right: 15px;
+            width: 30%;
+            height: 205px;
+            border: 1px solid #d7d7d7;
+            overflow: hidden;
+        }
+
+        .list-1 .base-list-item .base-item-second {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-left: 5px;
+            height: 40px;
+            background-color: #e4e4e4;
+        }
+        .list-1 .base-list-item textarea{
+            height: 147px;
+            width: 261px;
+        }
+
+        .ivu-input-number {
+            display: inline-block;
+            width: 100%;
+            line-height: 1.5;
+            padding: 4px 7px;
+            font-size: 12px;
+            color: #515a6e;
+            background-color: #fff;
+            background-image: none;
+            position: relative;
+            cursor: text;
+            transition: border .2s ease-in-out, background .2s ease-in-out, box-shadow .2s ease-in-out;
+            margin: 0;
+            padding: 0;
+            width: 80px;
+            height: 32px;
+            line-height: 32px;
+            vertical-align: middle;
+            border: 1px solid #dcdee2;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .ivu-input-number-handler-wrap {
+            width: 22px;
+            height: 100%;
+            border-left: 1px solid #dcdee2;
+            border-radius: 0 4px 4px 0;
+            background: #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+            transition: opacity .2s ease-in-out;
+        }
+
+        .ivu-input-number-handler {
+            display: block;
+            width: 100%;
+            height: 16px;
+            line-height: 0;
+            text-align: center;
+            overflow: hidden;
+            color: #999;
+            position: relative;
+        }
+
+        .ivu-input-number-handler {
+            display: block;
+            width: 100%;
+            height: 16px;
+            line-height: 0;
+            text-align: center;
+            overflow: hidden;
+            color: #999;
+            position: relative;
+        }
+
+        .ivu-input-number-handler-down-inner, .ivu-input-number-handler-up-inner {
+            width: 12px;
+            height: 12px;
+            line-height: 12px;
+            font-size: 14px;
+            color: #999;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            position: absolute;
+            right: 5px;
+            transition: all .2s linear;
+        }
+
+        .ivu-input-number-handler-up-inner {
+            top: 1px;
+        }
+
+        .ivu-icon {
+            display: inline-block;
+            font-family: Ionicons;
+            speak: none;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            text-rendering: auto;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            vertical-align: middle;
+        }
+
+        .ivu-input-number-handler-down {
+            border-top: 1px solid #dcdee2;
+            top: -1px;
+            cursor: pointer;
+        }
+
+        .ivu-input-number-input-wrap {
+            overflow: hidden;
+            height: 32px;
+        }
+
+        .ivu-input-number-input {
+            width: 100%;
+            height: 32px;
+            line-height: 32px;
+            padding: 0 7px;
+            text-align: left;
+            outline: 0;
+            -moz-appearance: textfield;
+            color: #666;
+            border: 0;
+            border-radius: 4px;
+            transition: all .2s linear;
+        }
+
+        .list-1 .base-list-item .base-item-second .system-operate-item {
+            margin-left: 10px;
+        }
+
+        .ivu-checkbox {
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+            cursor: pointer;
+            line-height: 1;
+            position: relative;
+        }
+
+        .ivu-checkbox-inner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            position: relative;
+            top: 0;
+            left: 0;
+            border: 1px solid #dcdee2;
+            border-radius: 2px;
+            background-color: #fff;
+            transition: border-color .2s ease-in-out, background-color .2s ease-in-out, box-shadow .2s ease-in-out;
+        }
+
+        .ivu-checkbox-input {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .list-1 .base-list-item .base-item-second .right-item {
+            /*margin-right: 12px;*/
+            height: 21px;
+            line-height: 19px;
+            background-color: #c9c9c9;
+            border-radius: 4px;
+            border: 1px solid #999;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .list-1 .base-list-item .space-between .space-right {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .list-2 {
+            margin-top: 10px;
+        }
+
+        .list-2 .listtitle {
+            height: 50px;
+            background-color: #e4e4e4;
+            line-height: 50px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .list-2 .listtable {
+
+        }
+
+        .list-2 .listtable li {
+            display: flex;
+            /*justify-content: space-around;*/
+            border: 1px solid #d7d7d7;
+            border-top: none;
+            font-size: 14px;
+        }
+
+        .list-2 .listtable li div {
+        }
+
+        .list-2 .listtable li div:nth-child(1) {
+            width: 20%;
+            border-right: 1px solid #d7d7d7;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .list-2 .listtable li div:nth-child(2) {
+            width: 80%;
+            line-height: 30px;
+        }
+
+        .comnetr2 {
+            background-color: #f2f2f2;
+        }
+
+        .comnetr2 .compantitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            background: #02b0d5;
+        }
+
+        .comnetr2 .compantitle .titletext {
+            display: flex;
+            font-size: 16px;
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #390;
+        }
+
+        .comnetr2 .compantitle .btns .btn {
+            background: #00e14a;
+            width: 80px;
+            height: 30px;
+            padding: 0;
+            margin-right: 10px;
+        }
+
+        .comnetr2 .list-1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .comnetr2 .list-item{
+            margin-top: 10px;
+            background-color: #e4e4e4;
+            border: 1px solid #d7d7d7
+        }
+        .comnetr2 .list-item .system-operate-list{
+            display: flex;
+            justify-content: space-around;
+        }
+        .comnetr2 .list-item .system-operate-list {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 0 5px;
+            height: 120px;
+            border-bottom: 1px solid #bcbcbc;
+        }
+        .comnetr2 .list-item .system-operate-list>* {
+            width: 22%;
+            /*padding-left: 15px;*/
+            text-align: left;
+        }
+        .ivu-checkbox-group-item, .ivu-switch {
+            display: inline-block;
+        }
+        .ivu-checkbox-wrapper {
+            cursor: pointer;
+            font-size: 12px;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .ivu-checkbox {
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+            cursor: pointer;
+            line-height: 1;
+            position: relative;
+        }
+
+        .ivu-checkbox-checked .ivu-checkbox-inner {
+            border-color: #2d8cf0;
+            background-color: #2d8cf0;
+        }
+        .ivu-checkbox-checked .ivu-checkbox-inner:after {
+            content: "";
+            display: table;
+            width: 4px;
+            height: 8px;
+            position: absolute;
+            top: 1px;
+            left: 4px;
+            border: 2px solid #fff;
+            border-top: 0;
+            border-left: 0;
+            transform: rotate(45deg) scale(1);
+            transition: all .2s ease-in-out;
+        }
+        .comnetr2 .system-reply-list{
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            padding: 0 20px;
+            justify-content: space-around;
+            height: 140px;
+        }
+        .comnetr2 .system-reply-list .system-reply-item {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 50%;
+            flex: 1 1 50%;
+            margin: 10px 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .comnetr2 .system-reply-list .system-reply-item>span {
+            /*width: 100px;*/
+        }
+        .comnetr2 .system-reply-list .system-reply-item>:last-child {
+            /*width: 320px;*/
+        }
+        .list-2{
+
+        }
+        .formtitle{
+            font-size: 12px;
+        }
+        .kjs{
+            font-size: 12px;
+        }
+        .djs{
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="basic">
+    <div class="he"></div>
+    <div class="comnetr">
+        <div class="compantitle">
+            <div class="titletext">各游戏封盘时间设置（以开奖时间为参照）</div>
+        </div>
+        <div class="btns">
+            <button type="button" class="btn btn-primary">立即刷新</button>
+            <button type="button" class="btn btn-primary">修改/保存</button>
+        </div>
+        <div class="tablesx">
+            <div class="nameform">
+                <div class="formtitle">彩种</div>
+                <div class="kjs">据开奖*秒</div>
+                <div class="djs">当前封盘倒计时</div>
+            </div>
+            <div class="nameform">
+                <div class="formtitle">英国赛车</div>
+                <div class="kjs"><input type="number" value=""></div>
+                <div class="djs">0</div>
+            </div>
+            <div class="nameform">
+                <div class="formtitle">英国时时彩</div>
+                <div class="kjs"><input type="number" value=""></div>
+                <div class="djs">0</div>
+            </div>
+            <div class="nameform">
+                <div class="formtitle">英国极速赛车</div>
+                <div class="kjs"><input type="number" value=""></div>
+                <div class="djs">0</div>
+            </div>
+            <div class="nameform">
+                <div class="formtitle">英国极速时时彩</div>
+                <div class="kjs"><input type="number" value=""></div>
+                <div class="djs">0</div>
+            </div>
+            <div class="nameform">
+                <div class="formtitle">澳洲10</div>
+                <div class="kjs"><input type="number" value=""></div>
+                <div class="djs">0</div>
+            </div>
+            <div class="nameform">
+                <div class="formtitle">澳洲5</div>
+                <div class="kjs"><input type="number" value=""></div>
+                <div class="djs">0</div>
+            </div>
+            <div class="nameform">
+                <div class="formtitle">极速赛车</div>
+                <div class="kjs"><input type="number" value=""></div>
+                <div class="djs">0</div>
+            </div>
+            <div class="nameform">
+                <div class="formtitle">极速时时彩</div>
+                <div class="kjs"><input type="number" value=""></div>
+                <div class="djs">0</div>
+            </div>
+            <div class="nameform">
+                <div class="formtitle">168飞艇</div>
+                <div class="kjs"><input type="number" value=""></div>
+                <div class="djs">0</div>
+            </div>
+        </div>
+<!--        <div class="tablesx">-->
+
+
+<!--        </div>-->
+<!--        <div class="tablesx">-->
+
+<!--&lt;!&ndash;            <div class="nameform">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="formtitle">爱尔兰快五</div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="kjs"><input type="number" value=""></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="djs">0</div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--        </div>-->
+    </div>
+    <div class="comnetr1">
+        <div class="compantitle">
+            <div class="titletext">系统消息设置</div>
+            <div class="btns">
+                <button type="button" class="btn btn-primary">修改/保存</button>
+            </div>
+        </div>
+        <div class="list-1">
+            <div class="base-list-item">
+                <div class="base-item-second">
+                    <span>封盘前</span>
+                    <div class="base-item-input ivu-input-number ivu-input-number-default">
+                        <div class="ivu-input-number-handler-wrap">
+                            <a
+                                    class="ivu-input-number-handler ivu-input-number-handler-up"><span
+                                    class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a>
+                            <a
+                                    class="ivu-input-number-handler ivu-input-number-handler-down"><span
+                                    class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a>
+                        </div>
+                        <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false"
+                                                                        placeholder="" class="ivu-input-number-input">
+                        </div>
+                    </div>
+                    <span>秒</span><label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-default"><span
+                        class="ivu-checkbox">
+<!--                    <span class="ivu-checkbox-inner"></span>-->
+                    <input type="checkbox"   class="ivu-checkbox-inner"></span>
+                    <span>禁止撤单</span></label></div>
+                <textarea style="margin-top: 0px; margin-bottom: 0px; "></textarea>
+            </div>
+            <div class="base-list-item">
+                <div class="base-item-second"><span>封盘信息核对</span></div>
+                <textarea data-v-669fe0ca=""></textarea></div>
+            <div class="base-list-item">
+                <div data-v-669fe0ca="" class="base-item-second"><span data-v-669fe0ca="">封盘后</span>
+                    <div data-v-669fe0ca="" class="base-item-input ivu-input-number ivu-input-number-default">
+                        <div class="ivu-input-number-handler-wrap"><a
+                                class="ivu-input-number-handler ivu-input-number-handler-up"><span
+                                class="ivu-input-number-handler-up-inner ivu-icon ivu-icon-ios-arrow-up"></span></a> <a
+                                class="ivu-input-number-handler ivu-input-number-handler-down"><span
+                                class="ivu-input-number-handler-down-inner ivu-icon ivu-icon-ios-arrow-down"></span></a>
+                        </div>
+                        <div class="ivu-input-number-input-wrap"><input autocomplete="off" spellcheck="false"
+                                                                        placeholder="" class="ivu-input-number-input">
+                        </div>
+                    </div>
+                    <span data-v-669fe0ca="">秒自定义</span></div>
+                <textarea data-v-669fe0ca=""></textarea></div>
+            <div class="base-list-item">
+                <div class="base-item-second space-between"><span>中奖明细</span>
+                    <div class="space-right">
+                        <div class="right-item">{结算时中奖格式}</div>
+                        <div class="right-item">{结算时未中奖格式}</div>
+                    </div>
+                </div>
+                <textarea></textarea></div>
+            <div class="base-list-item">
+                <div class="base-item-second space-between"><span
+                >会员积分</span><label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-default">
+                    <span
+                        class="ivu-checkbox">
+<!--                        <span class="ivu-checkbox-inner"></span>-->
+                        <input type="checkbox"  class="ivu-checkbox-inner"></span>
+                    <span>使用表单显示余额</span></label></div>
+                <textarea></textarea></div>
+            <div class="base-list-item"><p class="base-item-second">封盘提示</p>
+                <textarea></textarea></div>
+
+        </div>
+        <div class="list-2">
+            <div class="listtitle">系统消息可用变量说明</div>
+            <ul class="listtable">
+                <li>
+                    <div>封盘前提示可用变量</div>
+                    <div>{期号}{游戏}</div>
+                </li>
+                <li>
+                    <div>封盘核对可用变量</div>
+                    <div>
+                        {期号}{游戏}{玩家数量}{玩家总分}{核对}
+                    </div>
+                </li>
+                <li>
+                    <div>中奖明细可用变量</div>
+                    <div>{期号}{游戏}{开奖信息}{在线人数}{玩家数量}{玩家总分}{当期期号}{结算记录}{中奖记录}{中奖}{结算}</div>
+                </li>
+                <li>
+                    <div>会员积分可用变量</div>
+                    <div>{微群名字}{在线人数}{玩家数量}{玩家总分}{账单内容}</div>
+                </li>
+                <li>
+                    <div>封盘后自定义消息</div>
+                    <div>无可用变量</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="comnetr2">
+        <div class="compantitle">
+            <div class="titletext">回复消息设置</div>
+            <div class="btns">
+                <button type="button" class="btn btn-primary">修改/保存</button>
+            </div>
+        </div>
+        <div class="compantable">
+            <div class="list-1">
+                <div class="base-list-item">
+                    <div class="base-item-second space-between"><span>游戏成功时回复</span>
+                    </div>
+                    <textarea></textarea>
+                </div>
+                <div class="base-list-item">
+                    <div class="base-item-second space-between"><span>查分时回复</span>
+
+                    </div>
+                    <textarea></textarea>
+                </div>
+                <div class="base-list-item">
+                    <div class="base-item-second space-between"><span>查流水统计时回复</span>
+
+                    </div>
+                    <textarea></textarea>
+                </div>
+                <div class="base-list-item">
+                    <div class="base-item-second space-between"><span>调整余额时回复</span>
+
+                    </div>
+                    <textarea></textarea>
+                </div>
+                <div class="base-list-item">
+                    <div class="base-item-second space-between"><span>自动返水时回复</span>
+
+                    </div>
+                    <textarea></textarea>
+                </div>
+                <div class="base-list-item">
+                    <div class="base-item-second space-between"><span>回复消息设置可用变量</span>
+
+                    </div>
+                    <textarea></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="list-item">
+            <div>
+                <div class="system-operate-list ivu-checkbox-group ivu-checkbox-default">
+                    <label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-group-item ivu-checkbox-wrapper-checked ivu-checkbox-default">
+                        <span class="ivu-checkbox ivu-checkbox-checked">
+<!--                        <span class="ivu-checkbox-inner"></span>-->
+                            <input
+                        type="checkbox" class="ivu-checkbox-inner" value="3"></span>
+                    <span>提交无效指令后@对方</span>
+                    </label>
+                    <label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-group-item ivu-checkbox-wrapper-checked ivu-checkbox-default">
+                        <span
+                        class="ivu-checkbox ivu-checkbox-checked">
+<!--                            <span class="ivu-checkbox-inner"></span>-->
+                            <input type="checkbox" class="ivu-checkbox-inner" value="4"></span>
+                    <span>下注时已封盘@对方</span>
+                    </label>
+                    <label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-group-item ivu-checkbox-wrapper-checked ivu-checkbox-default">
+                        <span
+                        class="ivu-checkbox ivu-checkbox-checked">
+<!--                            <span class="ivu-checkbox-inner"></span> -->
+                            <input
+                        type="checkbox" class="ivu-checkbox-inner" value="5"></span>
+                        <span>下注成功后@对方</span></label>
+                    <label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-group-item ivu-checkbox-wrapper-checked ivu-checkbox-default"><span
+                        class="ivu-checkbox ivu-checkbox-checked">
+<!--                        <span class="ivu-checkbox-inner"></span> -->
+                        <input
+                        type="checkbox" class="ivu-checkbox-inner" value="6"></span> <span>取消玩法后@对方</span></label><label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-group-item ivu-checkbox-wrapper-checked ivu-checkbox-default"><span
+                        class="ivu-checkbox ivu-checkbox-checked">
+<!--                    <span class="ivu-checkbox-inner"></span>-->
+                    <input
+                        type="checkbox" class="ivu-checkbox-inner" value="7"></span>
+                    <span>收到查回请求后@对方</span></label><label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-group-item ivu-checkbox-wrapper-checked ivu-checkbox-default"><span
+                        class="ivu-checkbox ivu-checkbox-checked">
+<!--                    <span class="ivu-checkbox-inner"></span>-->
+                    <input
+                        type="checkbox" class="ivu-checkbox-inner" value="8"></span>
+                    <span>确认查回分数后@对方</span>
+                </label>
+                    <label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-group-item ivu-checkbox-wrapper-checked ivu-checkbox-default"><span
+                        class="ivu-checkbox ivu-checkbox-checked">
+<!--                        <span class="ivu-checkbox-inner"></span> -->
+                        <input
+                        type="checkbox" class="ivu-checkbox-inner" value="9"></span>
+                    <span>下注积分不足时@对方</span></label>
+                    <label
+                        class="system-operate-item ivu-checkbox-wrapper ivu-checkbox-group-item ivu-checkbox-wrapper-checked ivu-checkbox-default"><span
+                        class="ivu-checkbox ivu-checkbox-checked">
+<!--                        <span class="ivu-checkbox-inner"></span> -->
+                        <input
+                        type="checkbox" class="ivu-checkbox-inner" value="10"></span> <span>下注发生限额时@对方</span></label>
+                </div>
+            </div>
+            <div class="system-reply-list">
+                <div class="system-reply-item"><span>取消订单时回复</span>
+                    <div class="columns-item-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type"><!---->
+                        <div class="ivu-input-inner-container" style=""><!----> <i
+                                class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
+                            <input autocomplete="off" spellcheck="false" type="text" placeholder=""
+                                   class="ivu-input ivu-input-default"></div> <!----></div>
+                </div>
+                <div class="system-reply-item"><span>收到请求时回复</span>
+                    <div class="columns-item-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type"><!---->
+                        <div class="ivu-input-inner-container" style=""><!----> <i
+                                class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
+                            <input autocomplete="off" spellcheck="false" type="text" placeholder=""
+                                   class="ivu-input ivu-input-default"></div> <!----></div>
+                </div>
+                <div class="system-reply-item"><span>禁止取消时回复</span>
+                    <div class="columns-item-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type"><!---->
+                        <div class="ivu-input-inner-container" style=""><!----> <i
+                                class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
+                            <input autocomplete="off" spellcheck="false" type="text" placeholder=""
+                                   class="ivu-input ivu-input-default"></div> <!----></div>
+                </div>
+                <div class="system-reply-item"><span>命令错误时回复</span>
+                    <div class="columns-item-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type"><!---->
+                        <div class="ivu-input-inner-container" style=""><!----> <i
+                                class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
+                            <input autocomplete="off" spellcheck="false" type="text" placeholder=""
+                                   class="ivu-input ivu-input-default"></div> <!----></div>
+                </div>
+                <div class="system-reply-item"><span>余额不足时回复</span>
+                    <div class="columns-item-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type"><!---->
+                        <div class="ivu-input-inner-container" style=""><!----> <i
+                                class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
+                            <input autocomplete="off" spellcheck="false" type="text" placeholder=""
+                                   class="ivu-input ivu-input-default"></div> <!----></div>
+                </div>
+                <div class="system-reply-item"><span>下注封盘时回复</span>
+                    <div class="columns-item-input ivu-input-wrapper ivu-input-wrapper-default ivu-input-type"><!---->
+                        <div class="ivu-input-inner-container" style=""><!----> <i
+                                class="ivu-icon ivu-icon-ios-loading ivu-load-loop ivu-input-icon ivu-input-icon-validate"></i>
+                            <input autocomplete="off" spellcheck="false" type="text" placeholder=""
+                                   class="ivu-input ivu-input-default"></div> <!----></div>
+                </div>
+            </div>
+        </div>
+        <div class="list-2">
+            <div class="listtitle">可用变量说明</div>
+            <ul class="listtable">
+                <li>
+                    <div>{游戏}</div>
+                    <div>当前游戏类型， 如：极速赛车</div>
+                </li>
+                <li>
+                    <div>{期号}</div>
+                    <div>
+                        完整期号， 如重庆时时彩 第20150101120期
+                    </div>
+                </li>
+                <li>
+                    <div>{剩余}</div>
+                    <div>玩家剩余分数，默认保留2位小数。可在封盘设定中全局修改</div>
+                </li>
+                <li>
+                    <div>{当前玩法}</div>
+                    <div>
+                        玩家单次输入的命令生成的玩法内容，可以是一条或多条订单</div>
+                </li>
+                <li>
+                    <div>
+                        {当前玩法明细}</div>
+                    <div>
+                        如1/12/10，显示为“第一球1-10，第一球2-10</div>
+                </li>
+                <li>
+                    <div>{当期玩法明细}</div>
+                    <div>
+                        当期所有玩法明细汇总</div>
+                </li>
+                <li>
+                    <div>{简写期号}</div>
+                    <div>
+                        简写期号，如重庆时时彩 第120期</div>
+                </li>
+                <li>
+                    <div>{当期得分}</div>
+                    <div>
+                        当期中奖分数</div>
+                </li>
+
+                <li>
+                    <div>{当日得分}</div>
+                    <div>当日所有中奖分数总和</div>
+                </li>
+                <li>
+                    <div>{当期盈亏}</div>
+                    <div>{当日盈亏}</div>
+                </li>
+                <li>
+                    <div>{当日流水}</div>
+                    <div>{当前使用分数}</div>
+                </li>
+                <li>
+                    <div>{当期使用分数}</div>
+                    <div>{当前多行玩法}</div>
+                </li>
+                <li>
+                    <div>{未开奖简写期号}</div>
+                    <div>{未开奖玩法}</div>
+                </li>
+                <li>
+                    <div>{未开奖玩法明细}</div>
+                    <div>{未开奖使用分数}</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

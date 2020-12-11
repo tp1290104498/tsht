@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>唐商</title>
+    <link href="./../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./../static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="./../static/css/common.css" rel="stylesheet">
+    <link href="./../static/js/layui/css/layui.css" rel="stylesheet">
+    <link rel="stylesheet" href="./../static/css/datetimepicker.min.css">
+    <script src="./../static/js/jqery.js"></script>
+    <script src="./../static/js/moment.js"></script>
+    <script src="./../static/js/bootstrap.min.js"></script>
+    <script src="./../static/js/datatimepicker.js"></script>
+    <script src="./../static/js/layui/layui.all.js"></script>
+    <style lang="scss">
+        #toggle-button {
+            display: none;
+        }
+
+        .button-label {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 20px;
+            background-color: #ccc;
+            box-shadow: #ccc 0px 0px 0px 2px;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .button-label .text {
+            line-height: 20px;
+            font-size: 14px;
+            text-shadow: 0 0 2px #ddd;
+        }
+
+        .on {
+            color: #fff;
+            display: none;
+            text-indent: -40px;
+        }
+
+        .off {
+            color: #fff;
+            display: inline-block;
+            text-indent: 30px;
+        }
+
+        .button-label .circle {
+            left: 0;
+            transition: all 0.3s;
+        }
+
+        #toggle-button:checked + label.button-label .circle {
+            left: 50px;
+        }
+
+        #toggle-button:checked + label.button-label .on {
+            display: inline-block;
+        }
+
+        #toggle-button:checked + label.button-label .off {
+            display: none;
+        }
+
+        #toggle-button:checked + label.button-label {
+            background-color: #19e236;
+        }
+
+        .Memberset {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: url("./../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .Memberset .zh {
+            height: 10px;
+        }
+
+        .Memberset .centers {
+            height: 600px;
+            background: #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .Memberset .centers .soso {
+            height: 150px;
+            border-radius: 5px;
+            background: #e4e4e4;
+            padding-top: 10px;
+            border: 1px solid #bcbcbc;
+        }
+
+        .Memberset .centers .soso .left {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .Memberset .centers .soso .selectbox {
+            width: 30%;
+            height: 34px;
+            line-height: 34px;
+        }
+
+        .Memberset .centers .soso .inputname {
+            height: 34px;
+            line-height: 34px;
+            width: 38%;
+            border-radius: 5px;
+        }
+
+        .Memberset .centers .soso .inputname input {
+            height: 34px;
+            line-height: 34px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .btns .btn {
+            background: #0078ff;
+            width: 80px;
+            height: 30px;
+            padding: 0;
+            margin-right: 10px;
+        }
+
+        .soso .rights {
+            line-height: 34px;
+            height: 34px;
+            text-align: right;
+            border-bottom: 1px solid #d7d7d7;
+            margin: 0 10px;
+        }
+
+        .soso .rights span {
+            color: rgb(255, 153, 51)
+        }
+
+        .soso .xqsm {
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0 10px;
+        }
+
+        .Memberset .tables {
+            overflow: auto;
+            width: 100%;
+            margin-top: 10px;
+            border: 1px solid #bcbcbc;
+            border-radius: 5px;
+            height: 400px;
+        }
+
+        #qiliangqifei {
+            width: 100%;
+        }
+
+        #qiliangqifei td {
+            width: 50px;
+            height: 60px;
+            text-align: center;
+        }
+
+        #qiliangqifei td img {
+            width: 50px;
+            height: 50px;
+            margin: auto;
+            margin-top: 5px;
+
+        }
+
+        #qiliangqifei th {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+
+        #qiliangqifei th:last-child {
+            height: 50px;
+            text-align: center;
+        }
+
+        #qiliangqifei td .btns .btn {
+            width: 70px;
+            height: 20px;
+            text-align: center;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(1) {
+            background: #6cc;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(2) {
+            background: #6cc;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(3) {
+            background: #6cc;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(4) {
+            background: #6cc;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(7) {
+            background: #c9c;
+            color: #333333;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(6) {
+            background: #c9c;
+            color: #333333;
+            width: 50px;
+            height: 20px;
+        }
+
+        #qiliangqifei td .btns .btn:nth-child(5) {
+            background: #c9c9c9;
+            color: #333333;
+            width: 50px;
+            height: 20px;
+        }
+
+        .pagination {
+            margin: auto;
+            margin-top: 10px;
+            margin-left: 10%;
+        }
+
+        .Topdownplan {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            z-index: 9;
+            display: none;
+            top: 0;
+            background: rgba(0, 0, 0, .4);
+        }
+
+        .Topdownplan .branch-recode {
+            width: 90%;
+            height: 480px;
+            position: absolute;
+            z-index: 99;
+            left: 5%;
+            top: 30px;
+            background: #f2f2f2;
+            border: 3px solid #cdcdcd;
+        }
+
+        .user-info-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+            background-color: #ddd;
+            font-weight: 700;
+        }
+
+        .list-header {
+            margin: 10px 13px 0;
+            display: flex;
+            align-items: center;
+            height: 35px;
+            border-bottom: 1px solid #e4e4e4;
+            text-align: left;
+            justify-content: space-between;
+        }
+
+        .list-header .list-title {
+            position: relative;
+            /*padding-bottom: 10px;*/
+            display: flex;
+            /*min-height: 28px;*/
+            height: 50px;
+            font-weight: 700;
+            align-items: center;
+            color: #333;
+            width: 100%;
+            justify-content: space-between;
+            box-sizing: content-box;
+        }
+
+        .list-header .list-title:before {
+            content: "";
+            position: absolute;
+            top: 30%;
+            left: 7px;
+            width: 4px;
+            height: 15px;
+            background-color: #399;
+        }
+
+        .list-header .list-title > span {
+            margin-left: 18px;
+            line-height: 34px;
+        }
+
+        .list-info span:nth-child(2) {
+            color: #066;
+        }
+
+        .list-info span:nth-child(4) {
+            color: #f30;
+        }
+
+        .recode-search {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #datetimepicker1 {
+            margin-left: 10px;
+        }
+
+        #datetimepicker1 input {
+            border-radius: 0;
+            border-right: none;
+        }
+
+        #datetimepicker2 input {
+            border-radius: 0;
+            border-left: none;
+        }
+
+        .tabless {
+            margin-top: 10px;
+        }
+
+        #qiliangqifei1 th {
+            text-align: center;
+            background: #f8f8f9;
+        }
+
+        #qiliangqifei1 td {
+            text-align: center;
+        }
+
+        .user-top {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 10px;
+            border-radius: 2px;
+            background-color: #e4e4e4;
+            border: 1px solid #d7d7d7;
+            padding: 10px 0;
+        }
+
+        .immgbox {
+            width: 60px;
+            height: 60px;
+            border-right: 1px solid #d7d7d7;
+            position: relative;
+            border-right: 1px solid #d7d7d7;
+        }
+
+        .immgbox img {
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        #avatar_file {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .username {
+            width: 35%;
+        }
+
+        .username input {
+            margin-top: 5px;
+        }
+
+        .idbox {
+            width: 35%;
+        }
+
+        .idbox input {
+            margin-top: 3px;
+        }
+
+        .user-butpm {
+            /*padding: 0 10px;*/
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .grant-wechat {
+            /*display: flex;*/
+            align-items: center;
+            height: 70px;
+            border-radius: 2px;
+            background-color: #e8e8e8;
+            border: 1px solid #c9c9c9;
+        }
+
+        .grant-wechat .wechat-item {
+            flex-grow: 1;
+            text-align: left;
+            margin-left: 2px;
+        }
+
+        .button {
+            margin-top: 5px;
+            display: inline-block;
+            width: 100px;
+            height: 20px;
+            line-height: 20px;
+            background-color: #0078ff;
+            box-shadow: inset 0 0 5px 0 rgba(124, 183, 255, .75);
+            border-radius: 4px;
+            border: 1px solid #0e3c90;
+            text-align: center;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .wechat-poptip {
+            padding: 10px 0;
+            text-align: left;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .user-top-item {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .user-top-item .itemdpm {
+            display: flex;
+            width: 48%;
+            margin-top: 5px;
+            justify-content: space-between;
+            margin-left: 5px;
+        }
+
+        .user-top-item .itemdpm .names {
+            width: 30%;
+        }
+
+        .user-top-item .itemdpm .form-control {
+            padding-left: 0;
+        }
+
+        .btnan {
+            width: 40%;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        .fh {
+            margin-left: 20px;
+            margin-top: 50px;
+        }
+
+        .amend {
+            display: none;
+        }
+        .list-p{
+            width: 60%;
+            display: flex;
+            justify-content: space-around;
+            align-self: center;
+        }
+        .sl{
+            margin: 10px;
+            border: 1px solid #d7d7d7;
+            height: 180px;
+        }
+        .form-group{
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="Memberset">
+    <div class="zh"></div>
+    <div class="centers">
+        <!--        <div class="soso">-->
+        <!--            <div class="left">-->
+        <!--                <div class="selectbox">-->
+        <!--                    <select class="form-control" value="所有用户">-->
+        <!--                        <option>所有用户</option>-->
+        <!--                        <option>正式用户</option>-->
+        <!--                        <option>虚假用户</option>-->
+        <!--                        <option>封禁踢人</option>-->
+        <!--                    </select>-->
+        <!--                </div>-->
+        <!--                <div class="inputname">-->
+        <!--                    <input placeholder="搜索用户ID或用户名称" type="text">-->
+        <!--                </div>-->
+        <!--                <div class="btns">-->
+        <!--                    <button class="btn btn-primary" type="button">搜索</button>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            <div class="rights">-->
+        <!--                当前注册会员：<span>33</span>（最大注册数1000）-->
+        <!--            </div>-->
+        <!--            <div class="xqsm">-->
+        <!--                说明：整个后台的用户名默认显示用户昵称，如果在账户设置填写了用户备注，则用户名显示备注名，这样方便管理员识别会员玩家。-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <div class="list-header">
+            <div class="list-title">
+                <span>回水方案</span>
+                <div class="list-p">
+                    <div class="p-item">
+                        <select class="form-control" value="所有方案">-->
+                            <option>所有方案</option>
+                            <option>方案一</option>
+                            <option>方案二</option>
+                            <option>方案三</option>
+                            <option>方案四</option>
+                            <option>方案五</option>
+                            <option>方案六</option>
+                            <option>方案七</option>
+                        </select>
+                    </div>
+                    <div class="p-item">
+                         <button class="btn btn-primary" type="button" onclick="addckick()">添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tables">
+            <table class="table-striped table-bordered qiliangqifei-tab" id="qiliangqifei">
+                <thead>
+                <tr>
+
+
+                    <th data-valign="middle">方案名称</th>
+                    <th>适用游戏</th>
+                    <th>最小统计</th>
+                    <th>最大统计</th>
+                    <th>回水比例（%）</th>
+                    <th>回水模式</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>方案一</td>
+                    <td>所有游戏</td>
+                    <td>5</td>
+                    <td>1500</td>
+                    <td>99%</td>
+                    <td>流水模式</td>
+                    <td>
+                        <div class="btns">
+                            <button class="btn btn-primary" type="button" onclick="showtale()">修改</button>
+                            <button class="btn btn-primary" type="button" onclick="showtale1()">删除</button>
+
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>方案一</td>
+                    <td>所有游戏</td>
+                    <td>5</td>
+                    <td>1500</td>
+                    <td>99%</td>
+                    <td>流水模式</td>
+
+                    <td>
+                        <div class="btns">
+                            <button class="btn btn-primary" type="button" onclick="showtale()">修改</button>
+                            <button class="btn btn-primary" type="button" onclick="showtale1()">删除</button>
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+<!--        分页盒子-->
+        <ul class="pagination" id="pagination"></ul>
+    </div>
+    <!--    添加方案-->
+    <div class="Topdownplan tbx1">
+        <div class="branch-recode">
+            <div class="user-info-header">
+                <span>添加方案</span>
+                <span class="modal-close" onclick="hidtable()">X</span>
+            </div>
+            <div class="seletop">
+                <div class="sl">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="name">方案名称</label>
+                            <select class="form-control" id="name" value="所有方案">-->
+                                 <option>所有方案</option>
+                                 <option>方案一</option>
+                                 <option>方案二</option>
+                                 <option>方案三</option>
+                                <option>方案四</option>
+                                <option>方案五</option>
+                                <option>方案六</option>
+                                <option>方案七</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="name1">方案模式</label>
+                            <select class="form-control" id="name1" value="流水模式">-->
+                                <option>流水模式</option>
+                                <option>输赢模式</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="name2">适用游戏</label>
+                            <select class="form-control" id="name2" value="所有游戏">-->
+                                <option>所有游戏</option>
+                                <option>英国赛车</option>
+                                <option>英国时时彩</option>
+                                <option>英国极速赛车</option>
+                                <option>英国极速时时彩</option>
+                                <option>澳洲10</option>
+                                <option>澳洲5</option>
+                                <option>极速赛车</option>
+                                <option>极速时时彩</option>
+                                <option>168飞艇</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="sl">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="zxtj">最小统计</label>
+                            <input class="form-control" id="zxtj" type="text" value="5" />
+                        </div>
+                        <div class="form-group">
+                            <label for="zdtj">最大统计</label>
+                            <input class="form-control" id="zdtj" type="text" value="1500" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hsbl">回水比例</label>
+                            <input class="form-control" id="hsbl" type="text" value="99%" />
+                        </div>
+                    </form>
+                </div>
+                <button class="btn btn-primary" style="margin: 0 40%" type="button" >提交</button>
+            </div>
+        </div>
+    </div>
+    <!-- 修改方案-->
+    <div class="Topdownplan tbx2">
+        <div class="branch-recode">
+            <div class="user-info-header">
+                <span>修改方案</span>
+                <span class="modal-close" onclick="hidtable1()">X</span>
+            </div>
+            <div class="seletop">
+                <div class="sl">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="name">方案名称</label>
+                            <select class="form-control" id="name" value="所有方案">-->
+                                <option>所有方案</option>
+                                <option>方案一</option>
+                                <option>方案二</option>
+                                <option>方案三</option>
+                                <option>方案四</option>
+                                <option>方案五</option>
+                                <option>方案六</option>
+                                <option>方案七</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="name1">方案模式</label>
+                            <select class="form-control" id="name1" value="流水模式">-->
+                                <option>流水模式</option>
+                                <option>输赢模式</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="name2">适用游戏</label>
+                            <select class="form-control" id="name2" value="所有游戏">-->
+                                <option>所有游戏</option>
+                                <option>英国赛车</option>
+                                <option>英国时时彩</option>
+                                <option>英国极速赛车</option>
+                                <option>英国极速时时彩</option>
+                                <option>澳洲10</option>
+                                <option>澳洲5</option>
+                                <option>极速赛车</option>
+                                <option>极速时时彩</option>
+                                <option>168飞艇</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="sl">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="zxtj">最小统计</label>
+                            <input class="form-control" id="zxtj" type="text" value="5" />
+                        </div>
+                        <div class="form-group">
+                            <label for="zdtj">最大统计</label>
+                            <input class="form-control" id="zdtj" type="text" value="1500" />
+                        </div>
+                        <div class="form-group">
+                            <label for="hsbl">回水比例</label>
+                            <input class="form-control" id="hsbl" type="text" value="99%" />
+                        </div>
+                    </form>
+                </div>
+                <button class="btn btn-primary" style="margin: 0 40%" type="button" >提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        //分页
+        if ($("#pagination")) {
+            var pagecount = 40;
+            var pagesize = 10;
+            var currentpage = 2;
+            var counts, pagehtml = "";
+            if (pagecount % pagesize == 0) {
+                counts = parseInt(pagecount / pagesize);
+            } else {
+                counts = parseInt(pagecount / pagesize) + 1;
+            }
+            //只有一页内容
+            if (pagecount <= pagesize) {
+                pagehtml = "";
+            }
+            //大于一页内容
+            if (pagecount > pagesize) {
+                if (currentpage > 1) {
+                    pagehtml += '<li><a >上一页</a></li>';
+                }
+                for (var i = 0; i < counts; i++) {
+                    if (i >= (currentpage - 3) && i < (currentpage + 3)) {
+                        if (i == currentpage - 1) {
+                            pagehtml += '<li class="active"><a >' + (i + 1) + '</a></li>';
+                        } else {
+                            pagehtml += '<li><a >' + (i + 1) + '</a></li>';
+                        }
+
+                    }
+                }
+                if (currentpage < counts) {
+                    pagehtml += '<li><a >下一页</a></li>';
+                }
+            }
+            $("#pagination").html(pagehtml);
+        }
+    })
+    function hidtable() {
+        $('.tbx1').hide()
+    }
+    function hidtable1() {
+        $('.tbx2').hide()
+    }
+    function addckick() {
+        $('.tbx1').show()
+    }
+    function showtale() {
+        $('.tbx2').show()
+    }
+</script>
+</body>
+</html>

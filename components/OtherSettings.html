@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    其他设置-->
+        <meta charset="UTF-8">
+        <meta content="ie=edge" http-equiv="X-UA-Compatible">
+        <title>唐商</title>
+        <link href="./../static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./../static/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="./../static/css/common.css" rel="stylesheet">
+        <link href="./../static/js/layui/css/layui.css" rel="stylesheet">
+        <link rel="stylesheet" href="./../static/css/datetimepicker.min.css">
+        <script src="./../static/js/jqery.js"></script>
+        <script src="./../static/js/moment.js"></script>
+        <script src="./../static/js/bootstrap.min.js"></script>
+        <script src="./../static/js/datatimepicker.js"></script>
+        <script src="./../static/js/layui/layui.all.js"></script>
+    <style>
+        html.body{
+            width: 920px;
+            margin: auto;
+        }
+        .OtherSettings{
+            height: 100vh;
+            width: 100%;
+            background: url("./../static/img/back.1.2.0.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        .zh{
+            height: 10px;
+        }
+        .ultba{
+            width: 920px;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 60px;
+            line-height: 60px;
+            cursor: pointer;
+            background: #FFFFFF;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .ultba li{
+            flex: 1;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .active{
+            background-color: #41c7db;
+            font-size: 18px;
+            color: #fff9ec;
+        }
+        #OtherButon{
+            height: calc(100vh - 90px);
+            width: 930px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="OtherSettings">
+        <div class="zh"></div>
+        <ul class="ultba">
+            <li class="active" onclick="gorouter('./components/management.html')">消息管理</li>
+            <li onclick="gorouter('./components/sensitivity.html')">敏感操作日志</li>
+            <li onclick="gorouter('./components/Handupanddown.html')">手动上下分</li>
+            <li onclick="gorouter('./components/Manualwork.html')">手动开奖</li>
+            <li onclick="gorouter('./components/accountsecurity.html')">账户安全</li>
+            <li onclick="gorouter('./components/External.html')">外部飞单管理</li>
+            <li onclick="gorouter('./components/domainname.html')">H5网页域名</li>
+        </ul>
+        <div class="zh"></div>
+        <iframe class="OtherButon" id="OtherButon" src="" frameborder="0">
+        </iframe>
+    </div>
+<script>
+    window.onload = function () {
+        // console.log($('comentper'));
+        gorouter(undefined)
+    }
+    $('.ultba li').on('click',function(){
+        $('.ultba li').removeClass('active');
+        $(this).addClass('active');
+    });
+    function gorouter(url) {
+        if(url) {
+            $('#OtherButon')[0].src = url
+        }else {
+            $('#OtherButon')[0].src = './components/management.html'
+        }
+    }
+</script>
+</body>
+</html>
